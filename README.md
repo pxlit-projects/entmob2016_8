@@ -4,7 +4,8 @@
 - Jasper Szkudlarski
 - Stephane Oris
 - Brecht Morrhey
-- 
+
+
 ## Concept
 We gaan de sensor aan een headset hangen en aan de hand van de motion sensors detecteren wanneer de headset wordt opgezet en neergelegd. Met deze informatie zien we twee mogelijke toepassingen. De eerste is eerder voor particulier gebruik en houdt in dat de pc van de gebruiker automatisch vergrendeld wordt en dat alle social media toepassingen op "Away" worden gezet wanneer hij de headset neerlegt. Het omgekeerde gebeurt wanneer hij de headset terug opneemt.
 
