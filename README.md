@@ -17,3 +17,6 @@ Deze app gaat gebruikt worden om te connecteren met de sensortag zodat de benodi
 
 ## UWP app
 Deze app zal voor op de computer zijn. Hiermee kan de werkgever de prestaties van alle werknemers bekijken. Dit zal waarschijnlijk op een grafische manier zijn aan de hand van grafieken.
+
+## Architectuur
+![Architectuur schets](Architectuur afbeelding.PNG)
