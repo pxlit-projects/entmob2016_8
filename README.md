@@ -20,3 +20,7 @@ Deze app zal voor op de computer zijn. Hiermee kan de werkgever de prestaties va
 
 ## Architectuur
 ![Architectuur schets](Architectuur afbeelding.PNG)
+
+Van de Xamarin app naar Spring zal de REST API vooral gebruikt worden om gegevens te uploaden. Elke werknemer zal zich ook moeten inloggen, dus deze gegevens zullen gecontroleerd worden via de REST API.
+
+Bij de UWP app zal de REST API vooral gebruikt worden om gegevens af te halen om deze bijvoorbeeld te kunnen verwerken in grafieken. Dit kunnen gegevens zijn per werknemer of van alle werknemers.
