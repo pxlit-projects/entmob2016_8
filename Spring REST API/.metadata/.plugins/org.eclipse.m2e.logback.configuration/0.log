@@ -1,0 +1,73 @@
+2016-09-30 08:54:36,652 [Worker-6] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Collecting project info '/pom.xml' C:\Users\11402671\Documents\GitHub\entmob2016_8\Spring REST API\backend\pom.xml
+2016-09-30 08:54:37,680 [Worker-6] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: be.pxl:backend:0.0.1-SNAPSHOT @ C:\Users\11402671\Documents\GitHub\entmob2016_8\Spring REST API\backend\pom.xml.
+2016-09-30 08:54:38,121 [Worker-6] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /backend/src/main/java
+2016-09-30 08:54:38,126 [Worker-6] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /backend/src/test/java
+2016-09-30 08:54:39,346 [Worker-5] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: be.pxl:backend:0.0.1-SNAPSHOT @ C:\Users\11402671\Documents\GitHub\entmob2016_8\Spring REST API\backend\pom.xml.
+2016-09-30 08:54:39,591 [Worker-6] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Imported and configured 1 project(s) in 2 sec
+2016-09-30 08:54:40,501 [Worker-1] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: be.pxl:backend:0.0.1-SNAPSHOT @ C:\Users\11402671\Documents\GitHub\entmob2016_8\Spring REST API\backend\pom.xml.
+2016-09-30 08:54:40,579 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-09-30 08:54:40,579 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\11402671\Documents\GitHub\entmob2016_8\Spring REST API\backend\src\main\resources
+2016-09-30 08:54:40,581 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-09-30 08:54:40,581 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\11402671\Documents\GitHub\entmob2016_8\Spring REST API\backend\src\test\resources
+2016-09-30 08:59:31,293 [main] INFO  o.e.m2e.actions.ExecutePomAction - Creating new launch configuration
+2016-09-30 08:59:41,520 [Worker-6] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\Users\11402671\Documents\GitHub\entmob2016_8\Spring REST API\backend
+2016-09-30 08:59:41,521 [Worker-6] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B 
+2016-09-30 08:59:41,947 [Worker-4] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: be.pxl:backend:0.0.1-SNAPSHOT @ C:\Users\11402671\Documents\GitHub\entmob2016_8\Spring REST API\backend\pom.xml.
+2016-09-30 08:59:42,396 [Worker-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/springframework/spring-context/4.3.3.RELEASE/spring-context-4.3.3.RELEASE.pom
+2016-09-30 08:59:42,590 [Worker-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/springframework/spring-context/4.3.3.RELEASE/spring-context-4.3.3.RELEASE.pom
+2016-09-30 08:59:42,696 [Worker-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/springframework/spring-aop/4.3.3.RELEASE/spring-aop-4.3.3.RELEASE.pom
+2016-09-30 08:59:42,882 [Worker-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/springframework/spring-aop/4.3.3.RELEASE/spring-aop-4.3.3.RELEASE.pom
+2016-09-30 08:59:42,994 [Worker-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/springframework/spring-beans/4.3.3.RELEASE/spring-beans-4.3.3.RELEASE.pom
+2016-09-30 08:59:43,194 [Worker-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/springframework/spring-beans/4.3.3.RELEASE/spring-beans-4.3.3.RELEASE.pom
+2016-09-30 08:59:43,303 [Worker-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/springframework/spring-core/4.3.3.RELEASE/spring-core-4.3.3.RELEASE.pom
+2016-09-30 08:59:43,509 [Worker-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/springframework/spring-core/4.3.3.RELEASE/spring-core-4.3.3.RELEASE.pom
+2016-09-30 08:59:43,619 [Worker-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/commons-logging/commons-logging/1.2/commons-logging-1.2.pom
+2016-09-30 08:59:44,482 [Worker-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/commons-logging/commons-logging/1.2/commons-logging-1.2.pom
+2016-09-30 08:59:44,593 [Worker-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/commons/commons-parent/34/commons-parent-34.pom
+2016-09-30 08:59:45,100 [Worker-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/commons/commons-parent/34/commons-parent-34.pom
+2016-09-30 08:59:45,259 [Worker-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/springframework/spring-expression/4.3.3.RELEASE/spring-expression-4.3.3.RELEASE.pom
+2016-09-30 08:59:45,447 [Worker-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/springframework/spring-expression/4.3.3.RELEASE/spring-expression-4.3.3.RELEASE.pom
+2016-09-30 08:59:45,600 [Worker-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/springframework/spring-context/4.3.3.RELEASE/spring-context-4.3.3.RELEASE.jar
+2016-09-30 08:59:54,401 [Worker-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/springframework/spring-context/4.3.3.RELEASE/spring-context-4.3.3.RELEASE.jar
+2016-09-30 08:59:54,511 [Worker-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/springframework/spring-aop/4.3.3.RELEASE/spring-aop-4.3.3.RELEASE.jar
+2016-09-30 08:59:57,758 [Worker-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/springframework/spring-aop/4.3.3.RELEASE/spring-aop-4.3.3.RELEASE.jar
+2016-09-30 08:59:57,881 [Worker-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/springframework/spring-beans/4.3.3.RELEASE/spring-beans-4.3.3.RELEASE.jar
+2016-09-30 09:00:02,964 [Worker-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/springframework/spring-beans/4.3.3.RELEASE/spring-beans-4.3.3.RELEASE.jar
+2016-09-30 09:00:03,079 [Worker-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/springframework/spring-core/4.3.3.RELEASE/spring-core-4.3.3.RELEASE.jar
+2016-09-30 09:00:13,512 [Worker-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/springframework/spring-core/4.3.3.RELEASE/spring-core-4.3.3.RELEASE.jar
+2016-09-30 09:00:13,641 [Worker-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/commons-logging/commons-logging/1.2/commons-logging-1.2.jar
+2016-09-30 09:00:14,080 [Worker-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/commons-logging/commons-logging/1.2/commons-logging-1.2.jar
+2016-09-30 09:00:14,210 [Worker-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/springframework/spring-expression/4.3.3.RELEASE/spring-expression-4.3.3.RELEASE.jar
+2016-09-30 09:00:16,385 [Worker-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/springframework/spring-expression/4.3.3.RELEASE/spring-expression-4.3.3.RELEASE.jar
+2016-09-30 09:00:16,771 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-09-30 09:00:16,771 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\11402671\Documents\GitHub\entmob2016_8\Spring REST API\backend\src\main\resources
+2016-09-30 09:00:16,773 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-09-30 09:00:16,773 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\11402671\Documents\GitHub\entmob2016_8\Spring REST API\backend\src\test\resources
+2016-09-30 09:00:16,990 [Worker-3] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\Users\11402671\Documents\GitHub\entmob2016_8\Spring REST API\backend
+2016-09-30 09:00:16,991 [Worker-3] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B 
+2016-09-30 09:00:18,117 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-09-30 09:00:18,117 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\11402671\Documents\GitHub\entmob2016_8\Spring REST API\backend\src\main\resources
+2016-09-30 09:00:18,119 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-09-30 09:00:18,120 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\11402671\Documents\GitHub\entmob2016_8\Spring REST API\backend\src\test\resources
+2016-09-30 09:02:36,543 [Worker-2] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\Users\11402671\Documents\GitHub\entmob2016_8\Spring REST API\backend
+2016-09-30 09:02:36,544 [Worker-2] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B 
+2016-09-30 09:02:36,797 [Worker-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/springframework/spring-framework-bom/4.3.3.RELEASE/spring-framework-bom-4.3.3.RELEASE.pom
+2016-09-30 09:02:36,982 [Worker-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/springframework/spring-framework-bom/4.3.3.RELEASE/spring-framework-bom-4.3.3.RELEASE.pom
+2016-09-30 09:02:37,043 [Worker-4] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: be.pxl:backend:0.0.1-SNAPSHOT @ C:\Users\11402671\Documents\GitHub\entmob2016_8\Spring REST API\backend\pom.xml.
+2016-09-30 09:02:37,179 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-09-30 09:02:37,179 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\11402671\Documents\GitHub\entmob2016_8\Spring REST API\backend\src\main\resources
+2016-09-30 09:02:37,180 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-09-30 09:02:37,181 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\11402671\Documents\GitHub\entmob2016_8\Spring REST API\backend\src\test\resources
+2016-09-30 09:02:48,584 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-09-30 09:02:48,584 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\11402671\Documents\GitHub\entmob2016_8\Spring REST API\backend\src\main\resources
+2016-09-30 09:02:48,586 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-09-30 09:02:48,586 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\11402671\Documents\GitHub\entmob2016_8\Spring REST API\backend\src\test\resources
+2016-09-30 09:06:38,741 [main] INFO  o.e.m2e.actions.ExecutePomAction - Using existing launch configuration
+2016-09-30 09:06:48,419 [main] INFO  o.e.m2e.actions.ExecutePomAction - Using existing launch configuration
+2016-09-30 09:06:51,334 [Worker-8] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\Users\11402671\Documents\GitHub\entmob2016_8\Spring REST API\backend
+2016-09-30 09:06:51,335 [Worker-8] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B comile
+2016-09-30 09:07:01,796 [main] INFO  o.e.m2e.actions.ExecutePomAction - Using existing launch configuration
+2016-09-30 09:07:01,823 [Worker-8] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\Users\11402671\Documents\GitHub\entmob2016_8\Spring REST API\backend
+2016-09-30 09:07:01,823 [Worker-8] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B comile
+2016-09-30 09:07:13,140 [Worker-3] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\Users\11402671\Documents\GitHub\entmob2016_8\Spring REST API\backend
+2016-09-30 09:07:13,140 [Worker-3] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B compile

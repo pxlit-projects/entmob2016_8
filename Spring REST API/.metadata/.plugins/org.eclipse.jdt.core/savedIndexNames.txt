@@ -1,0 +1,2 @@
+INDEX VERSION 1.127+C:\Users\11402671\Documents\GitHub\entmob2016_8\Spring REST API\.metadata\.plugins\org.eclipse.jdt.core
+1965174767.index
