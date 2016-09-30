@@ -14,9 +14,9 @@ public class SessionRestController {
 	private SessionDao dao;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public Session getSessionById(){
+	public Session getSessionById(int id){
 		
-		return dao.getSessionById();
+		return dao.getSessionById(id);
 		
 		
 	}
