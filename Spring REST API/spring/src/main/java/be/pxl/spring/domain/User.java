@@ -1,20 +1,20 @@
 package be.pxl.spring.domain;
 
-import java.io.*;
-import java.util.*;
-
 import javax.persistence.*;
 
 import org.springframework.data.authentication.UserCredentials;
 
+import java.io.*;
+import java.util.*;
+
 @Entity
 @Table(name="users")
-public class User implements Serializable{
+public class User implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="user_id")
-	private String userId;
+	private int userId;
 	
 	@Column(name="first_name")
 	private String firstName;
@@ -28,16 +28,18 @@ public class User implements Serializable{
 	@Column(name="department")
 	private String department;
 	
-	@OneToMany(mappedBy="user_id")
+	@OneToMany(mappedBy="session_id")
 	private Set<Session> sessions = new HashSet<Session>();
 	
 	@OneToOne(mappedBy="user_id")
-	private UserCredentials fbCredentials;
+	private UserCredentials twitter_credentials;
 	
 	@OneToOne(mappedBy="user_id")
-	private UserCredentials twitterCredentials;
+	private UserCredentials facebook_credentials;
 	
 	@OneToOne(mappedBy="user_id")
-	private UserCredentials steamCredentials;
+	private UserCredentials steam_credentials;
+	
+	
 
 }
