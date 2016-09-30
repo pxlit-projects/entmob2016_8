@@ -2,13 +2,17 @@ package be.pxl.spring.domain;
 
 import javax.persistence.*;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.data.authentication.UserCredentials;
+import org.springframework.stereotype.Component;
 
 import java.io.*;
 import java.util.*;
 
 @Entity
 @Table(name="users")
+@Component
+@Scope("prototype")
 public class User implements Serializable {
 	
 	@Id
@@ -32,13 +36,13 @@ public class User implements Serializable {
 	private Set<Session> sessions = new HashSet<Session>();
 	
 	@OneToOne(mappedBy="user_id")
-	private UserCredentials twitter_credentials;
+	private UserCredentials twitterCredentials;
 	
 	@OneToOne(mappedBy="user_id")
-	private UserCredentials facebook_credentials;
+	private UserCredentials facebookCredentials;
 	
 	@OneToOne(mappedBy="user_id")
-	private UserCredentials steam_credentials;
+	private UserCredentials steamCredentials;
 	
 	
 
