@@ -1,0 +1,5 @@
+package be.pxl.backend.model;
+
+public class TwitterUser {
+
+}
