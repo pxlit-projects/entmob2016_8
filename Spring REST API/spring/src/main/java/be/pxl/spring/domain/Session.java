@@ -5,13 +5,8 @@ import java.sql.Timestamp;
 
 import javax.persistence.*;
 
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
-
 @Entity
 @Table(name="sessions")
-@Component
-@Scope("prototype")
 public class Session {
 
 	@Id
