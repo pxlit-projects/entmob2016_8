@@ -51,19 +51,19 @@
     <version>1.4.1.RELEASE</version>
 </dependency>
   <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-<!-- <dependency> -->
-<!--     <groupId>mysql</groupId> -->
-<!--     <artifactId>mysql-connector-java</artifactId> -->
-<!--     <version>6.0.4</version> -->
-<!-- </dependency> -->
+ <dependency> 
+     <groupId>mysql</groupId> 
+     <artifactId>mysql-connector-java</artifactId> 
+     <version>6.0.4</version> 
+ </dependency> 
   
   
   <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa -->
-<!-- <dependency> -->
-<!--     <groupId>org.springframework.boot</groupId> -->
-<!--     <artifactId>spring-boot-starter-data-jpa</artifactId> -->
-<!--     <version>1.4.1.RELEASE</version> -->
-<!-- </dependency> -->
+ <dependency>
+     <groupId>org.springframework.boot</groupId>
+     <artifactId>spring-boot-starter-data-jpa</artifactId>
+     <version>1.4.1.RELEASE</version>
+ </dependency>
 <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter -->
 <dependency>
     <groupId>org.springframework.boot</groupId>
@@ -77,17 +77,28 @@
     <artifactId>spring-context</artifactId>
     <version>4.3.3.RELEASE</version>
   </dependency>
+  
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+    
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>3.8.1</version>
       <scope>test</scope>
+    </dependency>
+    
+    <dependency>
+    	<groupId>org.springframework.boot</groupId>
+    	<artifactId>spring-boot-starter-jdbc</artifactId>
+    </dependency>
+    <dependency>
+    	<groupId>mysql</groupId>
+    	<artifactId>mysql-connector-java</artifactId>
     </dependency>
   </dependencies>
 </project>
