@@ -11,8 +11,6 @@ import java.util.*;
 
 @Entity
 @Table(name="users")
-@Component
-@Scope("prototype")
 public class User implements Serializable {
 	
 	public int getUserId() {
