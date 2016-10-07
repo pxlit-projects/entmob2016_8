@@ -17,9 +17,13 @@ public class SessionService {
 	
 	private SessionRepository sessionRepo;
 
-	@Transactional
 	public Session save(Session session)
 	{
 		return sessionRepo.save(session);
+	}
+	
+	public Session findOne(int Id)
+	{
+		return sessionRepo.findOne(Id);
 	}
 }
