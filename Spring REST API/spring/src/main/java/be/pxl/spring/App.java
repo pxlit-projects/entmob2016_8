@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.context.*;
 
 import be.pxl.spring.config.*;
-import be.pxl.spring.model.User;
+import be.pxl.spring.domain.User;
 
 /**
  * Hello world!

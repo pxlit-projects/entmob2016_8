@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import be.pxl.spring.model.User;
+import be.pxl.spring.domain.User;
 import be.pxl.spring.repository.UserRepository;
 
 @RestController
