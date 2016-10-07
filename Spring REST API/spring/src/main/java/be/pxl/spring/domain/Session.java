@@ -14,6 +14,46 @@ import org.springframework.stereotype.Component;
 @Scope("prototype")
 public class Session {
 
+	public int getSessionId() {
+		return sessionId;
+	}
+
+	public void setSessionId(int sessionId) {
+		this.sessionId = sessionId;
+	}
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	public Timestamp getStart_time() {
+		return start_time;
+	}
+
+	public void setStart_time(Timestamp start_time) {
+		this.start_time = start_time;
+	}
+
+	public Timestamp getEnd_time() {
+		return end_time;
+	}
+
+	public void setEnd_time(Timestamp end_time) {
+		this.end_time = end_time;
+	}
+
+	public Timestamp getActual_time() {
+		return actual_time;
+	}
+
+	public void setActual_time(Timestamp actual_time) {
+		this.actual_time = actual_time;
+	}
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="session_id")
