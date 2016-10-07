@@ -10,8 +10,6 @@ import org.springframework.stereotype.Component;
 
 @Entity
 @Table(name="sessions")
-@Component
-@Scope("prototype")
 public class Session {
 
 	public int getSessionId() {
