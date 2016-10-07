@@ -15,8 +15,10 @@ public class App
     public static void main( String[] args )
     {
     	ConfigurableApplicationContext ctx = SpringApplication.run(AppConfig.class, args);
-    	User u = ctx.getBean("user", User.class);
+    	/*User u = ctx.getBean("user", User.class);
     	u.setFirstName("brecht");
         System.out.println( u.getFirstName() );
+        */
+    	System.out.println("TEST");
     }
 }
