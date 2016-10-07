@@ -1,5 +1,9 @@
 package be.pxl.spring.repository;
 
-public class SessionRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import be.pxl.spring.model.Session;
+
+public interface SessionRepository extends JpaRepository<Session, Integer>{
 
 }
