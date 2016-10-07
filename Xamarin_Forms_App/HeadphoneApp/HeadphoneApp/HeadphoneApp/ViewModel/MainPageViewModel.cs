@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Device = HeadphoneApp.Model.Device;
 
 namespace HeadphoneApp.ViewModel
 {
@@ -18,7 +19,7 @@ namespace HeadphoneApp.ViewModel
         private bool _isScanning;
 
         public MainPageViewModel(IBluetoothSmartService bluetoothSmartService)
-        {
+        {   
             _bluetoothSmartService = bluetoothSmartService;
             _bluetoothSmartService.Devices.CollectionChanged += ConnectedDevices_CollectionChanged;
 
@@ -36,17 +37,17 @@ namespace HeadphoneApp.ViewModel
 
         void ConnectedDevices_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            Model.Device bluetoothLeDevice;
+            Device bluetoothLeDevice;
 
             switch (e.Action)
             {
                 case NotifyCollectionChangedAction.Add:
-                    bluetoothLeDevice = e.NewItems[0] as Model.Device;
+                    bluetoothLeDevice = e.NewItems[0] as Device;
                     if (bluetoothLeDevice != null)
                         _devices.Add(new BluetoothListItemViewModel(bluetoothLeDevice));
                     break;
                 case NotifyCollectionChangedAction.Remove:
-                    bluetoothLeDevice = e.OldItems[0] as Model.Device;
+                    bluetoothLeDevice = e.OldItems[0] as Device;
                     if (bluetoothLeDevice != null)
                     {
                         var bluetootheListItem = _devices.Single(x => x.Address == bluetoothLeDevice.Address);

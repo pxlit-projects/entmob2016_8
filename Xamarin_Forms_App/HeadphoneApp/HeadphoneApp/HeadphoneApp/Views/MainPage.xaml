@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:listItems="clr-namespace:HeadphoneApp.ViewModel.ListItems;assembly=HeadphoneApp"
-             xmlns:converters="clr-namespace:HeadphoneApp.Converters;assembly=HeadphoneApp"
+             xmlns:listItems="clr-namespace:HeadphoneApp.Views.ListItems"
+             xmlns:converters="clr-namespace:HeadphoneApp.Converters"
              x:Class="HeadphoneApp.MainPage"
+           
              Title="{Binding Path=Title}">
   <ContentPage.Resources>
     <ResourceDictionary>
