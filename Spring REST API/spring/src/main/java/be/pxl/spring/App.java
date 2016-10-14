@@ -27,6 +27,9 @@ public class App {
 		System.out.println(u.getFirstName());		
 		UserRestController urc = ctx.getBean(UserRestController.class);
 		urc.updateUser(u);
+		User morrhey = urc.getUserById(1);
+		System.out.println(morrhey.getLastName());
+		
 
 		System.out.println("TEST");
 	}
