@@ -14,13 +14,13 @@ public class SessionRestController {
 	@Autowired
 	private SessionService sessionservice;
 	
-	@RequestMapping(method = RequestMethod.GET)
-	public Session getSessionById(int id){		
+	@RequestMapping(method = RequestMethod.GET, value = "{id}")
+	public Session getSessionById(@PathVariable("id") int id){		
 		return sessionservice.findOne(id);
 		
 	}
-	@RequestMapping(method = RequestMethod.POST)
-	public void updateSession(Session s){
+	@RequestMapping(method = RequestMethod.POST, value="{s}")
+	public void updateSession(@PathVariable("s") Session s){
 		sessionservice.save(s);
 		
 	}
