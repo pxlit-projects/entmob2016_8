@@ -1,5 +1,7 @@
 package be.pxl.spring.service;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
@@ -27,5 +29,10 @@ public class SessionService {
 	public Session findOne(int Id)
 	{
 		return sessionRepo.findOne(Id);
+	}
+
+	public List<Session> findByUserId(int userId) {
+		
+		return sessionRepo.findByUserId(userId);
 	}
 }
