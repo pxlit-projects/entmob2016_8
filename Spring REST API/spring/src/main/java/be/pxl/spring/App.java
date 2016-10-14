@@ -21,8 +21,11 @@ public class App {
 				App.class, args);
 		User u = ctx.getBean(User.class);
 		u.setFirstName("brecht");
+		u.setDepartment("test");
+		u.setLastName("morrhey");
+		u.setPassword("test");		
 		System.out.println(u.getFirstName());		
-		UserRestController urc = new UserRestController();
+		UserRestController urc = ctx.getBean(UserRestController.class);
 		urc.updateUser(u);
 
 		System.out.println("TEST");
