@@ -6,22 +6,28 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import be.pxl.spring.domain.User;
-import be.pxl.spring.repository.UserRepository;
+import be.pxl.spring.service.UserService;
 
 @RestController
-@RequestMapping(value="/session", produces="application/json")
+@RequestMapping(value="/user", produces="application/json")
 public class UserRestController {
 
-	@Autowired
-	UserRepository repo;
 	
-	@RequestMapping(method = RequestMethod.GET)
-	public User getUserById(int id){
-		return repo.findOne(id);
+	@Autowired
+	UserService us;
+	
+//	@RequestMapping(method = RequestMethod.GET)
+//	public User getUserById(int id){
+//		return us.findOne(id);
+//	}
+	@RequestMapping(method= RequestMethod.GET)
+	public String hello()
+	{
+		return "hello";
 	}
 	@RequestMapping(method = RequestMethod.POST)
 	public void updateUser(User u){
-		repo.save(u);
+		us.save(u);
 	}
 	
 	
