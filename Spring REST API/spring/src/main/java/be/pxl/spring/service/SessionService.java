@@ -1,5 +1,6 @@
 package be.pxl.spring.service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -30,10 +31,13 @@ public class SessionService {
 	{
 		return sessionRepo.findOne(Id);
 	}
-	
 	@Transactional
 	public List<Session> findByUserId(int userId) {
 		
 		return sessionRepo.findByUserId(userId);
+	}
+	@Transactional
+	public List<Session> findByDate(Timestamp timeStamp){
+		return sessionRepo.findByDate(timeStamp);
 	}
 }

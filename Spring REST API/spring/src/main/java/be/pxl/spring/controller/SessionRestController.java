@@ -1,5 +1,6 @@
 package be.pxl.spring.controller;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,11 @@ public class SessionRestController {
 	@RequestMapping(method = RequestMethod.GET, value = "{userId}")
 	public List<Session> getSessionsByUserId(int userId){
 		return sessionservice.findByUserId(userId);
+		
+	}
+	@RequestMapping(method = RequestMethod.GET, value = "{timeStamp}")
+	public List<Session> getSessionsByDate(Timestamp timeStamp){
+		return sessionservice.findByDate(timeStamp);
 		
 	}
 }

@@ -59,6 +59,10 @@ public class App {
 			System.out.println(user.getFirstName()+" "+user.getLastName());
 		}
 		
+		sessionList = src.getSessionsByDate(ts);
+		for (Session session : sessionList) {
+			System.out.println(session.getUserId());
+		}
 
 		System.out.println("TEST");
 	}
