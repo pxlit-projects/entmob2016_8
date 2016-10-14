@@ -14,8 +14,9 @@
 
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
+using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Practices.ServiceLocation;
-
+using Robotics.Mobile.Core.Bluetooth.LE;
 
 namespace HeadphoneDataApp.ViewModel
 {
@@ -25,6 +26,7 @@ namespace HeadphoneDataApp.ViewModel
     /// </summary>
     public class ViewModelLocator
     {
+        private static IAdapter _adapter = App.Adapter;
         /// <summary>
         /// Initializes a new instance of the ViewModelLocator class.
         /// </summary>
@@ -42,7 +44,6 @@ namespace HeadphoneDataApp.ViewModel
             ////    // Create run time view services and models
             ////    SimpleIoc.Default.Register<IDataService, DataService>();
             ////}
-
             SimpleIoc.Default.Register<MainViewModel>();
         }
 
@@ -50,6 +51,7 @@ namespace HeadphoneDataApp.ViewModel
         {
             get
             {
+                Messenger.Default.Send(_adapter);
                 return ServiceLocator.Current.GetInstance<MainViewModel>();
             }
         }

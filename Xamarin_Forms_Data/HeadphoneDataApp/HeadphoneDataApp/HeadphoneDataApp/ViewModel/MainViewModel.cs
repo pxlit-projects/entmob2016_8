@@ -38,15 +38,18 @@ namespace HeadphoneDataApp.ViewModel
             ////}
 
 
-            private IAdapter adapter;
+        private IAdapter adapter;
         private ObservableCollection<IDevice> devices;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
 
-        public MainViewModel(IAdapter adapter)
+        //public MainViewModel(IAdapter adapter)
+            public MainViewModel()
         {
-            this.adapter = adapter;
+            //to do adapter
+            //this.adapter = App.Adapter;
+            //this.adapter = adapter;
             this.devices = new ObservableCollection<IDevice>();
 
 

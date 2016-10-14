@@ -9,7 +9,7 @@
     <!-- Application resource dictionary -->
     <ResourceDictionary>
       <vm:ViewModelLocator xmlns:vm="clr-namespace:HeadphoneDataApp.ViewModel"
-                           x:Key="Locator" />
+                           x:Key="Locator"/>
    </ResourceDictionary>
     <!--<ResourceDictionary>
       <local:ViewModelLocator x:Key="localViewModelLocator"></local:ViewModelLocator>
