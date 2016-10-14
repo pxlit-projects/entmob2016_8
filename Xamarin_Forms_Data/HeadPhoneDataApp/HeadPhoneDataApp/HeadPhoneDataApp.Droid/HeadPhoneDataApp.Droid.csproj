@@ -5,12 +5,12 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{39C4F9BA-4877-48A5-811E-58006D2DE033}</ProjectGuid>
+    <ProjectGuid>{014AF635-9289-4D8D-92E6-4997A592A983}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HeadPhoneDataApp.Droid</RootNamespace>
-    <AssemblyName>HeadPhoneDataApp.Droid</AssemblyName>
+    <RootNamespace>HeadphoneDataApp.Droid</RootNamespace>
+    <AssemblyName>HeadphoneDataApp.Droid</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <AndroidApplication>true</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
@@ -54,16 +54,13 @@
     </Reference>
     <Reference Include="Mono.Android" />
     <Reference Include="mscorlib" />
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\..\..\android\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Robotics.Mobile.Core, Version=1.0.5400.2140, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Robotics.Mobile.Core">
       <HintPath>..\..\..\..\android\Robotics.Mobile.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Robotics.Mobile.Core.Droid, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Robotics.Mobile.Core.Droid">
       <HintPath>..\..\..\..\android\Robotics.Mobile.Core.Droid.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -133,24 +130,10 @@
     <AndroidResource Include="Resources\values\styles.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HeadPhoneDataApp\HeadPhoneDataApp.csproj">
-      <Project>{83ea11d3-774a-427f-be49-76dc10db5eea}</Project>
-      <Name>HeadPhoneDataApp</Name>
+    <ProjectReference Include="..\HeadphoneDataApp\HeadphoneDataApp.csproj">
+      <Project>{eb147dbe-80b6-4420-8bbf-9fc733e65a20}</Project>
+      <Name>HeadphoneDataApp</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\glyphish_29_heart.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\glyphish_31_circle_x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\bluetooth.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Newtonsoft.Json.dll" />
-    <Content Include="Robotics.Mobile.Core.dll" />
-    <Content Include="Robotics.Mobile.Core.Droid.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.2.0.45\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.2.0.45\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />

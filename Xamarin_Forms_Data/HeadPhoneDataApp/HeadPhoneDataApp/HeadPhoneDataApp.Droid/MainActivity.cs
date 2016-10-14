@@ -7,9 +7,9 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 
-namespace HeadPhoneDataApp.Droid
+namespace HeadphoneDataApp.Droid
 {
-    [Activity(Label = "HeadPhoneDataApp", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "HeadphoneDataApp", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle bundle)
@@ -24,6 +24,7 @@ namespace HeadPhoneDataApp.Droid
             var a = new Robotics.Mobile.Core.Bluetooth.LE.Adapter();
             App.SetAdapter(a);
 
+           
             LoadApplication(new App());
         }
     }

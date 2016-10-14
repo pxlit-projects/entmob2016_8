@@ -5,7 +5,7 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace HeadPhoneDataApp.iOS
+namespace HeadphoneDataApp.iOS
 {
     public class Application
     {

@@ -13,7 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-namespace HeadPhoneDataApp.Windows
+namespace HeadphoneDataApp.Windows
 {
     public sealed partial class MainPage
     {
@@ -21,7 +21,7 @@ namespace HeadPhoneDataApp.Windows
         {
             this.InitializeComponent();
 
-            LoadApplication(new HeadPhoneDataApp.App());
+            LoadApplication(new HeadphoneDataApp.App());
         }
     }
 }

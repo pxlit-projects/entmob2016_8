@@ -1,5 +1,4 @@
-﻿using HeadphoneDataApp;
-using Robotics.Mobile.Core.Bluetooth.LE;
+﻿using Robotics.Mobile.Core.Bluetooth.LE;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +6,7 @@ using System.Text;
 
 using Xamarin.Forms;
 
-namespace HeadPhoneDataApp
+namespace HeadphoneDataApp
 {
     public partial class App : Application
     {
@@ -20,14 +19,10 @@ namespace HeadPhoneDataApp
 
         public App()
         {
-            
-
             InitializeComponent();
-            base.MainPage = ViewLocator.MainPage;
-            //MainPage = new HeadPhoneDataApp.MainPage();
-        }
 
-        
+            MainPage = new HeadphoneDataApp.MainPage();
+        }
 
         protected override void OnStart()
         {
