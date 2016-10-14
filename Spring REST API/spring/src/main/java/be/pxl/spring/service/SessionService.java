@@ -30,7 +30,8 @@ public class SessionService {
 	{
 		return sessionRepo.findOne(Id);
 	}
-
+	
+	@Transactional
 	public List<Session> findByUserId(int userId) {
 		
 		return sessionRepo.findByUserId(userId);

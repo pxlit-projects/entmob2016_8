@@ -11,5 +11,7 @@ public interface SessionRepository extends JpaRepository<Session, Integer>{
 
 	@Transactional(readOnly = true)
 	List<Session> findByUserId(int userId);
+	//@Transactional(readOnly = true)
+	//@Query("select s from Session s where s.")
 
 }
