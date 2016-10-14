@@ -57,8 +57,7 @@ public class Session {
 	@Column(name="session_id")
 	private int sessionId;
 	
-	@ManyToOne
-	@JoinColumn(name="user_id")
+	@Column(name="user_id")
 	private int userId;
 	
 	@Column(name="start_time")

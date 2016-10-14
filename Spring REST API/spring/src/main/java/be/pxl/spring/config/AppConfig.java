@@ -1,11 +1,19 @@
 package be.pxl.spring.config;
 
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.annotation.*;
+
+import be.pxl.spring.domain.User;
 
 
-@SpringBootApplication
-@ComponentScan(basePackages={"be.pxl.spring.model"})
+//@Configuration
+//@EnableAutoConfiguration
+//@ComponentScan()
 public class AppConfig {
 
+//	@Bean
+//    public User transferService() {
+//        return new User();
+//    }
+	
 }
