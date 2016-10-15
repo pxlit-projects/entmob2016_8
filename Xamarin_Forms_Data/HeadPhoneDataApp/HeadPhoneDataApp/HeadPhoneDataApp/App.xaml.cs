@@ -1,4 +1,6 @@
-﻿using Robotics.Mobile.Core.Bluetooth.LE;
+﻿using HeadphoneDataApp.ViewModel;
+using Microsoft.Practices.ServiceLocation;
+using Robotics.Mobile.Core.Bluetooth.LE;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +13,7 @@ namespace HeadphoneDataApp
     public partial class App : Application
     {
         public static IAdapter Adapter;
+        private static ViewModelLocator _locator;
 
         public static void SetAdapter(IAdapter adapter)
         {
@@ -20,7 +23,7 @@ namespace HeadphoneDataApp
         public App()
         {
             InitializeComponent();
-
+            _locator = new ViewModelLocator();
             MainPage = new HeadphoneDataApp.MainPage();
         }
 
@@ -38,5 +41,6 @@ namespace HeadphoneDataApp
         {
             // Handle when your app resumes
         }
+
     }
 }
