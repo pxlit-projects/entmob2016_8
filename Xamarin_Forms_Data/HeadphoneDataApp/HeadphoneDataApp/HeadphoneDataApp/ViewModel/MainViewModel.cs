@@ -44,8 +44,7 @@ namespace HeadphoneDataApp.ViewModel
         public event PropertyChangedEventHandler PropertyChanged;
 
 
-        //public MainViewModel(IAdapter adapter)
-            public MainViewModel()
+        public MainViewModel(IAdapter adapter)
         {
             //to do adapter
             //this.adapter = App.Adapter;
