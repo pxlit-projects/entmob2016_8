@@ -23,7 +23,7 @@ namespace HeadphoneDataApp
         public App()
         {
             InitializeComponent();
-            _locator = new ViewModelLocator();
+            //_locator = new ViewModelLocator();
             MainPage = new HeadphoneDataApp.MainPage();
         }
 

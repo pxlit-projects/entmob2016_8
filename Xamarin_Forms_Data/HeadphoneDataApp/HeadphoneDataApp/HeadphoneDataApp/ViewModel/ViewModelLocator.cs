@@ -45,13 +45,15 @@ namespace HeadphoneDataApp.ViewModel
             ////    SimpleIoc.Default.Register<IDataService, DataService>();
             ////}
             SimpleIoc.Default.Register<MainViewModel>();
+            //ServiceLocator.Default.Register<MainViewModel>(new MainViewModel(_adapter));
+            //SimpleIoc.Default.Register<MainViewModel>();
         }
 
         public MainViewModel Main
         {
             get
             {
-                Messenger.Default.Send(_adapter);
+                //return ServiceLocator.Default.Register<MainViewModel>(new MainViewModel(_adapter));
                 return ServiceLocator.Current.GetInstance<MainViewModel>();
             }
         }
@@ -61,4 +63,5 @@ namespace HeadphoneDataApp.ViewModel
             // TODO Clear the ViewModels
         }
     }
+
 }
