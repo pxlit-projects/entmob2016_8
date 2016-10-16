@@ -5,4 +5,10 @@
     xmlns:local="using:UWPMonitoring.App"
     RequestedTheme="Light">
 
+    <Application.Resources>
+        <ResourceDictionary>
+            <local:ViewModelLocator x:Key="localViewModelLocator"></local:ViewModelLocator>
+        </ResourceDictionary>
+    </Application.Resources>
+
 </Application>
