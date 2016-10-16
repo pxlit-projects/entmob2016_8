@@ -1,15 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using UWPMonitoring.App.Utility;
 using UWPMonitoring.App.ViewModels;
+using UWPMonitoring.DAL;
 
 namespace UWPMonitoring.App
 {
     public class ViewModelLocator
     {
-        private static MainViewViewModel mainViewViewModel = new MainViewViewModel();
+        //Variabelen
+        private static INavigationService navigationService = new NavigationService();
+        private static IRepository repository = new Repository();
+
+        private static MainViewViewModel mainViewViewModel = new MainViewViewModel(repository, navigationService);
 
         public static MainViewViewModel MainViewViewModel
         {

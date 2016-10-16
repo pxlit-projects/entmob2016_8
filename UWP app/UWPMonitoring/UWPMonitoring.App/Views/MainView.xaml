@@ -9,7 +9,15 @@
     DataContext="{Binding Source={StaticResource localViewModelLocator}, Path=MainViewViewModel}">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <RelativePanel HorizontalAlignment="Left" Height="375" Margin="391,173,0,0" VerticalAlignment="Top" Width="518"/>
+        <RelativePanel HorizontalAlignment="Left" Height="375" Margin="381,183,0,0" VerticalAlignment="Top" Width="518">
+            <TextBlock x:Name="welkomTextBlock" HorizontalAlignment="Left" Height="57" TextWrapping="Wrap" Text="Welkom" Style="{ThemeResource HeaderTextBlockStyle}" VerticalAlignment="Top" Width="164" Margin="170,10,-272,-47"/>
+            <TextBlock x:Name="usernameTextBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top" Margin="130,87,-106,-87" Style="{ThemeResource CaptionTextBlockStyle}" />
+            <TextBox x:Name="usernameTextBox" Margin="130,108,-370,-108" Style="{ThemeResource AutoSuggestBoxTextBoxStyle}"/>
+            <TextBlock x:Name="passwordTextBlock" Text="Password" Margin="130,145,-130,-145" Style="{ThemeResource CaptionTextBlockStyle}"/>
+            <PasswordBox x:Name="passwordInputPasswordBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="130,166,-306,-166" Width="240" />
+            <Button x:Name="loginButton" Content="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="130,213,-305,-213" Width="240" Style="{ThemeResource PivotTitleContentControlStyle}"/>
+        </RelativePanel>
+
 
     </Grid>
 </Page>

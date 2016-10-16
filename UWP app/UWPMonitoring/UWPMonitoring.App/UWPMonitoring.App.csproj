@@ -138,6 +138,16 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UWPMonitoring.DAL\UWPMonitoring.DAL.csproj">
+      <Project>{4B8FE9DC-817C-41C7-8DF8-BD08154E26CC}</Project>
+      <Name>UWPMonitoring.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UWPMonitoring.Domain\UWPMonitoring.Domain.csproj">
+      <Project>{E2DAEE6E-32EF-4C64-9969-15FAEF9A5665}</Project>
+      <Name>UWPMonitoring.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
