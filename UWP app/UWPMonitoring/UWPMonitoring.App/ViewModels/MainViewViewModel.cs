@@ -58,6 +58,7 @@ namespace UWPMonitoring.App.ViewModels
         private void Login(object obj) 
         {
             //TODO: De username en password via een methode in de repo opsturen naar de backend en een boolean terug krijgen.
+            //De gebruiker moet doorgestuurd worden naar het volgende scherm als zijn gegevens correct zijn
             Message = string.Format("ID: {0} met pass: {1}", User.UserId.ToString(), User.Password.ToString());
         }
 
