@@ -6,16 +6,33 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    DataContext="{Binding Source={StaticResource localViewModelLocator}, Path=MainViewViewModel}">
+    DataContext="{Binding Source={StaticResource localViewModelLocator}, Path=MainViewViewModel}"
+    xmlns:Interactivity="using:Microsoft.Xaml.Interactivity" 
+    xmlns:Interactions="using:Microsoft.Xaml.Interactions.Core">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <RelativePanel HorizontalAlignment="Left" Height="375" Margin="381,183,0,0" VerticalAlignment="Top" Width="518">
-            <TextBlock x:Name="welkomTextBlock" HorizontalAlignment="Left" Height="57" TextWrapping="Wrap" Text="Welkom" Style="{ThemeResource HeaderTextBlockStyle}" VerticalAlignment="Top" Width="164" Margin="170,10,-272,-47"/>
-            <TextBlock x:Name="usernameTextBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top" Margin="130,87,-106,-87" Style="{ThemeResource CaptionTextBlockStyle}" />
-            <TextBox x:Name="usernameTextBox" Margin="130,108,-370,-108" Style="{ThemeResource AutoSuggestBoxTextBoxStyle}"/>
-            <TextBlock x:Name="passwordTextBlock" Text="Password" Margin="130,145,-130,-145" Style="{ThemeResource CaptionTextBlockStyle}"/>
-            <PasswordBox x:Name="passwordInputPasswordBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="130,166,-306,-166" Width="240" />
-            <Button x:Name="loginButton" Content="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="130,213,-305,-213" Width="240" Style="{ThemeResource PivotTitleContentControlStyle}"/>
+        <RelativePanel HorizontalAlignment="Center" Height="305" VerticalAlignment="Center" Width="322">
+            <TextBlock x:Name="welkomTextBlock" HorizontalAlignment="Left" Height="72" TextWrapping="Wrap" Text="Welkom" Style="{ThemeResource HeaderTextBlockStyle}" VerticalAlignment="Top" Width="164" Margin="84,16,-186,-88" 
+                       RelativePanel.Above="usernameTextBlock"/>
+            <TextBlock x:Name="usernameTextBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top" Margin="44,93,0,-118" Style="{ThemeResource CaptionTextBlockStyle}" 
+                       RelativePanel.Above="usernameTextBox" RelativePanel.AlignLeftWith="usernameTextBox" Height="25" />
+            <TextBox x:Name="usernameTextBox" Margin="44,114,-284,-114" Style="{ThemeResource AutoSuggestBoxTextBoxStyle}"
+                        Text="{Binding User.UserId, Mode=TwoWay}"/>
+            <TextBlock x:Name="passwordTextBlock" Text="Password" Margin="44,153,-44,-171" Style="{ThemeResource CaptionTextBlockStyle}" Height="18"
+                        RelativePanel.Above="passwordInputPasswordBox" />
+            <PasswordBox x:Name="passwordInputPasswordBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="44,172,-220,-172" Width="240" 
+                         Password="{Binding User.Password, Mode=TwoWay}" />
+            <Button x:Name="loginButton" Content="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="44,183,-219,-183" Width="240" Style="{ThemeResource PivotTitleContentControlStyle}"
+                        RelativePanel.Below="passwordInputPasswordBox" >
+                <Interactivity:Interaction.Behaviors>
+                    <Interactions:EventTriggerBehavior EventName="Click">
+                        <Interactions:InvokeCommandAction Command="{Binding LoginCommand}"/>
+                    </Interactions:EventTriggerBehavior>
+                </Interactivity:Interaction.Behaviors>
+            </Button>
+            <TextBlock x:Name="messageTextBlock" TextWrapping="Wrap" Text="{Binding Message}" Margin="44,195,-44,-195"
+                       RelativePanel.Below="loginButton" RelativePanel.AlignLeftWith="loginButton" Style="{ThemeResource CaptionTextBlockStyle}" Height="30"/>
+
         </RelativePanel>
 
 

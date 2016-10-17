@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace UWPMonitoring.Models
+namespace UWPMonitoring.Domain
 {
     public class Session
     {

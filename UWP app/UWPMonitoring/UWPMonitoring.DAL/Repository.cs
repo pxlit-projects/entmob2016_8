@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using UWPMonitoring.Models;
+using UWPMonitoring.Domain;
 
 namespace UWPMonitoring.DAL
 {
