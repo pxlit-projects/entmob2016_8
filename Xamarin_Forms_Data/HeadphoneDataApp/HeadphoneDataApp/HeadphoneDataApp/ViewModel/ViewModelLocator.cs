@@ -33,7 +33,6 @@ namespace HeadphoneDataApp.ViewModel
         public ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
-
             ////if (ViewModelBase.IsInDesignModeStatic)
             ////{
             ////    // Create design time view services and models
@@ -54,6 +53,7 @@ namespace HeadphoneDataApp.ViewModel
             get
             {
                 //return ServiceLocator.Default.Register<MainViewModel>(new MainViewModel(_adapter));
+                Messenger.Default.Send<IAdapter>(_adapter);
                 return ServiceLocator.Current.GetInstance<MainViewModel>();
             }
         }
@@ -62,6 +62,7 @@ namespace HeadphoneDataApp.ViewModel
         {
             // TODO Clear the ViewModels
         }
+
     }
 
 }

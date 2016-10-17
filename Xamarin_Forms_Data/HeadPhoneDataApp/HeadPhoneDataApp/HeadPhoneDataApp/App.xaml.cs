@@ -20,10 +20,14 @@ namespace HeadphoneDataApp
             Adapter = adapter;
         }
 
+        public static IAdapter GetAdapter()
+        {
+            return Adapter;
+        }
+
         public App()
         {
             InitializeComponent();
-            //_locator = new ViewModelLocator();
             MainPage = new HeadphoneDataApp.MainPage();
         }
 

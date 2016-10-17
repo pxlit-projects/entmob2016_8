@@ -1,4 +1,5 @@
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Messaging;
 using Robotics.Mobile.Core.Bluetooth.LE;
 using System;
 using System.Collections.ObjectModel;
@@ -46,60 +47,10 @@ namespace HeadphoneDataApp.ViewModel
 
         public MainViewModel()
         {
-            //to do adapter
-            //this.adapter = App.Adapter;
-            //this.adapter = adapter;
-            //this.devices = new ObservableCollection<IDevice>();
-
-
-            //adapter.DeviceDiscovered += (object sender, DeviceDiscoveredEventArgs e) => {
-            //    Device.BeginInvokeOnMainThread(() => {
-            //        devices.Add(e.Device);
-            //    });
-            //};
-
-            //adapter.ScanTimeoutElapsed += (sender, e) => {
-            //    adapter.StopScanningForDevices(); // not sure why it doesn't stop already, if the timeout elapses... or is this a fake timeout we made?
-            //    Device.BeginInvokeOnMainThread(() => {
-            //        Debug.WriteLine("Timeout");
-
-            //if (devices != null)
-            //{
-            //    Debug.WriteLine("DEVICES------------------------");
-
-            //    foreach (var item in devices)
-            //    {
-            //        Debug.WriteLine(item.Name + "\t" + item.ID);
-            //        if (item.ID.ToString() == "00000000-0000-0000-0000-b0b448be0002")
-            //        {
-            //          
-            //            //services scannen
-            //            ObservableCollection<IService> services = new ObservableCollection<IService>();
-            //            item.ServicesDiscovered += (object se, EventArgs ea) =>
-            //            {
-            //                Debug.WriteLine("device.ServicesDiscovered");
-            //                //services = (List<IService>)device.Services;
-            //                if (services.Count == 0)
-            //                    Device.BeginInvokeOnMainThread(() =>
-            //                    {
-            //                        foreach (var service in item.Services)
-            //                        {
-            //                            services.Add(service);
-            //                        }
-            //                    });
-            //            };
-            //        }
-            //    }
-
-            //    //go to devicePage
-            //    //NavigateToDevicePage();
-
-            //}
-            //to do:
-            // DisplayAlert("Timeout", "Bluetooth scan timeout elapsed", "OK", "");
-            //    });
-            //};
-
+            //get the adapter via messenger
+            Messenger.Default.Register<IAdapter>(this, Adapter);
+           
+           
             //    this.ScanCommand = new Command(() =>
             //    {
             //        StartScanning(0x180D.UuidFromPartial());
@@ -135,6 +86,27 @@ namespace HeadphoneDataApp.ViewModel
             //            adapter.StopScanningForDevices();
             //        }
             //    }).Start();
+        }
+
+        private void Adapter(IAdapter obj)
+        {
+            this.adapter = obj;
+            adapter.DeviceDiscovered += (object sender, DeviceDiscoveredEventArgs e) =>
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    devices.Add(e.Device);
+                });
+            };
+
+            adapter.ScanTimeoutElapsed += (sender, e) =>
+            {
+                adapter.StopScanningForDevices(); // not sure why it doesn't stop already, if the timeout elapses... or is this a fake timeout we made?
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    Debug.WriteLine("Timeout");
+                });
+            };
         }
 
         public ICommand ScanCommand { protected set; get; }
