@@ -8,6 +8,7 @@ namespace UWPMonitoring.DAL
         User GetUser(int userId);
         User GetUserBySessionId(int sessionId);
         List<User> GetAllUsers();
+        bool CheckIfUserIsValid(int userId, string password);
 
         Session GetSession(int sessionId);
         Session GetSessionByUserId(int userId);
