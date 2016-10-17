@@ -13,17 +13,12 @@ namespace HeadphoneDataApp
     public partial class App : Application
     {
         public static IAdapter Adapter;
-        private static ViewModelLocator _locator;
 
         public static void SetAdapter(IAdapter adapter)
         {
             Adapter = adapter;
         }
 
-        public static IAdapter GetAdapter()
-        {
-            return Adapter;
-        }
 
         public App()
         {

@@ -40,7 +40,7 @@ namespace HeadphoneDataApp.ViewModel
 
 
         private IAdapter adapter;
-        private ObservableCollection<IDevice> devices;
+        private ObservableCollection<IDevice> devices = new ObservableCollection<IDevice>();
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -49,43 +49,32 @@ namespace HeadphoneDataApp.ViewModel
         {
             //get the adapter via messenger
             Messenger.Default.Register<IAdapter>(this, Adapter);
-           
-           
-            //    this.ScanCommand = new Command(() =>
-            //    {
-            //        StartScanning(0x180D.UuidFromPartial());
-            //    });
-            //}
 
-            //void StartScanning()
-            //{
-            //    StartScanning(Guid.Empty);
-            //}
-            //void StartScanning(Guid forService)
-            //{
-            //    if (adapter.IsScanning)
-            //    {
-            //        adapter.StopScanningForDevices();
-            //        Debug.WriteLine("adapter.StopScanningForDevices()");
-            //    }
-            //    else
-            //    {
-            //        devices.Clear();
-            //        adapter.StartScanningForDevices(forService);
-            //        Debug.WriteLine("adapter.StartScanningForDevices(" + forService + ")");
-            //    }
-            //}
+            this.ScanCommand = new Command(() =>
+            {
+                StartScanning(0x180D.UuidFromPartial());
+            });
 
-            //void StopScanning()
-            //{
-            //    // stop scanning
-            //    new Task(() => {
-            //        if (adapter.IsScanning)
-            //        {
-            //            Debug.WriteLine("Still scanning, stopping the scan");
-            //            adapter.StopScanningForDevices();
-            //        }
-            //    }).Start();
+        }
+
+        void StartScanning()
+        {
+            StartScanning(Guid.Empty);
+        }
+
+        void StartScanning(Guid forService)
+        {
+            if (adapter.IsScanning)
+            {
+                adapter.StopScanningForDevices();
+                Debug.WriteLine("adapter.StopScanningForDevices()");
+            }
+            else
+            {
+                devices.Clear();
+                adapter.StartScanningForDevices(forService);
+                Debug.WriteLine("adapter.StartScanningForDevices(" + forService + ")");
+            }
         }
 
         private void Adapter(IAdapter obj)
@@ -108,6 +97,17 @@ namespace HeadphoneDataApp.ViewModel
                 });
             };
         }
+
+        //void StopScanning()
+        //{
+        //    // stop scanning
+        //    new Task(() => {
+        //        if (adapter.IsScanning)
+        //        {
+        //            Debug.WriteLine("Still scanning, stopping the scan");
+        //            adapter.StopScanningForDevices();
+        //        }
+        //    }).Start();
 
         public ICommand ScanCommand { protected set; get; }
 
