@@ -6,6 +6,11 @@ namespace UWPMonitoring.DAL
 {
     public class Repository : IRepository
     {
+        public bool CheckIfUserIsValid(int userId, string password)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Session> GetAllSessions()
         {
             throw new NotImplementedException();

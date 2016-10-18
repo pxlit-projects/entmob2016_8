@@ -12,7 +12,10 @@ namespace UWPMonitoring.Test.Mocks
     {
         //Lijsten met mock data
         private List<User> userList;
-        private List<Session> sessionList;
+        private List<Session> sessionListKoen;
+        private List<Session> sessionListBrecht;
+        private List<Session> sessionListJasper;
+        private List<Session> sessionListStephane;
 
         public RepositoryMock()
         {
@@ -22,6 +25,90 @@ namespace UWPMonitoring.Test.Mocks
         //methode om de lijsten te vullen met mock data
         private void LoadData()
         {
+            sessionListKoen = new List<Session>
+            {
+                new Session
+                {
+                    SessionId = 1,
+                    UserId = 1309,
+                    Start_Time = new DateTime(2016,10,18,13,0,0),
+                    End_Time = new DateTime(2016,10,18,14,0,0),
+                    Actual_Time = new DateTime(),
+                },
+
+                 new Session
+                {
+                    SessionId = 2,
+                    UserId = 1309,
+                    Start_Time = new DateTime(2016,10,18,14,0,0),
+                    End_Time = new DateTime(2016,10,18,15,0,0),
+                    Actual_Time = new DateTime(),
+                },
+            };
+
+            sessionListBrecht = new List<Session>
+            {
+                new Session
+                {
+                    SessionId = 3,
+                    UserId = 1234,
+                    Start_Time = new DateTime(2016,10,18,13,0,0),
+                    End_Time = new DateTime(2016,10,18,14,0,0),
+                    Actual_Time = new DateTime(),
+                },
+
+                 new Session
+                {
+                    SessionId = 4,
+                    UserId = 1234,
+                    Start_Time = new DateTime(2016,10,18,14,0,0),
+                    End_Time = new DateTime(2016,10,18,15,0,0),
+                    Actual_Time = new DateTime(),
+                },
+            };
+
+            sessionListJasper = new List<Session>
+            {
+                new Session
+                {
+                    SessionId = 5,
+                    UserId = 4321,
+                    Start_Time = new DateTime(2016,10,18,13,0,0),
+                    End_Time = new DateTime(2016,10,18,14,0,0),
+                    Actual_Time = new DateTime(),
+                },
+
+                 new Session
+                {
+                    SessionId = 6,
+                    UserId = 4321,
+                    Start_Time = new DateTime(2016,10,18,14,0,0),
+                    End_Time = new DateTime(2016,10,18,15,0,0),
+                    Actual_Time = new DateTime(),
+                },
+            };
+
+            sessionListStephane = new List<Session>
+            {
+                new Session
+                {
+                    SessionId = 7,
+                    UserId = 5678,
+                    Start_Time = new DateTime(2016,10,18,13,0,0),
+                    End_Time = new DateTime(2016,10,18,14,0,0),
+                    Actual_Time = new DateTime(),
+                },
+
+                 new Session
+                {
+                    SessionId = 8,
+                    UserId = 5678,
+                    Start_Time = new DateTime(2016,10,18,14,0,0),
+                    End_Time = new DateTime(2016,10,18,15,0,0),
+                    Actual_Time = new DateTime(),
+                },
+            };
+
             userList = new List<User>
             {
                 new User
@@ -31,7 +118,7 @@ namespace UWPMonitoring.Test.Mocks
                     LastName = "Castermans",
                     Password = "KoenPass",
                     Department = "Verkoop",
-                    Sessions = null
+                    Sessions = sessionListKoen
                 },
 
                 new User
@@ -41,19 +128,31 @@ namespace UWPMonitoring.Test.Mocks
                     LastName = "Morrhey",
                     Password = "BrechtPass",
                     Department = "Verkoop",
-                    Sessions = null
+                    Sessions = sessionListBrecht
                 },
 
-                 new User
+                new User
                 {
                     UserId = 4321,
                     FirstName = "Jasper",
                     LastName = "Szkudlarski",
-                    Password = "BrechtPass",
+                    Password = "JasperPass",
                     Department = "Verkoop",
-                    Sessions = null
-                }
+                    Sessions = sessionListJasper
+                },
+
+                new User
+                {
+                    UserId = 5678,
+                    FirstName = "Stephane",
+                    LastName = "Oris",
+                    Password = "StephanePass",
+                    Department = "Verkoop",
+                    Sessions = sessionListStephane
+                },
             };
+
+            
         }
 
         public bool CheckIfUserIsValid(int userId, string password)
