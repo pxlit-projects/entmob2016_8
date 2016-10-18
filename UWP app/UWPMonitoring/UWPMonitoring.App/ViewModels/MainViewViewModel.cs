@@ -60,6 +60,10 @@ namespace UWPMonitoring.App.ViewModels
             //TODO: De username en password via een methode in de repo opsturen naar de backend en een boolean terug krijgen.
             //De gebruiker moet doorgestuurd worden naar het volgende scherm als zijn gegevens correct zijn
             Message = string.Format("ID: {0} met pass: {1}", User.UserId.ToString(), User.Password.ToString());
+
+            Messenger.Default.Send<User>(User); //Object van de ingelogde gebruiker doorsturen naar het volgende scherm
+
+            navigationService.NavigateTo("Overview");
         }
 
         private bool CanLogin(object obj)
