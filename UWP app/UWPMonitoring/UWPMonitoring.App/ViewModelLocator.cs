@@ -11,12 +11,21 @@ namespace UWPMonitoring.App
         private static IRepository repository = new Repository();
 
         private static MainViewViewModel mainViewViewModel = new MainViewViewModel(repository, navigationService);
+        private static EmployeeOverviewViewModel employeeOverviewViewModel = new EmployeeOverviewViewModel(navigationService, repository);
 
         public static MainViewViewModel MainViewViewModel
         {
             get
             {
                 return mainViewViewModel;
+            }
+        }
+
+        public static EmployeeOverviewViewModel EmployeeOverviewViewModel
+        {
+            get
+            {
+                return employeeOverviewViewModel;
             }
         }
     }

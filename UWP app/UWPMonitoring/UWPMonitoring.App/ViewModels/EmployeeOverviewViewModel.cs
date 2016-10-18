@@ -33,7 +33,10 @@ namespace UWPMonitoring.App.ViewModels
         //Methode om de ingelogde user in de property te laden
         private void OnUserReceived(User user)
         {
+            //TODO: Extra gegevens van de ingelogde gebruiker ophalen via een methode van de repository
             LoggedInUser = user;
+            LoggedInUser.FirstName = "Koen";
+            LoggedInUser.LastName = "Castermans";
         }
 
         //Methode om de commands in te laden
