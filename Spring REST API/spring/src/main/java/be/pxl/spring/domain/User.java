@@ -70,11 +70,11 @@ public class User implements Serializable {
 	}
 	
 	public String getRole() {
-		return Role;
+		return role;
 	}
 	
 	public void setRole(String role) {
-		Role = role;
+		this.role = role;
 	}
 
 	@Id
@@ -98,7 +98,7 @@ public class User implements Serializable {
 	private String department;
 	
 	@Column(name="role")
-	private String Role;
+	private String role;
 	
 
 	@OneToMany(targetEntity=Session.class, mappedBy="sessionId")

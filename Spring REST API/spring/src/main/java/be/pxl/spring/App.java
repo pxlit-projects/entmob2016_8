@@ -31,6 +31,7 @@ public class App {
 		u.setLastName("morrhey");
 		u.setPassword("test");
 		u.setSalt("test");
+		u.setRole("test");
 		System.out.println(u.getFirstName());		
 		UserRestController urc = ctx.getBean(UserRestController.class);
 		int newUserId = urc.updateUser(u);
