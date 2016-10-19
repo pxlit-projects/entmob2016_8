@@ -60,6 +60,22 @@ public class User implements Serializable {
 	public void setSessions(Set<Session> sessions) {
 		this.sessions = sessions;
 	}
+	
+	public String getSalt() {
+		return salt;
+	}
+	
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
+	
+	public String getRole() {
+		return Role;
+	}
+	
+	public void setRole(String role) {
+		Role = role;
+	}
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -75,9 +91,16 @@ public class User implements Serializable {
 	@Column(name="password")
 	private String password;
 	
+	@Column(name="salt")
+	private String salt;
+
 	@Column(name="department")
 	private String department;
 	
+	@Column(name="role")
+	private String Role;
+	
+
 	@OneToMany(targetEntity=Session.class, mappedBy="sessionId")
 	private Set<Session> sessions;
 	
