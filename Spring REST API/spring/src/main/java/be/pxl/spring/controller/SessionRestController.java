@@ -22,19 +22,19 @@ public class SessionRestController {
 		return sessionservice.findOne(id);
 		
 	}
-	@RequestMapping(method = RequestMethod.POST, value="{s}")
-	public int updateSession(@PathVariable("s") Session s){
+	@RequestMapping(method = RequestMethod.POST)
+	public int updateSession(@RequestBody Session s){
 		sessionservice.save(s);
 		sessionservice.flush();
 		return s.getSessionId();
 		
 	}
-	@RequestMapping(method = RequestMethod.GET, value = "{userId}")
+	@RequestMapping(method = RequestMethod.GET, value = "ByUserId/{userId}")
 	public List<Session> getSessionsByUserId(int userId){
 		return sessionservice.findByUserId(userId);
 		
 	}
-	@RequestMapping(method = RequestMethod.GET, value = "{timeStamp}")
+	@RequestMapping(method = RequestMethod.GET, value = "ByDate/{timeStamp}")
 	public List<Session> getSessionsByDate(Timestamp timeStamp){
 		return sessionservice.findByDate(timeStamp);
 		

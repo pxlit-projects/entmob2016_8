@@ -3,10 +3,8 @@ package be.pxl.spring.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 
 import be.pxl.spring.domain.User;
 import be.pxl.spring.service.UserService;
@@ -28,17 +26,17 @@ public class UserRestController {
 	{
 		return "hello";
 	}
-	@RequestMapping(method = RequestMethod.GET, value="{name}")
+	@RequestMapping(method = RequestMethod.GET, value="ByName/{name}")
 	public List<User> getUsersByName(@PathVariable("name") String name){
 		return us.findByName(name);
 	}
-	@RequestMapping(method = RequestMethod.GET, value="{department}")
+	@RequestMapping(method = RequestMethod.GET, value="ByDepartment/{department}")
 	public List<User> getUsersByDepartment(@PathVariable("department") String department){
 		return us.findByName(department);
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, value="{u}")
-	public int updateUser(@PathVariable("u") User u){
+	@RequestMapping(method = RequestMethod.POST)
+	public int updateUser(@RequestBody User u){
 		us.save(u);
 		us.flush();
 		return u.getUserId();
