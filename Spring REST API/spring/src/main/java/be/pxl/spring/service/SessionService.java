@@ -31,5 +31,7 @@ public interface SessionService{
 	public abstract List<Session> findByGreaterActualTime(int time);
 
 	public abstract List<Session> findByLesserActualTime(int time);
+
+	public abstract void flush();
 	
 }

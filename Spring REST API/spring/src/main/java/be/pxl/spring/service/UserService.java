@@ -16,4 +16,6 @@ public interface UserService {
 
 	public abstract List<User> findByDepartment(String department);
 
+	public abstract void flush();
+
 }

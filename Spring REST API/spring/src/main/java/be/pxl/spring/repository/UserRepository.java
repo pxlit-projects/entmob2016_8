@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import be.pxl.spring.domain.User;
 
 @Repository
-public interface UserRepository extends CrudRepository<User, Integer>{
+public interface UserRepository extends JpaRepository<User, Integer>{
 	
 	@Transactional(readOnly = true)
 	@Query("select u from User u where (u.firstName like %?1%) or (u.lastName like %?1%)")

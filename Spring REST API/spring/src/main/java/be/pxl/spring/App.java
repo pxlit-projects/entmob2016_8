@@ -32,7 +32,8 @@ public class App {
 		u.setPassword("test");		
 		System.out.println(u.getFirstName());		
 		UserRestController urc = ctx.getBean(UserRestController.class);
-		urc.updateUser(u);
+		int newUserId = urc.updateUser(u);
+		System.out.println("Nieuwe UserId: "+newUserId);
 		User morrhey = urc.getUserById(1);
 		System.out.println(morrhey.getLastName());
 		
@@ -63,6 +64,11 @@ public class App {
 		for (Session session : sessionList) {
 			System.out.println(session.getUserId());
 		}
+		
+		User u1 = urc.getUserById(1);
+		u1.setFirstName("Jasper");
+		u1.setLastName("Szkudlarski ofzoiets");
+		urc.updateUser(u1);
 
 		System.out.println("TEST");
 	}

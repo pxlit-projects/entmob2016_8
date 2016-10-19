@@ -85,4 +85,10 @@ public class SessionServiceImpl implements SessionService{
 	public List<Session> findByLesserActualTime(int time){
 		return sessionRepo.findByLesserActualTime(time);
 	}
+
+	@Override
+	public void flush() {
+		// TODO Auto-generated method stub
+		sessionRepo.flush();
+	}
 }

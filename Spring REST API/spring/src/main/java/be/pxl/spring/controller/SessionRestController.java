@@ -23,8 +23,10 @@ public class SessionRestController {
 		
 	}
 	@RequestMapping(method = RequestMethod.POST, value="{s}")
-	public void updateSession(@PathVariable("s") Session s){
+	public int updateSession(@PathVariable("s") Session s){
 		sessionservice.save(s);
+		sessionservice.flush();
+		return s.getSessionId();
 		
 	}
 	@RequestMapping(method = RequestMethod.GET, value = "{userId}")

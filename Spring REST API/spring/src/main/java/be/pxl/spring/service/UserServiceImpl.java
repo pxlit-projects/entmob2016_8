@@ -50,4 +50,10 @@ public class UserServiceImpl implements UserService {
 	  public List<User> findByDepartment(String department){
 		  return repository.findByDepartment(department);
 	  }
+
+	@Override
+	public void flush() {
+		// TODO Auto-generated method stub
+		repository.flush();
+	}
 }

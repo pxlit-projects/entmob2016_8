@@ -38,8 +38,11 @@ public class UserRestController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value="{u}")
-	public void updateUser(@PathVariable("u") User u){
+	public int updateUser(@PathVariable("u") User u){
 		us.save(u);
+		us.flush();
+		return u.getUserId();
+		
 	}
 	
 	
