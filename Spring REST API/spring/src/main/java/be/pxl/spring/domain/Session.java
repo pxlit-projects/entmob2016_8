@@ -1,11 +1,9 @@
 package be.pxl.spring.domain;
 
-import java.io.*;
 import java.sql.Timestamp;
 
 import javax.persistence.*;
 
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Entity

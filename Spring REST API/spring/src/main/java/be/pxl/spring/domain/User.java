@@ -2,10 +2,9 @@ package be.pxl.spring.domain;
 
 import javax.persistence.*;
 
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Scope;
+
 import org.springframework.stereotype.Component;
-import org.springframework.context.annotation.*;
+
 import java.io.*;
 import java.util.*;
 

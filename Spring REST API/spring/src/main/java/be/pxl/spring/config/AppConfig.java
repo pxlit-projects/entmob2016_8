@@ -1,9 +1,9 @@
 package be.pxl.spring.config;
 
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.*;
-
-import be.pxl.spring.domain.User;
+//import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+//import org.springframework.context.annotation.*;
+//
+//import be.pxl.spring.domain.User;
 
 
 //@Configuration

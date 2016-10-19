@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import be.pxl.spring.domain.Session;
-import be.pxl.spring.repository.*;
 import be.pxl.spring.service.SessionService;
 
 @RestController
