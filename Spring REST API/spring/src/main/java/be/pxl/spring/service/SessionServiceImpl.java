@@ -91,4 +91,10 @@ public class SessionServiceImpl implements SessionService{
 		// TODO Auto-generated method stub 
 		sessionRepo.flush();
 	}
+
+	@Override
+	public void delete(Session s) {
+		// TODO Auto-generated method stub
+		sessionRepo.delete(s);
+	}
 }

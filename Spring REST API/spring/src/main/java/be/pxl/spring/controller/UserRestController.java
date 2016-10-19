@@ -43,6 +43,10 @@ public class UserRestController {
 		
 	}
 	
+	@RequestMapping(method = RequestMethod.DELETE)
+	public void deleteUser(@RequestBody User u){
+		us.delete(u);
+	}
 	
 	
 }

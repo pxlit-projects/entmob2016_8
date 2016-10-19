@@ -56,4 +56,10 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		repository.flush();
 	}
+
+	@Override
+	public void delete(User u) {
+		// TODO Auto-generated method stub
+		repository.delete(u);
+	}
 }

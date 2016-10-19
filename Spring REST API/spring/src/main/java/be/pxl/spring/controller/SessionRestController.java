@@ -60,4 +60,8 @@ public class SessionRestController {
 		return sessionservice.findByLesserActualTime(time);
 		
 	}
+	@RequestMapping(method = RequestMethod.DELETE)
+	public void deleteSession(@RequestBody Session s){
+		sessionservice.delete(s);
+	}
 }

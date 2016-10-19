@@ -18,4 +18,6 @@ public interface UserService {
 
 	public abstract void flush();
 
+	public abstract void delete(User u);
+
 }
