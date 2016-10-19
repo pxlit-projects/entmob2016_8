@@ -11,11 +11,16 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"> 
+            </RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
 
-        <RelativePanel x:Name="topRelativePanel" Grid.Row="0" Padding="10">
+        <RelativePanel x:Name="topRelativePanel" Grid.Row="0" Grid.ColumnSpan="2" Padding="10">
             <TextBlock x:Name="titleTextBlock" Text="Employee overview"  
                        RelativePanel.AlignLeftWithPanel="True"
                        RelativePanel.LeftOf="searchAutoSuggestBox"
@@ -37,6 +42,32 @@
             <TextBlock x:Name="userNameTextblock" Text="{Binding LoggedInUser.FirstName}"
                        Style="{ThemeResource BodyTextBlockStyle}"
                        RelativePanel.RightOf="userTextBlock"/>
+        </RelativePanel>
+
+        <RelativePanel x:Name="employeesRelativePanel" Grid.Row="1" Grid.Column="0" Padding="10">
+            <TextBlock x:Name="employeesTitelTextBlock" Text="Employees" 
+                       Style="{ThemeResource SubheaderTextBlockStyle}"
+                       />
+            
+            <ListView x:Name="employeesListView" RelativePanel.AlignHorizontalCenterWithPanel="True"
+                      RelativePanel.Below="employeesTitelTextBlock"
+                      ItemsSource="{Binding Employees, Mode=OneWay}"
+                      SelectedItem="{Binding SelectedEmployee, Mode=TwoWay}"
+                      MinHeight="300" MinWidth="150" Height="500" Width="300">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition MinWidth="200"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="{Binding FullName}" Grid.Column="0" Margin="5"/>
+                            <TextBlock Text="{Binding Department}" Grid.Column="1" Margin="5"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </RelativePanel>
     </Grid>
 </Page>

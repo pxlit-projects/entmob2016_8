@@ -36,6 +36,14 @@ namespace UWPMonitoring.Domain
 
         public string LastName { get; set; }
 
+        public string FullName
+        {
+            get
+            {
+                return FirstName + " " + LastName;
+            }
+        }
+
         public string Password
         {
             get
