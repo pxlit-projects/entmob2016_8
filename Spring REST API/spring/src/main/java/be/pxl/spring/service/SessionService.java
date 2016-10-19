@@ -40,4 +40,20 @@ public class SessionService {
 	public List<Session> findByDate(Timestamp timeStamp){
 		return sessionRepo.findByDate(timeStamp);
 	}
+	@Transactional
+	public List<Session> findByGreaterStartTime(Timestamp timeStamp){
+		return sessionRepo.findByGreaterStartTime(timeStamp);
+	}
+	@Transactional
+	public List<Session> findByLesserEndTime(Timestamp timeStamp){
+		return sessionRepo.findByLesserEndTime(timeStamp);
+	}
+	@Transactional
+	public List<Session> findByGreaterActualTime(int time){
+		return sessionRepo.findByGreaterActualTime(time);
+	}
+	@Transactional
+	public List<Session> findByLesserActualTime(int time){
+		return sessionRepo.findByLesserActualTime(time);
+	}
 }

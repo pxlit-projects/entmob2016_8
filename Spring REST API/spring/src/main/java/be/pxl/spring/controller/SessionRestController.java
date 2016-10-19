@@ -37,4 +37,25 @@ public class SessionRestController {
 		return sessionservice.findByDate(timeStamp);
 		
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "ByGreaterStart/{timeStamp}")
+	public List<Session> getSessionsByGreaterStartTime(Timestamp timeStamp){
+		return sessionservice.findByGreaterStartTime(timeStamp);
+		
+	}
+	@RequestMapping(method = RequestMethod.GET, value = "ByLesserEnd/{timeStamp}")
+	public List<Session> getSessionsByLesserEndTime(Timestamp timeStamp){
+		return sessionservice.findByLesserEndTime(timeStamp);
+		
+	}
+	@RequestMapping(method = RequestMethod.GET, value = "ByGreaterActual/{time}")
+	public List<Session> getSessionsByGreaterActualTime(int time){
+		return sessionservice.findByGreaterActualTime(time);
+		
+	}
+	@RequestMapping(method = RequestMethod.GET, value = "ByLesserActual/{time}")
+	public List<Session> getSessionsByLesserActualTime(int time){
+		return sessionservice.findByLesserActualTime(time);
+		
+	}
 }
