@@ -48,5 +48,18 @@ public class UserRestController {
 		us.delete(u);
 	}
 	
+	@RequestMapping(method = RequestMethod.POST, value="{id}/{pw}")
+	public Boolean login(@PathVariable("id") int id, @PathVariable("pw") String pw){
+		User user = us.findOne(id);
+		if(user.getPassword().equals(pw))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
 	
 }

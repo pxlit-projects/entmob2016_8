@@ -1,5 +1,6 @@
 package be.pxl.spring.service;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;

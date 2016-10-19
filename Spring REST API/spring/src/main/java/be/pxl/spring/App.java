@@ -29,13 +29,16 @@ public class App {
 		u.setFirstName("brecht");
 		u.setDepartment("test");
 		u.setLastName("morrhey");
-		u.setPassword("test");		
+		u.setPassword("test");
+		u.setSalt("test");
 		System.out.println(u.getFirstName());		
 		UserRestController urc = ctx.getBean(UserRestController.class);
 		int newUserId = urc.updateUser(u);
 		System.out.println("Nieuwe UserId: "+newUserId);
 		User morrhey = urc.getUserById(1);
 		System.out.println(morrhey.getLastName());
+		System.out.println(urc.login(1, "test"));
+		
 		
 		Session s = ctx.getBean(Session.class);
 		s.setUserId(1);
