@@ -22,7 +22,7 @@
             VerticalOptions="Center"
             Command="{Binding ScanCommand}"/>
     <Button
-            Text="{Binding Test}"
+            Text="{Binding DeviceName}"
             VerticalOptions="Start"
             IsVisible="true"
             FontSize="Large"
