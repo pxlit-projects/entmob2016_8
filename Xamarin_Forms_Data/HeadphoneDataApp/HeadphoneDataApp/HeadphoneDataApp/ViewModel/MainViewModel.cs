@@ -43,7 +43,7 @@ namespace HeadphoneDataApp.ViewModel
 
 
         private IAdapter adapter;
-        private string test;
+        private string deviceName;
         ObservableCollection<IService> services;
 
         private ObservableCollection<IDevice> devices;
@@ -111,7 +111,7 @@ namespace HeadphoneDataApp.ViewModel
                 {
                     devices.Add(e.Device);
                     Devices = devices;
-                    Test = e.Device.Name;
+                    DeviceName = e.Device.Name;
                 });
             };
 
@@ -125,30 +125,33 @@ namespace HeadphoneDataApp.ViewModel
             };
         }
 
-        //void StopScanning()
-        //{
-        //    // stop scanning
-        //    new Task(() => {
-        //        if (adapter.IsScanning)
-        //        {
-        //            Debug.WriteLine("Still scanning, stopping the scan");
-        //            adapter.StopScanningForDevices();
-        //        }
-        //    }).Start();
+        void StopScanning()
+        {
+            // stop scanning
+            new Task(() =>
+            {
+                if (adapter.IsScanning)
+                {
+                    Debug.WriteLine("Still scanning, stopping the scan");
+                    adapter.StopScanningForDevices();
+                }
+            }).Start();
+        }
 
         public ICommand ScanCommand { protected set; get; }
-        public string Test
+
+        public string DeviceName
         {
             get
             {
-                return test;
+                return deviceName;
             }
             set
             {
-                if (test != value)
+                if (deviceName != value)
                 {
-                    test = value;
-                    OnPropertyChanged("Test");
+                    deviceName = value;
+                    OnPropertyChanged("DeviceName");
                 }
             }
         }
@@ -164,18 +167,24 @@ namespace HeadphoneDataApp.ViewModel
         private async Task OpenDeviceServiceView()
         {
             //controleren als er een device is
-            if (Test != null)
+            if (DeviceName != null)
             {
                 var x = devices[0].Name;
                 int i = 0;
                 //controlern als het een sensortag is
                 if (devices[i].Name == "CC2650 SensorTag")
                 {
+                    //IDevice sensortag = devices[i];
+                    //StopScanning();
                     Debug.WriteLine("De sensortag is gevonden");
+                    //connect Device
+                    //adapter.ConnectToDevice(sensortag);
+                    //var status = adapter.ConnectedDevices;
                     //via Messenger adapter en device meesturen
+                    await App.Current.MainPage.Navigation.PushModalAsync(ViewLocator.DeviceServicePage);
+
                     Messenger.Default.Send<IAdapter>(adapter);
                     Messenger.Default.Send<IDevice>(devices[i]);
-                    await App.Current.MainPage.Navigation.PushModalAsync(ViewLocator.DeviceServicePage);
                 }
                 else
                 {
@@ -185,11 +194,7 @@ namespace HeadphoneDataApp.ViewModel
             else
             {
                 Debug.WriteLine("Geen device gevonden");
-            }
-
-          
-            
-      
+            }    
         }
 
         protected virtual void OnPropertyChanged(string propertyName)
