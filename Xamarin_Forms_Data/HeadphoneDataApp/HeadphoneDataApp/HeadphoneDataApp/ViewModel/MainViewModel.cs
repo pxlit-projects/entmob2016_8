@@ -1,5 +1,7 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
+using GalaSoft.MvvmLight.Views;
+using HeadphoneDataApp.View;
 using Robotics.Mobile.Core.Bluetooth.LE;
 using System;
 using System.Collections.ObjectModel;
@@ -7,6 +9,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows.Input;
 using Xamarin.Forms;
+using System.Threading.Tasks;
 
 namespace HeadphoneDataApp.ViewModel
 {
@@ -22,7 +25,7 @@ namespace HeadphoneDataApp.ViewModel
     /// See http://www.galasoft.ch/mvvm
     /// </para>
     /// </summary>
-    public class MainViewModel : ViewModelBase
+    public class MainViewModel : ViewModelBase, INotifyPropertyChanged
     {
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
@@ -40,21 +43,43 @@ namespace HeadphoneDataApp.ViewModel
 
 
         private IAdapter adapter;
-        private ObservableCollection<IDevice> devices = new ObservableCollection<IDevice>();
+        private string test;
+        ObservableCollection<IService> services;
 
+        private ObservableCollection<IDevice> devices;
         public event PropertyChangedEventHandler PropertyChanged;
 
+        private Command _selectedDeviceCommand;
+
+        public ObservableCollection<IDevice> Devices
+        {
+            get
+            {
+                return devices;
+            }
+            set
+            {
+                devices = value;
+                OnPropertyChanged("Devices");
+            }
+        }
 
         public MainViewModel()
         {
             //get the adapter via messenger
             Messenger.Default.Register<IAdapter>(this, Adapter);
+            devices = new ObservableCollection<IDevice>();
+            this.services = new ObservableCollection<IService>();
+
+
+            //navigation
 
             this.ScanCommand = new Command(() =>
             {
                 StartScanning(0x180D.UuidFromPartial());
             });
 
+           
         }
 
         void StartScanning()
@@ -85,6 +110,8 @@ namespace HeadphoneDataApp.ViewModel
                 Device.BeginInvokeOnMainThread(() =>
                 {
                     devices.Add(e.Device);
+                    Devices = devices;
+                    Test = e.Device.Name;
                 });
             };
 
@@ -110,7 +137,68 @@ namespace HeadphoneDataApp.ViewModel
         //    }).Start();
 
         public ICommand ScanCommand { protected set; get; }
+        public string Test
+        {
+            get
+            {
+                return test;
+            }
+            set
+            {
+                if (test != value)
+                {
+                    test = value;
+                    OnPropertyChanged("Test");
+                }
+            }
+        }
 
+        public ICommand SelectedDeviceCommand
+        {
+            get
+            {
+                return _selectedDeviceCommand ?? (_selectedDeviceCommand = new Command(async() =>await OpenDeviceServiceView()));
+            }
+        }
 
+        private async Task OpenDeviceServiceView()
+        {
+            //controleren als er een device is
+            if (Test != null)
+            {
+                var x = devices[0].Name;
+                int i = 0;
+                //controlern als het een sensortag is
+                if (devices[i].Name == "CC2650 SensorTag")
+                {
+                    Debug.WriteLine("De sensortag is gevonden");
+                    //via Messenger adapter en device meesturen
+                    Messenger.Default.Send<IAdapter>(adapter);
+                    Messenger.Default.Send<IDevice>(devices[i]);
+                    await App.Current.MainPage.Navigation.PushModalAsync(ViewLocator.DeviceServicePage);
+                }
+                else
+                {
+                    Debug.WriteLine("Geen sensortag geconnecteerd");
+                }
+            }
+            else
+            {
+                Debug.WriteLine("Geen device gevonden");
+            }
+
+          
+            
+      
+        }
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this,
+                    new PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
 }
