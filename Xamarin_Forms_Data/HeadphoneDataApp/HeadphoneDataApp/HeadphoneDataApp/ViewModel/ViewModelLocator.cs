@@ -12,11 +12,13 @@
   See http://www.galasoft.ch/mvvm
 */
 
+using System;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Practices.ServiceLocation;
 using Robotics.Mobile.Core.Bluetooth.LE;
+using GalaSoft.MvvmLight.Views;
 
 namespace HeadphoneDataApp.ViewModel
 {
@@ -33,6 +35,7 @@ namespace HeadphoneDataApp.ViewModel
         public ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+
             ////if (ViewModelBase.IsInDesignModeStatic)
             ////{
             ////    // Create design time view services and models
@@ -44,6 +47,7 @@ namespace HeadphoneDataApp.ViewModel
             ////    SimpleIoc.Default.Register<IDataService, DataService>();
             ////}
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<DeviceServiceViewModel>();
             //ServiceLocator.Default.Register<MainViewModel>(new MainViewModel(_adapter));
             //SimpleIoc.Default.Register<MainViewModel>();
         }
@@ -57,7 +61,15 @@ namespace HeadphoneDataApp.ViewModel
                 return ServiceLocator.Current.GetInstance<MainViewModel>();
             }
         }
-        
+
+        public DeviceServiceViewModel DeviceService
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<DeviceServiceViewModel>();
+            }
+        }
+
         public static void Cleanup()
         {
             // TODO Clear the ViewModels
