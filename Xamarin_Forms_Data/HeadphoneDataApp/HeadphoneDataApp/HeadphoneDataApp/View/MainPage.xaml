@@ -21,6 +21,33 @@
             HorizontalOptions="Center"
             VerticalOptions="Center"
             Command="{Binding ScanCommand}"/>
+    <Button
+            Text="{Binding Test}"
+            VerticalOptions="Start"
+            IsVisible="true"
+            FontSize="Large"
+            FontAttributes="Bold"
+            TextColor="Red"
+            Command="{Binding SelectedDeviceCommand}"
+    >
+    </Button>
+    <ListView x:Name="devicesListView"
+              HorizontalOptions="Center"
+              VerticalOptions="Center"
+              BackgroundColor="#CCCCCC">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <Grid>
+            <Label
+            Text="{Binding Devices}"
+            VerticalOptions="Start"
+            HorizontalTextAlignment="Center"
+            IsVisible="true"
+            FontSize="Large" />
+          </Grid>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
 
   </StackLayout>
 </ContentPage>
