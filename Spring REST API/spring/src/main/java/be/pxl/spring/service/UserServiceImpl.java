@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@Transactional 
 	public List<User> findByName(String name) {
-		// TODO Auto-generated method stub
+		
 		return repository.findByName(name);
 	}
 	  /* (non-Javadoc)
@@ -53,13 +53,13 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void flush() {
-		// TODO Auto-generated method stub
+		
 		repository.flush();
 	}
 
 	@Override
 	public void delete(User u) {
-		// TODO Auto-generated method stub
+		
 		repository.delete(u);
 	}
 }

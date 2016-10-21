@@ -62,8 +62,8 @@ public class SessionRestController {
 	@RequestMapping(method = RequestMethod.GET, value = "Between/{startTime}/{endTime}")
 	public List<Session> getSessionsBetween(@PathVariable("startTime") Timestamp startTime,
 			@PathVariable("endTime") Timestamp endTime ){
-		//TODO: implement stuff
-		return null;
+		
+		return sessionservice.findBetween(startTime, endTime);
 		
 	}
 	@RequestMapping(method = RequestMethod.DELETE)
@@ -71,10 +71,10 @@ public class SessionRestController {
 		sessionservice.delete(s);
 	}
 	@RequestMapping(method = RequestMethod.GET, value="AverageActualTime/{startTime}/{endTime}")
-	public int getAverageActualTime(@PathVariable("startTime") Timestamp startTime,
+	public double getAverageActualTime(@PathVariable("startTime") Timestamp startTime,
 			@PathVariable("endTime") Timestamp endTime ){
-		//TODO: implement stuff
-				return 0;
+		
+				return sessionservice.getAverageActualTime(startTime, endTime);
 		
 	}
 }

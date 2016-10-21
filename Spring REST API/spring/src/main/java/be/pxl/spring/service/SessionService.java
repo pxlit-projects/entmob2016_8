@@ -22,9 +22,18 @@ public interface SessionService{
 	public abstract List<Session> findByGreaterActualTime(int time);
 
 	public abstract List<Session> findByLesserActualTime(int time);
+	
+	public abstract List<Session> findBetween(Timestamp startTime,
+			Timestamp endTime);
 
 	public abstract void flush();
 
 	public abstract void delete(Session s);
+
+	//heb dit get ipv find genoemd aangezien dit geen records gaat zoeken maar 1 waarde gaat teruggeven
+	public abstract double getAverageActualTime(Timestamp startTime,
+			Timestamp endTime);
+
+	
 	
 }

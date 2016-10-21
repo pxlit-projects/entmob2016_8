@@ -27,6 +27,8 @@ public interface SessionRepository extends JpaRepository<Session, Integer>{
 
 	@Query("select s from Session s where (s.actualTime <= ?1)")
 	List<Session> findByLesserActualTime(int time);
+	@Query("select s from Session s where (s.startTime >= ?1) and (s.endTime <= ?2)")
+	List<Session> findBetween(Timestamp startTime, Timestamp endTime);
 
 
 }

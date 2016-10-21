@@ -61,7 +61,7 @@ public class App {
 		List<User> userList = urc.getUsersByName("brech");
 		
 		for (User user : userList) {
-			System.out.println(user.getFirstName()+" "+user.getLastName());
+			System.out.println(user.getUserId()+": "+ user.getFirstName()+" "+user.getLastName());
 		}
 		
 		sessionList = src.getSessionsByDate(ts);
@@ -74,6 +74,9 @@ public class App {
 		u1.setLastName("Szkudlarski ofzoiets");
 		urc.updateUser(u1);
 
+		double average = src.getAverageActualTime(sessionList.get(0).getStartTime(),
+		sessionList.get(sessionList.size()-1).getEndTime());
+		System.out.println("gemiddelde tijd: " + average);
 		System.out.println("TEST");
 	}
 }

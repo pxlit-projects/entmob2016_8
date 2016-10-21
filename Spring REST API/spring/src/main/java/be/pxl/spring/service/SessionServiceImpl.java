@@ -85,16 +85,34 @@ public class SessionServiceImpl implements SessionService{
 	public List<Session> findByLesserActualTime(int time){
 		return sessionRepo.findByLesserActualTime(time);
 	}
+	@Override
+	@Transactional
+	public List<Session> findBetween(Timestamp startTime, Timestamp endTime) {
+		
+		return sessionRepo.findBetween(startTime, endTime);
+	}
 
 	@Override
 	public void flush() {
-		// TODO Auto-generated method stub 
+		
 		sessionRepo.flush();
 	}
 
 	@Override
 	public void delete(Session s) {
-		// TODO Auto-generated method stub
+		
 		sessionRepo.delete(s);
 	}
+
+	@Override
+	public double getAverageActualTime(Timestamp startTime, Timestamp endTime) {		
+		List<Session> sessionList = this.findBetween(startTime, endTime);
+		double sum = 0;
+		for (Session session : sessionList) {
+			sum += session.getActualTime();
+		}
+		return sum/sessionList.size();
+	}
+
+	
 }
