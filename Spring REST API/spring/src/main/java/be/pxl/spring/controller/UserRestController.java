@@ -19,7 +19,10 @@ public class UserRestController {
 	
 	@RequestMapping(method = RequestMethod.GET, value="{id}")
 	public User getUserById(@PathVariable("id") int id){
-		return us.findOne(id);
+		// need to explicitly set Sessions to null or the Json serializer will load the Sessions despite lazy loading
+		User u = us.findOne(id);
+		u.setSessions(null);
+		return u;
 	}
 	@RequestMapping(method= RequestMethod.GET)
 	public String hello()

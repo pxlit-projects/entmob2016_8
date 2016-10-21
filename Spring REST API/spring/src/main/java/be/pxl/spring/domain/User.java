@@ -2,7 +2,8 @@ package be.pxl.spring.domain;
 
 import javax.persistence.*;
 
-
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.stereotype.Component;
 
 import java.io.*;
@@ -100,7 +101,7 @@ public class User implements Serializable {
 	private String role;
 	
 
-	@OneToMany(targetEntity=Session.class, mappedBy="userId", fetch = FetchType.LAZY)	
+	@OneToMany(targetEntity=Session.class, mappedBy="userId", fetch= FetchType.LAZY)		
 	private Set<Session> sessions;
 	
 	

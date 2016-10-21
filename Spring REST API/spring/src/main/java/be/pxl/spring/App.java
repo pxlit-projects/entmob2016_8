@@ -14,6 +14,8 @@ import be.pxl.spring.controller.UserRestController;
 import be.pxl.spring.controller.UserSessionRestController;
 import be.pxl.spring.domain.Session;
 import be.pxl.spring.domain.User;
+import be.pxl.spring.service.UserService;
+import be.pxl.spring.service.UserServiceImpl;
 
 /**
  * Hello world!
@@ -80,12 +82,12 @@ public class App {
 		sessionList.get(sessionList.size()-1).getEndTime());
 		System.out.println("gemiddelde tijd: " + average);
 		
-		UserSessionRestController usrc = ctx.getBean(UserSessionRestController.class);
+		UserSessionRestController usrc = ctx.getBean(UserSessionRestController.class);		
 		User u2 = usrc.getUserSessionById(1);
 		s.setUserId(1);
 		date = new Date();
 		ts = new Timestamp(date.getTime());
-		s.setActualTime(10);
+		s.setActualTime(15);
 		s.setStartTime(ts);
 		s.setEndTime(ts);
 		s.setUserId(1);		
