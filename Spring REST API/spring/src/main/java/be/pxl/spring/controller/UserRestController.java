@@ -1,28 +1,77 @@
 package be.pxl.spring.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
 
-import be.pxl.spring.model.User;
-import be.pxl.spring.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+
+import be.pxl.spring.domain.User;
+import be.pxl.spring.service.UserService;
 
 @RestController
-@RequestMapping(value="/session", produces="application/json")
+@RequestMapping(value="/user", produces="application/json")
 public class UserRestController {
-
+	//LazyLoading is enabled, use UserSessionRestController if you want to include the user sessions
+	
 	@Autowired
-	UserRepository repo;
+	UserService us;
 	
-	@RequestMapping(method = RequestMethod.GET)
-	public User getUserById(int id){
-		return repo.findOne(id);
+	@RequestMapping(method = RequestMethod.GET, value="{id}")
+	public User getUserById(@PathVariable("id") int id){
+		return us.findOne(id);
 	}
+	@RequestMapping(method= RequestMethod.GET)
+	public String hello()
+	{
+		return "hello";
+	}
+	@RequestMapping(method = RequestMethod.GET, value="ByName/{name}")
+	public List<User> getUsersByName(@PathVariable("name") String name){
+		return us.findByName(name);
+	}
+	@RequestMapping(method = RequestMethod.GET, value="ByDepartment/{department}")
+	public List<User> getUsersByDepartment(@PathVariable("department") String department){
+		return us.findByName(department);
+	}
+	
 	@RequestMapping(method = RequestMethod.POST)
-	public void updateUser(User u){
-		repo.save(u);
+	public int updateUser(@RequestBody User u){
+		us.save(u);
+		us.flush();
+		return u.getUserId();
+		
 	}
 	
+	@RequestMapping(method = RequestMethod.DELETE)
+	public void deleteUser(@RequestBody User u){
+		us.delete(u);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value="{id}/{pw}")
+	public Boolean login(@PathVariable("id") int id, @PathVariable("pw") String pw){
+		User user = us.findOne(id);
+		if(user.getPassword().equals(pw))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value="werkgever/{id}/{pw}")
+	public Boolean loginWerkgever(@PathVariable("id") int id, @PathVariable("pw") String pw){
+		User user = us.findOne(id);
+		if(user.getPassword().equals(pw) && user.getRole() == "admin")
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 	
 }

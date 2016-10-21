@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HeadPhoneDataApp.MainPage"
+             xmlns:local="clr-namespace:HeadphoneDataApp.ViewModels"
+             Title="Device list">
+  <!--<ContentPage.BindingContext>
+    <local:MainPageViewModel/>
+  </ContentPage.BindingContext>-->
+ 
+  <StackLayout
+    VerticalOptions="Start"
+           HorizontalOptions="Center">
+    <Label Text="Scan for devices"
+           VerticalOptions="Start"
+           HorizontalTextAlignment="Center"
+           IsVisible="true"
+           FontSize="Large"
+           FontAttributes="Bold"
+           TextColor="Red" />
+    <Button x:Name="login"
+            Image="bluetooth.png"
+            Text="SCAN!"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Command="{Binding ScanCommand}"/>
+  </StackLayout>
+  <!--
+  To do:
+  -devicelist
+  -->
+</ContentPage>
