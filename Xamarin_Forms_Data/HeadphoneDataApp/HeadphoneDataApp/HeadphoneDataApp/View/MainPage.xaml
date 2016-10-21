@@ -7,7 +7,7 @@
 
   <StackLayout
     VerticalOptions="Start"
-           HorizontalOptions="Center">
+           HorizontalOptions="FillAndExpand">
     <Label Text="Scan for devices"
            VerticalOptions="Start"
            HorizontalTextAlignment="Center"
@@ -24,6 +24,7 @@
     <Button
             Text="{Binding DeviceName}"
             VerticalOptions="Start"
+            HorizontalOptions="FillAndExpand"
             IsVisible="true"
             FontSize="Large"
             FontAttributes="Bold"
@@ -31,7 +32,7 @@
             Command="{Binding SelectedDeviceCommand}"
     >
     </Button>
-    <ListView x:Name="devicesListView"
+    <!--<ListView x:Name="devicesListView"
               HorizontalOptions="Center"
               VerticalOptions="Center"
               BackgroundColor="#CCCCCC">
@@ -47,7 +48,7 @@
           </Grid>
         </DataTemplate>
       </ListView.ItemTemplate>
-    </ListView>
+    </ListView>-->
 
   </StackLayout>
 </ContentPage>

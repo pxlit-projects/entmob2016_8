@@ -4,4 +4,12 @@
              x:Class="HeadphoneDataApp.View.DeviceServicePage"
              BindingContext="{Binding Source={StaticResource Locator}, Path=DeviceService}">
   <Label Text="{Binding DeviceName}" VerticalOptions="Center" HorizontalOptions="Center" />
+  
+  
+   <StackLayout
+    VerticalOptions="Start"
+           HorizontalOptions="Center">
+     <Label Text="{Binding DeviceName}" VerticalOptions="Center" HorizontalOptions="Center" />
+     <Button Text="Services" VerticalOptions="Center" HorizontalOptions="Center" Command="{Binding GetServicesCommand}"/>
+  </StackLayout>
 </ContentPage>
