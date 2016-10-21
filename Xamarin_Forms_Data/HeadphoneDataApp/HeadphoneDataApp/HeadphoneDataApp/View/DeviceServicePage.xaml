@@ -6,10 +6,30 @@
   <Label Text="{Binding DeviceName}" VerticalOptions="Center" HorizontalOptions="Center" />
   
   
-   <StackLayout
-    VerticalOptions="Start"
-           HorizontalOptions="Center">
-     <Label Text="{Binding DeviceName}" VerticalOptions="Center" HorizontalOptions="Center" />
-     <Button Text="Services" VerticalOptions="Center" HorizontalOptions="Center" Command="{Binding GetServicesCommand}"/>
-  </StackLayout>
+
+  <Grid>
+  <Grid.RowDefinitions>
+    <RowDefinition Height="70" />
+    <RowDefinition Height="*" />
+  </Grid.RowDefinitions>
+  <Grid.ColumnDefinitions>
+    <ColumnDefinition Width="*" />
+  </Grid.ColumnDefinitions>
+
+    <StackLayout Grid.Row="0">
+      <Label Text="{Binding DeviceName}" VerticalOptions="Center" Font="Bold,Medium" FontSize="Large" HorizontalOptions="Center"  />
+    </StackLayout>
+
+  <!--<RelativeLayout Grid.Row="1">-->
+    <!--<Button Text="Services" VerticalOptions="Center" HorizontalOptions="FillAndExpand"  Command="{Binding GetServicesCommand}" />-->
+    <!--</RelativeLayout>--> 
+    <StackLayout Grid.Row="1">
+      <Button Text="Services" AbsoluteLayout.LayoutBounds=".5,80,100,40"
+             AbsoluteLayout.LayoutFlags="PositionProportional"
+              Command="{Binding GetServicesCommand}" />
+     
+    </StackLayout>
+ 
+  </Grid>
+  
 </ContentPage>

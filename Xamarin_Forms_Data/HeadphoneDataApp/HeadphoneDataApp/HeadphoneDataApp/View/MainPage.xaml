@@ -8,6 +8,8 @@
   <StackLayout
     VerticalOptions="Start"
            HorizontalOptions="FillAndExpand">
+    <Image
+      Source="headphoneImage.jpg"/>
     <Label Text="Scan for devices"
            VerticalOptions="Start"
            HorizontalTextAlignment="Center"
@@ -15,8 +17,7 @@
            FontSize="Large"
            FontAttributes="Bold"
            TextColor="Red" />
-    <Button x:Name="login"
-            Image="bluetooth.png"
+    <Button x:Name="scan"
             Text="SCAN!"
             HorizontalOptions="Center"
             VerticalOptions="Center"
