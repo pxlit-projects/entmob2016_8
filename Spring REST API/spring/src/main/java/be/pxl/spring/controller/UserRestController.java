@@ -3,8 +3,9 @@ package be.pxl.spring.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 
 import be.pxl.spring.domain.User;
 import be.pxl.spring.service.UserService;
@@ -18,11 +19,17 @@ public class UserRestController {
 	UserService us;
 	
 	@RequestMapping(method = RequestMethod.GET, value="{id}")
-	public User getUserById(@PathVariable("id") int id){
+	public ResponseEntity<User> getUserById(@PathVariable("id") int id){
 		// need to explicitly set Sessions to null or the Json serializer will load the Sessions despite lazy loading
+		HttpStatus status;
 		User u = us.findOne(id);
-		u.setSessions(null);
-		return u;
+		if(u == null){
+			status = HttpStatus.NOT_FOUND;		
+		}else{
+			u.setSessions(null);	
+			status = HttpStatus.OK;
+		}
+		return new ResponseEntity<User>(u, status);
 	}
 	@RequestMapping(method= RequestMethod.GET)
 	public String hello()

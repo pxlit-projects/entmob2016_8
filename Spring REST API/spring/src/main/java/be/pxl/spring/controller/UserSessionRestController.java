@@ -71,4 +71,6 @@ public class UserSessionRestController {
 				return us.getAverageActualTime(id);
 		
 	}
+	
+	
 }

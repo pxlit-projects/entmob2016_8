@@ -3,6 +3,8 @@ package be.pxl.spring.service;
 import java.sql.Timestamp;
 import java.util.List;
 
+import org.springframework.http.RequestEntity;
+
 import be.pxl.spring.domain.Session;
 
 
@@ -33,6 +35,8 @@ public interface SessionService{
 	//heb dit get ipv find genoemd aangezien dit geen records gaat zoeken maar 1 waarde gaat teruggeven
 	public abstract double getAverageActualTime(Timestamp startTime,
 			Timestamp endTime);
+
+	public abstract Session getLastSession(int userId);
 
 	
 	

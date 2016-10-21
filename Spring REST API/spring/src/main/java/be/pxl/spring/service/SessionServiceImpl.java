@@ -6,6 +6,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.RequestEntity;
 import org.springframework.stereotype.Service;
 
 import be.pxl.spring.domain.Session;
@@ -95,6 +96,12 @@ public class SessionServiceImpl implements SessionService{
 	public double getAverageActualTime(Timestamp startTime, Timestamp endTime) {		
 		List<Session> sessionList = this.findBetween(startTime, endTime);		
 		return averageUtil.Calculate(sessionList);
+	}
+
+
+	@Override
+	public Session getLastSession(int userId) {
+		return sessionRepo.findTop1ByUserIdOrderByEndTimeDesc(userId);
 	}
 
 	

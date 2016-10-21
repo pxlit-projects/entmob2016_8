@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.http.RequestEntity;
 import org.springframework.transaction.annotation.Transactional;
 
 import be.pxl.spring.domain.Session;
@@ -29,6 +30,8 @@ public interface SessionRepository extends JpaRepository<Session, Integer>{
 	List<Session> findByLesserActualTime(int time);
 	@Query("select s from Session s where (s.startTime >= ?1) and (s.endTime <= ?2)")
 	List<Session> findBetween(Timestamp startTime, Timestamp endTime);
+	@Transactional(readOnly = true)
+	Session findTop1ByUserIdOrderByEndTimeDesc(int userId);
 
 
 }

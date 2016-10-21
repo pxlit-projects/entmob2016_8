@@ -4,6 +4,9 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.RequestEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import be.pxl.spring.domain.Session;
@@ -76,5 +79,15 @@ public class SessionRestController {
 		
 				return sessionservice.getAverageActualTime(startTime, endTime);
 		
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value="LastSession/{id}")
+	public ResponseEntity<Session> getLastSession(@PathVariable("id") int userId){
+		Session s = sessionservice.getLastSession(userId);
+		HttpStatus status = HttpStatus.OK;
+		if(s == null){
+			status = HttpStatus.NOT_FOUND;
+		}
+		return new ResponseEntity<Session>(s, status);
 	}
 }

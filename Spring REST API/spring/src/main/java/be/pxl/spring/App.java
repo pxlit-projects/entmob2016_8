@@ -40,7 +40,7 @@ public class App {
 		UserRestController urc = ctx.getBean(UserRestController.class);
 		int newUserId = urc.updateUser(u);
 		System.out.println("Nieuwe UserId: "+newUserId);
-		User morrhey = urc.getUserById(1);
+		User morrhey = urc.getUserById(1).getBody();
 		System.out.println(morrhey.getLastName());
 		System.out.println(urc.login(1, "test"));
 		
@@ -73,7 +73,7 @@ public class App {
 			System.out.println("sessie by date: "+ session.getUserId());
 		}
 		
-		User u1 = urc.getUserById(1);
+		User u1 = urc.getUserById(1).getBody();
 		u1.setFirstName("Jasper");
 		u1.setLastName("Szkudlarski ofzoiets");
 		urc.updateUser(u1);
@@ -108,6 +108,7 @@ public class App {
 			System.out.println(session.getSessionId()+": " +session.getStartTime()+" - "+ session.getEndTime());
 		}
 		
+		System.out.println(src.getLastSession(1).getBody().getSessionId());
 		System.out.println("TEST");
 	}
 }
