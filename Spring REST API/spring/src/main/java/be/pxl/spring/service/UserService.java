@@ -41,6 +41,8 @@ public interface UserService {
 	public abstract double getAverageActualTime(int id, Timestamp startTime,
 			Timestamp endTime);
 
+	public abstract double getAverageActualTime(int id);
+
 	
 	
 

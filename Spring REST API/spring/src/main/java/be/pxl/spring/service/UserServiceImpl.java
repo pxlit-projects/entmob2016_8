@@ -119,5 +119,13 @@ public class UserServiceImpl implements UserService {
 		return averageUtil.Calculate(sessions);
 	}
 
+
+	@Override
+	public double getAverageActualTime(int id) {
+		Set<Session> sessions = repository.findById(id).getSessions();
+		return averageUtil.Calculate(sessions);
+		
+	}
+
 	
 }

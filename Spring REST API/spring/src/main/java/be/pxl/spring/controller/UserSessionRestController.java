@@ -65,5 +65,10 @@ public class UserSessionRestController {
 				return us.getAverageActualTime(id, startTime, endTime);
 		
 	}
-	
+	@RequestMapping(method = RequestMethod.GET, value="AverageActualTime/{id}")
+	public double getAverageActualTime(@PathVariable("id") int id){
+		
+				return us.getAverageActualTime(id);
+		
+	}
 }
