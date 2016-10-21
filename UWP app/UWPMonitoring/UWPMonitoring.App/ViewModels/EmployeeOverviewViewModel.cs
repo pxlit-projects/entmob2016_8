@@ -18,7 +18,7 @@ namespace UWPMonitoring.App.ViewModels
         private IRepository repository;
         private List<User> employees;
         private User selectedEmployee;
-        private List<User> omittedUsers;
+        private List<User> omittedUsers = new List<User>();
         private string searchString;
 
         //Commands
@@ -117,7 +117,7 @@ namespace UWPMonitoring.App.ViewModels
 
         private bool CanSearch(object obj)
         {
-            if (SearchString != null && SearchString != "")
+            if (SearchString != null && SearchString != "" && omittedUsers.Count == 0)
             {
                 return true;
             }
