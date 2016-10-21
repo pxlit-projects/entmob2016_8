@@ -18,4 +18,6 @@ public interface UserService {
 
 	public abstract void delete(User u);
 
+	public abstract User findById(int id);
+
 }

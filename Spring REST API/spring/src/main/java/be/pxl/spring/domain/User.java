@@ -100,7 +100,7 @@ public class User implements Serializable {
 	private String role;
 	
 
-	@OneToMany(targetEntity=Session.class, mappedBy="sessionId")
+	@OneToMany(targetEntity=Session.class, mappedBy="userId")
 	private Set<Session> sessions;
 	
 	

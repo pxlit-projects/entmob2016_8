@@ -3,6 +3,7 @@ package be.pxl.spring;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,6 +11,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 import be.pxl.spring.controller.SessionRestController;
 import be.pxl.spring.controller.UserRestController;
+import be.pxl.spring.controller.UserSessionRestController;
 import be.pxl.spring.domain.Session;
 import be.pxl.spring.domain.User;
 
@@ -55,7 +57,7 @@ public class App {
 		List<Session> sessionList = src.getSessionsByUserId(1);
 		
 		for (Session session : sessionList) {
-			System.out.println(session.getStartTime());
+			System.out.println(session.getUserId()+": "+session.getStartTime());
 		}
 		
 		List<User> userList = urc.getUsersByName("brech");
@@ -77,6 +79,27 @@ public class App {
 		double average = src.getAverageActualTime(sessionList.get(0).getStartTime(),
 		sessionList.get(sessionList.size()-1).getEndTime());
 		System.out.println("gemiddelde tijd: " + average);
+		
+		UserSessionRestController usrc = ctx.getBean(UserSessionRestController.class);
+		User u2 = usrc.getUserSessionById(1);
+		s.setUserId(1);
+		date = new Date();
+		ts = new Timestamp(date.getTime());
+		s.setActualTime(10);
+		s.setStartTime(ts);
+		s.setEndTime(ts);
+		s.setUserId(1);		
+		src.updateSession(s);
+		u2.getSessions().add(s);
+		urc.updateUser(u2);
+		u2 = usrc.getUserSessionById(1);
+		
+		Set<Session> userSessions = u2.getSessions();
+		for (Session session : userSessions) {
+			System.out.println(session.getSessionId()+": " +session.getStartTime()+" - "+ session.getEndTime());
+		}
+		
+		
 		System.out.println("TEST");
 	}
 }
