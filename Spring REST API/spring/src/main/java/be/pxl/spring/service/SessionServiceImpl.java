@@ -17,9 +17,9 @@ public class SessionServiceImpl implements SessionService{
 	@Autowired
 	private SessionRepository sessionRepo;
 
-	/* (non-Javadoc)
-	 * @see be.pxl.spring.service.SessionServiceInterface#save(be.pxl.spring.domain.Session)
-	 */
+	@Autowired
+	private AverageSessionLengthUtility averageUtil;
+	
 	@Override
 	@Transactional
 	public Session save(Session session)
@@ -27,64 +27,51 @@ public class SessionServiceImpl implements SessionService{
 		return sessionRepo.save(session);
 	}
 	
-	/* (non-Javadoc)
-	 * @see be.pxl.spring.service.SessionServiceInterface#findOne(int)
-	 */
+	
 	@Override
 	@Transactional
 	public Session findOne(int Id)
 	{
 		return sessionRepo.findOne(Id);
 	}
-	/* (non-Javadoc)
-	 * @see be.pxl.spring.service.SessionServiceInterface#findByUserId(int)
-	 */
+	
 	@Override
 	@Transactional
 	public List<Session> findByUserId(int userId) {
 		
 		return sessionRepo.findByUserId(userId);
 	}
-	/* (non-Javadoc)
-	 * @see be.pxl.spring.service.SessionServiceInterface#findByDate(java.sql.Timestamp)
-	 */
+	
 	@Override
 	@Transactional
 	public List<Session> findByDate(Timestamp timeStamp){
 		return sessionRepo.findByDate(timeStamp);
 	}
-	/* (non-Javadoc)
-	 * @see be.pxl.spring.service.SessionServiceInterface#findByGreaterStartTime(java.sql.Timestamp)
-	 */
+	
 	@Override
 	@Transactional
 	public List<Session> findByGreaterStartTime(Timestamp timeStamp){
 		return sessionRepo.findByGreaterStartTime(timeStamp);
 	}
-	/* (non-Javadoc)
-	 * @see be.pxl.spring.service.SessionServiceInterface#findByLesserEndTime(java.sql.Timestamp)
-	 */
+	
 	@Override
 	@Transactional
 	public List<Session> findByLesserEndTime(Timestamp timeStamp){
 		return sessionRepo.findByLesserEndTime(timeStamp);
 	}
-	/* (non-Javadoc)
-	 * @see be.pxl.spring.service.SessionServiceInterface#findByGreaterActualTime(int)
-	 */
+	
 	@Override
 	@Transactional
 	public List<Session> findByGreaterActualTime(int time){
 		return sessionRepo.findByGreaterActualTime(time);
 	}
-	/* (non-Javadoc)
-	 * @see be.pxl.spring.service.SessionServiceInterface#findByLesserActualTime(int)
-	 */
+	
 	@Override
 	@Transactional
 	public List<Session> findByLesserActualTime(int time){
 		return sessionRepo.findByLesserActualTime(time);
 	}
+	
 	@Override
 	@Transactional
 	public List<Session> findBetween(Timestamp startTime, Timestamp endTime) {
@@ -106,12 +93,8 @@ public class SessionServiceImpl implements SessionService{
 
 	@Override
 	public double getAverageActualTime(Timestamp startTime, Timestamp endTime) {		
-		List<Session> sessionList = this.findBetween(startTime, endTime);
-		double sum = 0;
-		for (Session session : sessionList) {
-			sum += session.getActualTime();
-		}
-		return sum/sessionList.size();
+		List<Session> sessionList = this.findBetween(startTime, endTime);		
+		return averageUtil.Calculate(sessionList);
 	}
 
 	

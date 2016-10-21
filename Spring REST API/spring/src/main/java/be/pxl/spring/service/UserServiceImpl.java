@@ -18,6 +18,8 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	  private UserRepository repository;
 	  
+	@Autowired
+	private AverageSessionLengthUtility averageUtil;
 	
 	@Override
 	@Transactional
@@ -113,12 +115,8 @@ public class UserServiceImpl implements UserService {
 	public double getAverageActualTime(int id, Timestamp startTime,
 			Timestamp endTime) {
 		
-		Set<Session> sessionList = (this.findBetween(id, startTime, endTime)).getSessions();
-		double sum = 0;
-		for (Session session : sessionList) {
-			sum += session.getActualTime();
-		}
-		return sum/sessionList.size();
+		Set<Session> sessions = (this.findBetween(id, startTime, endTime)).getSessions();		
+		return averageUtil.Calculate(sessions);
 	}
 
 	
