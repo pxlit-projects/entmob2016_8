@@ -10,9 +10,13 @@ namespace UWPMonitoring.App.Utility
         {
             if (key == "Overview")
             {
-                EmployeeOverviewView view = new EmployeeOverviewView();
                 Frame rootFrame = Window.Current.Content as Frame;
                 rootFrame.Navigate(typeof(EmployeeOverviewView));
+            }
+            if (key == "main")
+            {
+                Frame rootFrame = Window.Current.Content as Frame;
+                rootFrame.Navigate(typeof(MainView));
             }
         }
     }
