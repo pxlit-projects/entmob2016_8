@@ -12,7 +12,7 @@ import be.pxl.spring.service.UserService;
 @RestController
 @RequestMapping(value="/user", produces="application/json")
 public class UserRestController {
-
+	//LazyLoading is enabled, use UserSessionRestController if you want to include the user sessions
 	
 	@Autowired
 	UserService us;
