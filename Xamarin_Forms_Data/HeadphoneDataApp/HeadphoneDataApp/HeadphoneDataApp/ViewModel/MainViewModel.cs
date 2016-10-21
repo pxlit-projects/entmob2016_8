@@ -167,7 +167,7 @@ namespace HeadphoneDataApp.ViewModel
         private async Task OpenDeviceServiceView()
         {
             //controleren als er een device is
-            if (DeviceName != null)
+            if (Devices != null)
             {
                 var x = devices[0].Name;
                 int i = 0;
@@ -175,11 +175,11 @@ namespace HeadphoneDataApp.ViewModel
                 if (devices[i].Name == "CC2650 SensorTag")
                 {
                     //IDevice sensortag = devices[i];
-                    //StopScanning();
+                    StopScanning();
                     Debug.WriteLine("De sensortag is gevonden");
                     //connect Device
-                    //adapter.ConnectToDevice(sensortag);
-                    //var status = adapter.ConnectedDevices;
+                    adapter.ConnectToDevice(devices[i]);
+                    var status = adapter.ConnectedDevices;
                     //via Messenger adapter en device meesturen
                     await App.Current.MainPage.Navigation.PushModalAsync(ViewLocator.DeviceServicePage);
 

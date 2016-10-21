@@ -3,6 +3,7 @@ using Robotics.Mobile.Core.Bluetooth.LE;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -11,18 +12,43 @@ using Xamarin.Forms;
 
 namespace HeadphoneDataApp.ViewModel
 {
-    public class DeviceServiceViewModel
+    public class DeviceServiceViewModel: INotifyPropertyChanged
     {
         private IAdapter adapter;
         private IDevice device;
         private ObservableCollection<IService> services;
+        private string deviceName;
+
+        /** Service UUID. */
+        public static string UUID_SERVICE = "f000aa10-0451-4000-b000-000000000000";
+        /** Data UUID. */
+        private static string UUID_DATA = "f000aa11-0451-4000-b000-000000000000";
+        /** Configuration UUID. */
+        private static string UUID_CONFIG = "f000aa12-0451-4000-b000-000000000000";
+        /** Period UUID. */
+        private static string UUID_PERIOD = "f000aa13-0451-4000-b000-000000000000";
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public DeviceServiceViewModel()
         {
             //get the adapter via messenger
             Messenger.Default.Register<IAdapter>(this, AdapterMessage);
             Messenger.Default.Register<IDevice>(this, DeviceMessage);
+            this.services = new ObservableCollection<IService>();
 
+
+            this.GetServicesCommand = new Command(() =>
+            {
+                if (services != null)
+                {
+                    //TO DO
+                }else
+                {
+                    Debug.WriteLine("Geen services gevonden");
+                }
+            });
 
         }
 
@@ -35,32 +61,40 @@ namespace HeadphoneDataApp.ViewModel
         {
             this.device = obj;
             ScanForServices();
+            DeviceName = device.Name;
         }
 
         public void ScanForServices()
         {
             Debug.WriteLine("***Scan for Services***");
 
+            if (services.Count == 0)
+            {
+                Debug.WriteLine("No services, attempting to connect to device");
+                // start looking for the device
+                adapter.ConnectToDevice(device);
+            }
+
             //device.DiscoverServices();
-            var test = device.State;
+            //var test = device.State;
             adapter.DeviceConnected += (s, e) =>
             {
                 device = e.Device; // do we need to overwrite this?
                 Debug.WriteLine("-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-");
-                // when services are discovered
-                //device.ServicesDiscovered += (object se, EventArgs ea) =>
-                //{
-                //    Debug.WriteLine("device.ServicesDiscovered");
-                //    //services = (List<IService>)device.Services;
-                //    if (services.Count == 0)
-                //        Device.BeginInvokeOnMainThread(() =>
-                //        {
-                //            foreach (var service in device.Services)
-                //            {
-                //                services.Add(service);
-                //            }
-                //        });
-                //};
+                //when services are discovered
+                device.ServicesDiscovered += (object se, EventArgs ea) =>
+                {
+                    Debug.WriteLine("device.ServicesDiscovered");
+                    //services = (List<IService>)device.Services;
+                    if (services.Count == 0)
+                        Device.BeginInvokeOnMainThread(() =>
+                        {
+                            foreach (var service in device.Services)
+                            {
+                                services.Add(service);
+                            }
+                        });
+                };
                 // start looking for services
                 device.DiscoverServices();
 
@@ -68,6 +102,33 @@ namespace HeadphoneDataApp.ViewModel
             
             //adapter.ConnectToDevice(device);
             
+        }
+
+        public string DeviceName
+        {
+            get
+            {
+                return deviceName;
+            }
+            set
+            {
+                if (deviceName != value)
+                {
+                    deviceName = value;
+                    OnPropertyChanged("DeviceName");
+                }
+            }
+        }
+
+        public Command GetServicesCommand { get; private set; }
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this,
+                    new PropertyChangedEventArgs(propertyName));
+            }
         }
     }
 }
