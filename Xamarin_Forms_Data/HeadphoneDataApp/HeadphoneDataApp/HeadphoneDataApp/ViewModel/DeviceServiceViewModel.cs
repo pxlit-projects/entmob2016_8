@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
+using Java.Util;
 using Robotics.Mobile.Core.Bluetooth.LE;
 using System;
 using System.Collections.Generic;
@@ -19,14 +20,13 @@ namespace HeadphoneDataApp.ViewModel
         private ObservableCollection<IService> services;
         private string deviceName;
 
-        /** Service UUID. */
-        public static string UUID_SERVICE = "f000aa10-0451-4000-b000-000000000000";
+        
         /** Data UUID. */
-        private static string UUID_DATA = "f000aa11-0451-4000-b000-000000000000";
+        private static string UUID_DATA = "f000aa81-0451-4000-b000-000000000000";
         /** Configuration UUID. */
-        private static string UUID_CONFIG = "f000aa12-0451-4000-b000-000000000000";
+        private static string UUID_CONFIG = "f000aa82-0451-4000-b000-000000000000";
         /** Period UUID. */
-        private static string UUID_PERIOD = "f000aa13-0451-4000-b000-000000000000";
+        private static string UUID_PERIOD = "f000aa83-0451-4000-b000-000000000000";
 
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -43,8 +43,23 @@ namespace HeadphoneDataApp.ViewModel
             {
                 if (services != null)
                 {
-                    //TO DO
-                }else
+                    IService accelerometerService = null;
+                    //Zoeken naar de juiste juiste service met de acc. data
+                    foreach (var item in services)
+                    {
+                        if (item.Characteristics[0].Uuid == UUID_DATA)
+                        {
+                            accelerometerService = item;
+                        }
+                    }
+                    if (accelerometerService!=null)
+                    {
+                        var x = accelerometerService.ToString();
+                        Debug.WriteLine("juiste service is gevonden");
+                    }
+                    
+                }
+                else
                 {
                     Debug.WriteLine("Geen services gevonden");
                 }
