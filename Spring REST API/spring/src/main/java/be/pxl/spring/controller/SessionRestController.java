@@ -29,38 +29,52 @@ public class SessionRestController {
 		
 	}
 	@RequestMapping(method = RequestMethod.GET, value = "ByUserId/{userId}")
-	public List<Session> getSessionsByUserId(int userId){
+	public List<Session> getSessionsByUserId(@PathVariable("userId") int userId){
 		return sessionservice.findByUserId(userId);
 		
 	}
 	@RequestMapping(method = RequestMethod.GET, value = "ByDate/{timeStamp}")
-	public List<Session> getSessionsByDate(Timestamp timeStamp){
+	public List<Session> getSessionsByDate(@PathVariable("timeStamp") Timestamp timeStamp){
 		return sessionservice.findByDate(timeStamp);
 		
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "ByGreaterStart/{timeStamp}")
-	public List<Session> getSessionsByGreaterStartTime(Timestamp timeStamp){
+	public List<Session> getSessionsByGreaterStartTime(@PathVariable("timeStamp") Timestamp timeStamp){
 		return sessionservice.findByGreaterStartTime(timeStamp);
 		
 	}
 	@RequestMapping(method = RequestMethod.GET, value = "ByLesserEnd/{timeStamp}")
-	public List<Session> getSessionsByLesserEndTime(Timestamp timeStamp){
+	public List<Session> getSessionsByLesserEndTime(@PathVariable("timeStamp") Timestamp timeStamp){
 		return sessionservice.findByLesserEndTime(timeStamp);
 		
 	}
 	@RequestMapping(method = RequestMethod.GET, value = "ByGreaterActual/{time}")
-	public List<Session> getSessionsByGreaterActualTime(int time){
+	public List<Session> getSessionsByGreaterActualTime(@PathVariable("time") int time){
 		return sessionservice.findByGreaterActualTime(time);
 		
 	}
 	@RequestMapping(method = RequestMethod.GET, value = "ByLesserActual/{time}")
-	public List<Session> getSessionsByLesserActualTime(int time){
+	public List<Session> getSessionsByLesserActualTime(@PathVariable("time") int time){
 		return sessionservice.findByLesserActualTime(time);
+		
+	}
+	@RequestMapping(method = RequestMethod.GET, value = "Between/{startTime}/{endTime}")
+	public List<Session> getSessionsBetween(@PathVariable("startTime") Timestamp startTime,
+			@PathVariable("endTime") Timestamp endTime ){
+		//TODO: implement stuff
+		return null;
 		
 	}
 	@RequestMapping(method = RequestMethod.DELETE)
 	public void deleteSession(@RequestBody Session s){
 		sessionservice.delete(s);
+	}
+	@RequestMapping(method = RequestMethod.GET, value="AverageActualTime/{startTime}/{endTime}")
+	public int getAverageActualTime(@PathVariable("startTime") Timestamp startTime,
+			@PathVariable("endTime") Timestamp endTime ){
+		//TODO: implement stuff
+				return 0;
+		
 	}
 }
