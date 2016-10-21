@@ -99,6 +99,12 @@ public class App {
 			System.out.println(session.getSessionId()+": " +session.getStartTime()+" - "+ session.getEndTime());
 		}
 		
+		System.out.println("By Date: ");	
+		User u3 = usrc.getUserSessionByDate(1, ts);
+		userSessions = u3.getSessions();
+		for (Session session : userSessions) {
+			System.out.println(session.getSessionId()+": " +session.getStartTime()+" - "+ session.getEndTime());
+		}
 		
 		System.out.println("TEST");
 	}

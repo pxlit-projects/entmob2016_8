@@ -61,5 +61,17 @@ public class UserRestController {
 		}
 	}
 	
+	@RequestMapping(method = RequestMethod.POST, value="werkgever/{id}/{pw}")
+	public Boolean loginWerkgever(@PathVariable("id") int id, @PathVariable("pw") String pw){
+		User user = us.findOne(id);
+		if(user.getPassword().equals(pw) && user.getRole() == "admin")
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 	
 }
