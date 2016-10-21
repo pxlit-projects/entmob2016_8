@@ -66,7 +66,7 @@ public class App {
 		
 		sessionList = src.getSessionsByDate(ts);
 		for (Session session : sessionList) {
-			System.out.println(session.getUserId());
+			System.out.println("sessie by date: "+ session.getUserId());
 		}
 		
 		User u1 = urc.getUserById(1);

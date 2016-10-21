@@ -14,7 +14,7 @@ public interface SessionRepository extends JpaRepository<Session, Integer>{
 	@Transactional(readOnly = true)
 	List<Session> findByUserId(int userId);
 	@Transactional(readOnly = true)
-	@Query("select s from Session s where (s.startTime >= ?1) and (s.endTime <= ?1)")
+	@Query("select s from Session s where (s.startTime <= ?1) and (s.endTime >= ?1)")
 	List<Session> findByDate(Timestamp timeStamp);
 	@Query("select s from Session s where (s.startTime >= ?1)")
 	List<Session> findByGreaterStartTime(Timestamp timeStamp);
