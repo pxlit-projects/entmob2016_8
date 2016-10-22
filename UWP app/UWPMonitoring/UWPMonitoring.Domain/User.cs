@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Newtonsoft.Json;
 
 namespace UWPMonitoring.Domain
 {
@@ -18,6 +19,7 @@ namespace UWPMonitoring.Domain
         }
 
         //Properties
+        [JsonProperty(PropertyName = "userId")]
         public int UserId
         {
             get
@@ -32,8 +34,10 @@ namespace UWPMonitoring.Domain
             }
         }
 
+        [JsonProperty(PropertyName = "firstName")]
         public string FirstName { get; set; }
 
+        [JsonProperty(PropertyName = "lastName")]
         public string LastName { get; set; }
 
         public string FullName
@@ -44,6 +48,7 @@ namespace UWPMonitoring.Domain
             }
         }
 
+        [JsonProperty(PropertyName = "password")]
         public string Password
         {
             get
@@ -58,8 +63,16 @@ namespace UWPMonitoring.Domain
             }
         }
 
+        [JsonProperty(PropertyName = "department")]
         public string Department { get; set; }
 
+        [JsonProperty(PropertyName = "salt")]
+        public string Salt { get; set; }
+
+        [JsonProperty(PropertyName = "role")]
+        public string Role { get; set; }
+
+        [JsonIgnore]
         public List<Session> Sessions { get; set; }
         
         //Implementatie van de Interface 
