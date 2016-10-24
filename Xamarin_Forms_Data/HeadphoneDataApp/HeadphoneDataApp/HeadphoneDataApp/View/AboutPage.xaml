@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HeadphoneDataApp.View.AboutPage" BackgroundColor="#7094db" Title="About">
+  <ContentPage.Content>
+
+    <StackLayout VerticalOptions="Center">
+      <Label Text="Headphone Productivity App" TextColor="White" FontAttributes="Bold" Font="25"
+        VerticalOptions="Center" HorizontalOptions="Center" />
+      <Label Text="Enterprise and Mobile" TextColor="White" Font="25"
+      VerticalOptions="Center" HorizontalOptions="Center" />
+      <Label Text="Group 8" TextColor="White" Font="20"
+       VerticalOptions="Center" HorizontalOptions="Center" />
+    </StackLayout>
+
+
+  </ContentPage.Content>
+</ContentPage>
