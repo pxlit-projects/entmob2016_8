@@ -32,6 +32,8 @@ public interface SessionRepository extends JpaRepository<Session, Integer>{
 	List<Session> findBetween(Timestamp startTime, Timestamp endTime);
 	@Transactional(readOnly = true)
 	Session findTop1ByUserIdOrderByEndTimeDesc(int userId);
+	@Transactional(readOnly = true)
+	Session findTop1ByUserIdOrderByStartTimeAsc(int userId);
 
 
 }

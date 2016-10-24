@@ -71,6 +71,22 @@ public class UserSessionRestController {
 				return us.getAverageActualTime(id);
 		
 	}
-	
-	
+	@RequestMapping(method = RequestMethod.GET, value="MinimalActualTime/{id}")
+	public int getMinimalActualTime(@PathVariable("id") int id){
+		return us.getMinimalActualTime(id);
+	}
+	@RequestMapping(method = RequestMethod.GET, value="MinimalActualTime/{id}/{startTime}/{endTime}")
+	public int getMinimalActualTime(@PathVariable("id") int id, @PathVariable("startTime") Timestamp startTime,
+			@PathVariable("endTime") Timestamp endTime ){
+		return us.getMinimalActualTime(id, startTime, endTime);
+	}
+	@RequestMapping(method = RequestMethod.GET, value="MaximalActualTime/{id}")
+	public int getMaximalActualTime(@PathVariable("id") int id){
+		return us.getMaximalActualTime(id);
+	}
+	@RequestMapping(method = RequestMethod.GET, value="MaximalActualTime/{id}/{startTime}/{endTime}")
+	public int getMaximalActualTime(@PathVariable("id") int id, @PathVariable("startTime") Timestamp startTime,
+			@PathVariable("endTime") Timestamp endTime ){
+		return us.getMaximalActualTime(id, startTime, endTime);
+	}
 }

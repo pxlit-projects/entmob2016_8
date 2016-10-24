@@ -38,6 +38,8 @@ public interface SessionService{
 
 	public abstract Session getLastSession(int userId);
 
+	public abstract Session getFirstSession(int userId);
+
 	
 	
 }

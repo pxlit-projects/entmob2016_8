@@ -90,4 +90,13 @@ public class SessionRestController {
 		}
 		return new ResponseEntity<Session>(s, status);
 	}
+	@RequestMapping(method = RequestMethod.GET, value="FirstSession/{id}")
+	public ResponseEntity<Session> getFirstSession(@PathVariable("id") int userId){
+		Session s = sessionservice.getFirstSession(userId);
+		HttpStatus status = HttpStatus.OK;
+		if(s == null){
+			status = HttpStatus.NOT_FOUND;
+		}
+		return new ResponseEntity<Session>(s, status);
+	}
 }

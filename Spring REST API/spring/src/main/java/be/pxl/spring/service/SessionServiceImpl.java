@@ -19,7 +19,7 @@ public class SessionServiceImpl implements SessionService{
 	private SessionRepository sessionRepo;
 
 	@Autowired
-	private AverageSessionLengthUtility averageUtil;
+	private SessionUtility averageUtil;
 	
 	@Override
 	@Transactional
@@ -95,13 +95,20 @@ public class SessionServiceImpl implements SessionService{
 	@Override
 	public double getAverageActualTime(Timestamp startTime, Timestamp endTime) {		
 		List<Session> sessionList = this.findBetween(startTime, endTime);		
-		return averageUtil.Calculate(sessionList);
+		return averageUtil.AverageActual(sessionList);
 	}
 
 
 	@Override
 	public Session getLastSession(int userId) {
 		return sessionRepo.findTop1ByUserIdOrderByEndTimeDesc(userId);
+	}
+
+
+	@Override
+	public Session getFirstSession(int userId) {
+		// TODO Auto-generated method stub
+		return sessionRepo.findTop1ByUserIdOrderByStartTimeAsc(userId);
 	}
 
 	

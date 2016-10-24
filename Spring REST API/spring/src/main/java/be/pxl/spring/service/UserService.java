@@ -43,6 +43,16 @@ public interface UserService {
 
 	public abstract double getAverageActualTime(int id);
 
+	public abstract int getMinimalActualTime(int id);
+
+	public abstract int getMinimalActualTime(int id, Timestamp startTime,
+			Timestamp endTime);
+
+	public abstract int getMaximalActualTime(int id);
+
+	public abstract int getMaximalActualTime(int id, Timestamp startTime,
+			Timestamp endTime);
+
 	
 	
 

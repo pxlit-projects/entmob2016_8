@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
 	  private UserRepository repository;
 	  
 	@Autowired
-	private AverageSessionLengthUtility averageUtil;
+	private SessionUtility sessionUtil;
 	
 	@Override
 	@Transactional
@@ -116,16 +116,48 @@ public class UserServiceImpl implements UserService {
 			Timestamp endTime) {
 		
 		Set<Session> sessions = (this.findBetween(id, startTime, endTime)).getSessions();		
-		return averageUtil.Calculate(sessions);
+		return sessionUtil.AverageActual(sessions);
 	}
 
 
 	@Override
 	public double getAverageActualTime(int id) {
 		Set<Session> sessions = repository.findById(id).getSessions();
-		return averageUtil.Calculate(sessions);
+		return sessionUtil.AverageActual(sessions);
 		
 	}
+
+
+	@Override
+	public int getMinimalActualTime(int id) {
+		Set<Session> sessions = repository.findById(id).getSessions();		
+		return sessionUtil.MinimalActual(sessions);
+	}
+
+
+	@Override
+	public int getMinimalActualTime(int id, Timestamp startTime,
+			Timestamp endTime) {
+		Set<Session> sessions = (this.findBetween(id, startTime, endTime)).getSessions();
+		return sessionUtil.MinimalActual(sessions);
+	}
+
+
+	@Override
+	public int getMaximalActualTime(int id) {
+		Set<Session> sessions = repository.findById(id).getSessions();
+		return sessionUtil.MaximalActual(sessions);
+	}
+
+
+	@Override
+	public int getMaximalActualTime(int id, Timestamp startTime,
+			Timestamp endTime) {
+		Set<Session> sessions = (this.findBetween(id, startTime, endTime)).getSessions();
+		return sessionUtil.MaximalActual(sessions);
+	}
+	
+	
 
 	
 }
