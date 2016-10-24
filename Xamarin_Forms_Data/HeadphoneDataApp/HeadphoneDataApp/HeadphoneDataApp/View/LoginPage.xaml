@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="HeadphoneDataApp.View.LoginPage" Title="Login">
+             x:Class="HeadphoneDataApp.View.LoginPage" Title="Login"
+             BindingContext="{Binding Source={StaticResource Locator}, Path=Login}">
   <ContentPage.Content>
     <StackLayout VerticalOptions="StartAndExpand" Padding="30">
       <Label Text="Welcome to Headphone Productivity App" FontSize="25"></Label>
