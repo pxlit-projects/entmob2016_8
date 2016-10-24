@@ -23,7 +23,8 @@ namespace HeadphoneDataApp
         public App()
         {
             InitializeComponent();
-            base.MainPage = ViewLocator.MainPage;
+            //base.MainPage = ViewLocator.MainPage;
+            base.MainPage = ViewLocator.StartPage;
             //MainPage = new HeadphoneDataApp.MainPage();
         }
 
