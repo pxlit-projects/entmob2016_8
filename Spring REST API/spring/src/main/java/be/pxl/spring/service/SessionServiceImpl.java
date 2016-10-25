@@ -6,7 +6,6 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.RequestEntity;
 import org.springframework.stereotype.Service;
 
 import be.pxl.spring.domain.Session;
@@ -106,8 +105,7 @@ public class SessionServiceImpl implements SessionService{
 
 
 	@Override
-	public Session getFirstSession(int userId) {
-		// TODO Auto-generated method stub
+	public Session getFirstSession(int userId) {		
 		return sessionRepo.findTop1ByUserIdOrderByStartTimeAsc(userId);
 	}
 
