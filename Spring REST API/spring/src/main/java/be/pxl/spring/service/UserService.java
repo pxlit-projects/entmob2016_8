@@ -3,7 +3,6 @@ package be.pxl.spring.service;
 import java.sql.Timestamp;
 import java.util.List;
 
-import be.pxl.spring.domain.Session;
 import be.pxl.spring.domain.User;
 
 public interface UserService {
