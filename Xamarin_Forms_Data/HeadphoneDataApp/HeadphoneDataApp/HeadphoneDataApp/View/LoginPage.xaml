@@ -8,8 +8,8 @@
       <Label Text="Welcome to Headphone Productivity App" FontSize="25"></Label>
       <Entry StyleId="UserId" Text="{Binding Path=Username}" Placeholder="Username" />
       <Entry StyleId="PasswordId" Text="{Binding Path=Password}" Placeholder="Password" IsPassword="true" />
-
       <Button x:Name="loginButton" Command="{Binding LoginCommand}" Text="Login" HorizontalOptions="Center"/>
+      <Label Text="{Binding ValidationErrors}" FontSize="15"></Label>
 
     </StackLayout>
   </ContentPage.Content>
