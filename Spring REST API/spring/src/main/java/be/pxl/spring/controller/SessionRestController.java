@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,8 +46,8 @@ public class SessionRestController {
 		return new ResponseEntity<List<Session>>(sessionList, status);
 		
 	}
-	@RequestMapping(method = RequestMethod.GET, value = "ByDate/{timeStamp}")
-	public ResponseEntity<List<Session>> getSessionsByDate(@PathVariable("timeStamp") Timestamp timeStamp){
+	@RequestMapping(method = RequestMethod.POST, value = "ByDate")
+	public ResponseEntity<List<Session>> getSessionsByDate(@RequestBody Timestamp timeStamp){
 		List<Session> sessionList =  sessionservice.findByDate(timeStamp);
 		HttpStatus status = HttpStatus.OK;
 		if(sessionList == null || sessionList.isEmpty()){
@@ -58,8 +57,8 @@ public class SessionRestController {
 		
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value = "ByGreaterStart/{timeStamp}")
-	public ResponseEntity<List<Session>> getSessionsByGreaterStartTime(@PathVariable("timeStamp") Timestamp timeStamp){
+	@RequestMapping(method = RequestMethod.POST, value = "ByGreaterStart")
+	public ResponseEntity<List<Session>> getSessionsByGreaterStartTime(@RequestBody Timestamp timeStamp){
 		List<Session> sessionList = sessionservice.findByGreaterStartTime(timeStamp);
 		HttpStatus status = HttpStatus.OK;
 		if(sessionList == null || sessionList.isEmpty()){
@@ -68,8 +67,8 @@ public class SessionRestController {
 		return new ResponseEntity<List<Session>>(sessionList, status);
 		
 	}
-	@RequestMapping(method = RequestMethod.GET, value = "ByLesserEnd/{timeStamp}")
-	public ResponseEntity<List<Session>> getSessionsByLesserEndTime(@PathVariable("timeStamp") Timestamp timeStamp){
+	@RequestMapping(method = RequestMethod.POST, value = "ByLesserEnd")
+	public ResponseEntity<List<Session>> getSessionsByLesserEndTime(@RequestBody Timestamp timeStamp){
 		List<Session> sessionList = sessionservice.findByLesserEndTime(timeStamp);
 		HttpStatus status = HttpStatus.OK;
 		if(sessionList == null || sessionList.isEmpty()){
@@ -99,9 +98,9 @@ public class SessionRestController {
 		return new ResponseEntity<List<Session>>(sessionList, status);
 		
 	}
-	@RequestMapping(method = RequestMethod.GET, value = "Between/{startTime}/{endTime}")
-	public List<Session> getSessionsBetween(@PathVariable("startTime") Timestamp startTime,
-			@PathVariable("endTime") Timestamp endTime ){
+	@RequestMapping(method = RequestMethod.POST, value = "Between}")
+	public List<Session> getSessionsBetween(@RequestBody Timestamp startTime,
+			@RequestBody Timestamp endTime ){
 		
 		return sessionservice.findBetween(startTime, endTime);
 		
@@ -110,9 +109,9 @@ public class SessionRestController {
 	public void deleteSession(@RequestBody Session s){
 		sessionservice.delete(s);
 	}
-	@RequestMapping(method = RequestMethod.GET, value="AverageActualTime/{startTime}/{endTime}")
-	public double getAverageActualTime(@PathVariable("startTime") Timestamp startTime,
-			@PathVariable("endTime") Timestamp endTime ){
+	@RequestMapping(method = RequestMethod.POST, value="AverageActualTime")
+	public double getAverageActualTime(@RequestBody Timestamp startTime,
+			@RequestBody Timestamp endTime ){
 		
 				return sessionservice.getAverageActualTime(startTime, endTime);
 		

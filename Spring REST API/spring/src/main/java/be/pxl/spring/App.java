@@ -1,21 +1,11 @@
 package be.pxl.spring;
 
-import java.sql.Timestamp;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
-import be.pxl.spring.controller.SessionRestController;
 import be.pxl.spring.controller.UserRestController;
-import be.pxl.spring.controller.UserSessionRestController;
-import be.pxl.spring.domain.Session;
 import be.pxl.spring.domain.User;
-import be.pxl.spring.service.UserService;
-import be.pxl.spring.service.UserServiceImpl;
 
 /**
  * Hello world!

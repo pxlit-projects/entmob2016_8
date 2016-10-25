@@ -3,8 +3,6 @@ package be.pxl.spring.service;
 import java.sql.Timestamp;
 import java.util.List;
 
-import org.springframework.http.RequestEntity;
-
 import be.pxl.spring.domain.Session;
 
 

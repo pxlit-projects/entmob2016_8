@@ -2,8 +2,6 @@ package be.pxl.spring.domain;
 
 import javax.persistence.*;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.stereotype.Component;
 
 import java.io.*;

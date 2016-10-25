@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import be.pxl.spring.domain.Session;
 import be.pxl.spring.domain.User;
 
 @Repository
