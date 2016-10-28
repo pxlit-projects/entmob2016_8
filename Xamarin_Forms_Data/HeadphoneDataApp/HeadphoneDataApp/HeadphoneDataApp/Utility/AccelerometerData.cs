@@ -25,20 +25,27 @@ namespace HeadphoneDataApp.ViewModel
 
         public void Start()
         {
-            characteristicConfig.Write(new byte[] { 0x07 });
-            characteristicPeriod.Write(new byte[] { 0xFF });
+            characteristicConfig.Write(new byte[] { 0x00 });
+            characteristicConfig.Write(new byte[] { 0x01 });
+            characteristicConfig.Write(new byte[] { 0x02 });
+            characteristicConfig.Write(new byte[] { 0x03 });
+            characteristicConfig.Write(new byte[] { 0x04 });
+            characteristicConfig.Write(new byte[] { 0x05 });
+            characteristicConfig.Write(new byte[] { 0x06 });
+            //characteristicConfig.Write(new byte[] { 0x07 });
+
+            //characteristicPeriod.Write(new byte[] { 0x0A });
             if (characteristicData.CanUpdate)
             {
-                
-
-
-
-
 
                 characteristicData.ValueUpdated += CharacteristicData_ValueUpdated;
+                
             }
 
             characteristicData.StartUpdates();
+
+            //characteristicData.ValueUpdated();
+          
         }
 
         private void CharacteristicData_ValueUpdated(object sender, CharacteristicReadEventArgs e)
@@ -48,7 +55,7 @@ namespace HeadphoneDataApp.ViewModel
 
         public void GetData(CharacteristicReadEventArgs e)
         {
-            string status = Decode(e.Characteristic.Value);
+            string data = Decode(e.Characteristic.Value);
             Debug.WriteLine("Update: " + e.Characteristic.Value);
             //return status;
         }
