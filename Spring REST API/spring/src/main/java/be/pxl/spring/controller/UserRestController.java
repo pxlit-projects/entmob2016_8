@@ -19,6 +19,7 @@ public class UserRestController {
 	@Autowired
 	UserService us;
 	
+	
 	@RequestMapping(method = RequestMethod.GET, value="{id}")
 	public ResponseEntity<User> getUserById(@PathVariable("id") int id){
 		// need to explicitly set Sessions to null or the Json serializer will load the Sessions despite lazy loading
@@ -31,6 +32,30 @@ public class UserRestController {
 			status = HttpStatus.OK;
 		}
 		return new ResponseEntity<User>(u, status);
+	}
+	@RequestMapping(method = RequestMethod.GET, value="all")
+	public ResponseEntity<List<User>> getAllUsers(){
+		HttpStatus status;
+		List<User> userList = us.findAll();
+		if(userList == null){
+			status = HttpStatus.NOT_FOUND;		
+		}else{
+			this.removeSessions(userList);
+			status = HttpStatus.OK;
+		}
+		return new ResponseEntity<List<User>>(userList, status);
+	}
+	@RequestMapping(method = RequestMethod.GET, value="ByRole/{role}")
+	public ResponseEntity<List<User>> getUsersByRole(@PathVariable("role") String role){
+		HttpStatus status;
+		List<User> userList = us.findByRole(role);
+		if(userList == null){
+			status = HttpStatus.NOT_FOUND;		
+		}else{
+			this.removeSessions(userList);
+			status = HttpStatus.OK;
+		}
+		return new ResponseEntity<List<User>>(userList, status);
 	}
 	@RequestMapping(method= RequestMethod.GET)
 	public String hello()

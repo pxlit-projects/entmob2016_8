@@ -54,6 +54,10 @@ public interface UserService {
 
 	public abstract int getTotalActualTime(int id);
 
+	public abstract List<User> findAll();
+
+	public abstract List<User> findByRole(String role);
+
 	
 	
 
