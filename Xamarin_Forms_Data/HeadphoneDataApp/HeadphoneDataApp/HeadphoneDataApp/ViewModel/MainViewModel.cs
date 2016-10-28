@@ -49,8 +49,6 @@ namespace HeadphoneDataApp.ViewModel
         private ObservableCollection<IDevice> devices;
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private Command _selectedDeviceCommand;
-
         public ObservableCollection<IDevice> Devices
         {
             get
@@ -66,6 +64,12 @@ namespace HeadphoneDataApp.ViewModel
 
         public MainViewModel()
         {
+            DeviceSelectedCommand = new Command(async (device) =>
+            {
+                await App.Current.MainPage.Navigation.PushModalAsync(ViewLocator.DeviceServicePage);
+                Messenger.Default.Send<IAdapter>(adapter);
+                Messenger.Default.Send<IDevice>((IDevice)device);
+            });
             //get the adapter via messenger
             Messenger.Default.Register<IAdapter>(this, Adapter);
             devices = new ObservableCollection<IDevice>();
@@ -156,46 +160,7 @@ namespace HeadphoneDataApp.ViewModel
             }
         }
 
-        public ICommand SelectedDeviceCommand
-        {
-            get
-            {
-                return _selectedDeviceCommand ?? (_selectedDeviceCommand = new Command(async() =>await OpenDeviceServiceView()));
-            }
-        }
-
-        private async Task OpenDeviceServiceView()
-        {
-            //controleren als er een device is
-            if (Devices != null)
-            {
-                var x = devices[0].Name;
-                int i = 0;
-                //controlern als het een sensortag is
-                if (devices[i].Name == "CC2650 SensorTag")
-                {
-                    //IDevice sensortag = devices[i];
-                    StopScanning();
-                    Debug.WriteLine("De sensortag is gevonden");
-                    //connect Device
-                    adapter.ConnectToDevice(devices[i]);
-                    var status = adapter.ConnectedDevices;
-                    //via Messenger adapter en device meesturen
-                    await App.Current.MainPage.Navigation.PushModalAsync(ViewLocator.DeviceServicePage);
-
-                    Messenger.Default.Send<IAdapter>(adapter);
-                    Messenger.Default.Send<IDevice>(devices[i]);
-                }
-                else
-                {
-                    Debug.WriteLine("Geen sensortag geconnecteerd");
-                }
-            }
-            else
-            {
-                Debug.WriteLine("Geen device gevonden");
-            }    
-        }
+        public ICommand DeviceSelectedCommand { get; set; }
 
         protected virtual void OnPropertyChanged(string propertyName)
         {
