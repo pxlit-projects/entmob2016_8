@@ -145,4 +145,8 @@ public class UserSessionRestController {
 	public int getTotalActualTime(@PathVariable("id") int id){
 		return us.getTotalActualTime(id);
 	}
+	@RequestMapping(method = RequestMethod.GET, value="TotalSessionLength/{id}")
+	public int getTotalSessionLength(@PathVariable("id") int id){
+		return us.getTotalSessionLength(id);
+	}
 }

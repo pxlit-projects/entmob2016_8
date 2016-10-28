@@ -35,6 +35,7 @@ public interface SessionRepository extends JpaRepository<Session, Integer>{
 	Session findTop1ByUserIdOrderByEndTimeDesc(int userId);
 	@Transactional(readOnly = true)
 	Session findTop1ByUserIdOrderByStartTimeAsc(int userId);
-
+	
+	
 
 }

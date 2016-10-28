@@ -57,6 +57,8 @@ public interface UserService {
 	public abstract List<User> findAll();
 
 	public abstract List<User> findByRole(String role);
+	
+	public abstract int getTotalSessionLength(int userId);
 
 	
 	
