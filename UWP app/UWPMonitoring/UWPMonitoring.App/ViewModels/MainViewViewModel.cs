@@ -9,6 +9,9 @@ using System.Windows.Input;
 using UWPMonitoring.App.Utility;
 using UWPMonitoring.DAL;
 using UWPMonitoring.Domain;
+using Windows.Security.Cryptography;
+using Windows.Security.Cryptography.Core;
+using Windows.Storage.Streams;
 
 namespace UWPMonitoring.App.ViewModels
 {
@@ -64,31 +67,55 @@ namespace UWPMonitoring.App.ViewModels
             if (userExists)
             {
                 User retrievedUser = repository.GetUserById(User.UserId);
-                //bool canLogin = this.CheckUser(retrievedUser);
+                bool passwordCorrect = this.CheckUserPassword(retrievedUser);
+
+                if (retrievedUser.Role == "admin")
+                {
+                    if (passwordCorrect)
+                    {
+                        Messenger.Default.Send<User>(User); //Object van de ingelogde gebruiker doorsturen naar het volgende scherm
+                        navigationService.NavigateTo("Overview"); //Naar het overzicht scherm gaan
+                        User = new User();//Toegevoegd zodat het User object ook effectief leeg is als er word uitgelogd. Anders was deze niet leeg
+                        Message = ""; //Bericht ook terug leegmaken zodat bij het uitloggen deze ook leeg is
+                    }
+                    else
+                    {
+                        this.Message = "Dit is geen geldig wachtwoord.";
+                    }
+                }
+                else
+                {
+                    this.Message = "Deze gebruiker heeft geen admin rechten.";
+                }
+                
+            }
+            else
+            {
+                this.Message = "Het ingevulde id bestaat niet.";
             }
 
-            Messenger.Default.Send<User>(User); //Object van de ingelogde gebruiker doorsturen naar het volgende scherm
-
-            navigationService.NavigateTo("Overview");
-
-            User = new User();//Toegevoegd zodat het User object ook effectief leeg is als er word uitgelogd. Anders was deze niet leeg
+           
         }
 
-        //private bool CheckUser(User user)
-        //{
-        //    string password = user.Password;
-        //    string salt = user.Salt;
-            
-        //}
+        private bool CheckUserPassword(User retrievedUser)
+        {
+            string password = User.Password; //Wachtwoord die de gebruiker heeft ingegeven
+            string salt = retrievedUser.Salt; //Salt van het opgehaalde user object
+            string hashedPasswordWithSalt = ConvertStringToHash(password, salt);
+            bool passwordCorrect = hashedPasswordWithSalt.Equals(retrievedUser.Password);
+            return passwordCorrect;
 
-        //private string ConvertStringToHash(string password, string salt)
-        //{
-        //    var data = Encoding.UTF8.GetBytes(password + "" + salt);
-        //    using (var shaM = new SHA512Managed())
-        //    {
+        }
 
-        //    }
-        //}
+        private string ConvertStringToHash(string password, string salt)
+        {
+            byte[] data = Encoding.UTF8.GetBytes(password + "" + salt);
+            HashAlgorithmProvider alg = HashAlgorithmProvider.OpenAlgorithm(HashAlgorithmNames.Sha512);
+            IBuffer buffer = CryptographicBuffer.ConvertStringToBinary(password + salt, BinaryStringEncoding.Utf8);
+            IBuffer hashed = alg.HashData(buffer);
+            string res = CryptographicBuffer.EncodeToHexString(hashed);
+            return res;
+        }
 
         private bool CanLogin(object obj)
         {

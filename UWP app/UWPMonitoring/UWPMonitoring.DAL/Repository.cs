@@ -34,7 +34,7 @@ namespace UWPMonitoring.DAL
         //Eerst met andere methode controleren of user bestaat
         public User GetUserById(int userId)
         {
-            string url = string.Format("http://127.0.0.1/user/{0}", userId);
+            string url = string.Format("http://127.0.0.1:8181/user/{0}", userId);
             Uri uri = new Uri(url);
             HttpClient client = new HttpClient();
             HttpResponseMessage response = Task.Run(() => client.GetAsync(url)).Result;
@@ -46,11 +46,12 @@ namespace UWPMonitoring.DAL
         //Deze methode gebruiken om te controleren of de user bestaat
         public bool CheckIfUserIsValid(int userId)
         {
-            string url = string.Format("http://127.0.0.1/user/{0}", userId);
+            string url = string.Format("http://127.0.0.1:8181/user/{0}", userId);
             Uri uri = new Uri(url);
             HttpClient client = new HttpClient();
             HttpResponseMessage response = Task.Run(() => client.GetAsync(url)).Result;
             return response.IsSuccessStatusCode;
+
         }
 
         public User GetUserBySessionId(int sessionId)
