@@ -52,6 +52,8 @@ public interface UserService {
 	public abstract int getMaximalActualTime(int id, Timestamp startTime,
 			Timestamp endTime);
 
+	public abstract int getTotalActualTime(int id);
+
 	
 	
 

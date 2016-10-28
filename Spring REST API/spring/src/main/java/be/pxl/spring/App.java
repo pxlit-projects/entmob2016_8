@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import be.pxl.spring.controller.UserRestController;
+import be.pxl.spring.controller.UserSessionRestController;
 import be.pxl.spring.domain.User;
 
 /**
@@ -34,6 +35,8 @@ public class App {
 		System.out.println(morrhey.getLastName());
 		System.out.println(urc.login(1, "test"));
 		
+		UserSessionRestController usrc = ctx.getBean(UserSessionRestController.class);
+		System.out.println("Totale tijd user 1: "+ usrc.getTotalActualTime(1));
 		
 //		Session s = ctx.getBean(Session.class);
 //		s.setUserId(1);

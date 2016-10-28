@@ -141,4 +141,8 @@ public class UserSessionRestController {
 			@RequestBody Timestamp endTime ){
 		return us.getMaximalActualTime(id, startTime, endTime);
 	}
+	@RequestMapping(method = RequestMethod.POST, value="TotalActualTimeBetween/{id}")
+	public int getTotalActualTime(@PathVariable("id") int id){
+		return us.getTotalActualTime(id);
+	}
 }

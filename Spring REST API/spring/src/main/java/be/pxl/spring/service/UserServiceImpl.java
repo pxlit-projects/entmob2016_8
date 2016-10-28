@@ -156,6 +156,12 @@ public class UserServiceImpl implements UserService {
 		Set<Session> sessions = (this.findBetween(id, startTime, endTime)).getSessions();
 		return sessionUtil.MaximalActual(sessions);
 	}
+
+
+	@Override
+	public int getTotalActualTime(int id) {		
+		return repository.findTotalActualTime(id);
+	}
 	
 	
 
