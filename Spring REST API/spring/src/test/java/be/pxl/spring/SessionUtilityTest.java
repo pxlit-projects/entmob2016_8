@@ -1,7 +1,6 @@
 package be.pxl.spring;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,7 +19,8 @@ import java.util.concurrent.ThreadLocalRandom;
 
 
 
-import junit.framework.Assert;
+
+
 import be.pxl.spring.domain.Session;
 import be.pxl.spring.service.SessionUtility;
 
@@ -50,7 +50,41 @@ public class SessionUtilityTest {
 		sessionList.add(s);
 		sum+= actualTime;		
 		}
-		Assert.assertEquals(((double)sum)/count, su.AverageActual(sessionList));
+		Assert.assertEquals(((double)sum)/count, su.AverageActual(sessionList), 0);
+	}
+	@Test
+	public void testMinimal(){
+		int actualTime, min, count;
+		Session s;
+		List<Session> sessionList = new ArrayList<Session>();
+		count = 10;
+		min=Integer.MAX_VALUE;
+		
+		for(int i = 0; i<count; i++){
+		s = new Session();
+		actualTime= ThreadLocalRandom.current().nextInt(1000);
+		s.setActualTime(actualTime);
+		sessionList.add(s);
+		min = actualTime < min ? actualTime : min;		
+		}
+		Assert.assertEquals(min, su.MinimalActual(sessionList));
+	}
+	@Test
+	public void testMaximal(){
+		int actualTime, max, count;
+		Session s;
+		List<Session> sessionList = new ArrayList<Session>();
+		count = 10;
+		max=Integer.MIN_VALUE;
+		
+		for(int i = 0; i<count; i++){
+		s = new Session();
+		actualTime= ThreadLocalRandom.current().nextInt(1000);
+		s.setActualTime(actualTime);
+		sessionList.add(s);
+		max = actualTime > max ? actualTime : max;		
+		}
+		Assert.assertEquals(max, su.MaximalActual(sessionList));
 	}
 
 }
