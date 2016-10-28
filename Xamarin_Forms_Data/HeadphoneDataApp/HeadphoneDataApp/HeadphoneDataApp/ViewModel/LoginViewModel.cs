@@ -31,7 +31,7 @@ namespace HeadphoneDataApp.ViewModel
                 else
                 {
                     //TO DO
-                    //if (CanLogin)
+                    if (CanLogin)
                     {
                         await App.Current.MainPage.Navigation.PushModalAsync(ViewLocator.MainPage);
                         Messenger.Default.Send<IAdapter>(adapter);
