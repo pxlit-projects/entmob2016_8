@@ -162,6 +162,19 @@ public class UserServiceImpl implements UserService {
 	public int getTotalActualTime(int id) {		
 		return repository.findTotalActualTime(id);
 	}
+
+
+	@Override
+	public List<User> findAll() {		
+		return repository.findAll();
+	}
+
+
+	@Override
+	public List<User> findByRole(String role) {
+		// TODO Auto-generated method stub
+		return repository.findByRole(role);
+	}
 	
 	
 

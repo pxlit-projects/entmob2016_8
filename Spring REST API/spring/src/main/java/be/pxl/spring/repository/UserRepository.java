@@ -51,5 +51,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	@Transactional(readOnly = true)
 	@Query("select SUM(s.actualTime) from Session s where s.userId = ?1")
 	int findTotalActualTime(int id);
+	
+	@Transactional(readOnly = true)
+	List<User> findByRole(String role);
 
 }
