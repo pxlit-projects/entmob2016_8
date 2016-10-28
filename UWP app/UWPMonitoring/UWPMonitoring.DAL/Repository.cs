@@ -15,6 +15,7 @@ namespace UWPMonitoring.DAL
             Uri uri = new Uri(url);
             HttpClient client = new HttpClient();
             HttpResponseMessage response = Task.Run(() => client.GetAsync(url)).Result;
+            response.EnsureSuccessStatusCode();
             string result = Task.Run(() => response.Content.ReadAsStringAsync()).Result;
             List<User> users = JsonConvert.DeserializeObject<List<User>>(result);
             return users;
@@ -27,6 +28,7 @@ namespace UWPMonitoring.DAL
             Uri uri = new Uri(url);
             HttpClient client = new HttpClient();
             HttpResponseMessage response = Task.Run(() => client.GetAsync(url)).Result;
+            response.EnsureSuccessStatusCode();
             string result = Task.Run(() => response.Content.ReadAsStringAsync()).Result;
             User user = JsonConvert.DeserializeObject<User>(result);
             return user;
@@ -43,9 +45,16 @@ namespace UWPMonitoring.DAL
 
         }
 
-        public double GetAverageTimeForuserId(int id)
+        public int GetAverageTimeForuserId(int userId)
         {
-            throw new NotImplementedException();
+            string url = string.Format("http://127.0.0.1:8181/usersession/TotalSessionLength/{0}", userId);
+            Uri uri = new Uri(url);
+            HttpClient client = new HttpClient();
+            HttpResponseMessage response = Task.Run(() => client.GetAsync(url)).Result;
+            response.EnsureSuccessStatusCode();
+            string result = Task.Run(() => response.Content.ReadAsStringAsync()).Result;
+            int seconden = JsonConvert.DeserializeObject<int>(result);
+            return seconden;
         }
     }
 }

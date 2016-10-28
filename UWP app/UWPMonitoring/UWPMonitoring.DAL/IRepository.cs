@@ -9,6 +9,6 @@ namespace UWPMonitoring.DAL
         List<User> GetAllUsersByRole(string role);
         bool CheckIfUserIsValid(int userId);
 
-        double GetAverageTimeForuserId(int id);
+        int GetAverageTimeForuserId(int userId);
     }
 }

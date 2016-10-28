@@ -102,7 +102,7 @@
                       RelativePanel.Below="employeesTitelTextBlock"
                       ItemsSource="{Binding Employees, Mode=OneWay}"
                       SelectedItem="{Binding SelectedEmployee, Mode=TwoWay}"
-                      MinWidth="150" Width="300" >
+                      MinWidth="150" Width="300">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid>
@@ -116,6 +116,12 @@
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
+
+                <Interactivity:Interaction.Behaviors>
+                    <Interactions:EventTriggerBehavior EventName="SelectionChanged">
+                        <Interactions:InvokeCommandAction Command="{Binding SelectionChangedCommand}"/>
+                    </Interactions:EventTriggerBehavior>
+                </Interactivity:Interaction.Behaviors>
             </ListView>
         </RelativePanel>
 
