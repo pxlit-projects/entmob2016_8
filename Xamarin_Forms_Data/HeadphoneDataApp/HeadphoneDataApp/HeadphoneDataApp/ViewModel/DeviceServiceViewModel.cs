@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
+using Java.Lang;
 using Java.Util;
 using Robotics.Mobile.Core.Bluetooth.LE;
 using System;
@@ -8,6 +9,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -20,7 +22,12 @@ namespace HeadphoneDataApp.ViewModel
         private ObservableCollection<IService> services;
         private string deviceName;
 
-       
+
+        private ICharacteristic characteristicData;
+        private ICharacteristic characteristicConfig;
+        private ICharacteristic characteristicPeriod;
+
+
         /** Service ID. */
         private static string ID_SERVICE = "f000aa80-0451-4000-b000-000000000000";
         /** Data UUID. */
@@ -45,31 +52,68 @@ namespace HeadphoneDataApp.ViewModel
             {
                 if (_accelerometerService !=null && _accelerometerService.ID.ToString() == ID_SERVICE)
                 {
-                    var characteristicData = _accelerometerService.Characteristics[0];
-                    var characteristicConfig = _accelerometerService.Characteristics[1];
+                //controle op de characteristics
+                if (_accelerometerService.Characteristics.Count() >=3)
+                    {
+
+                        characteristicData = _accelerometerService.Characteristics[0];
+                        characteristicConfig = _accelerometerService.Characteristics[1];
+                        characteristicPeriod = _accelerometerService.Characteristics[2];
+
+                        if (characteristicData.Uuid == UUID_DATA &&
+                                            characteristicConfig.Uuid == UUID_CONFIG &&
+                                           characteristicPeriod.Uuid == UUID_PERIOD)
+                        {
+                            AccelerometerData data = new AccelerometerData(characteristicData, characteristicConfig, characteristicPeriod);
+                            data.Start();
+                            //set characteristic 
+                            //characteristicConfig.Write(new byte[] { 0x07 });
+
+                            //if (characteristicData.CanUpdate)
+                            //{
+                                //characteristicData.ValueUpdated += CharacteristicData_ValueUpdated;
+                                //characteristicData.ValueUpdated += async (object sender, CharacteristicReadEventArgs e) =>
+                                //{
+                                //    /*string data = */
+                                //    await GetData(e);
+                                //    //Debug.WriteLine("*");
+                                //    //var status = Decode(e.Characteristic.Value);
+                                //    //Debug.WriteLine("Update: " + e.Characteristic.Value);
+                                //    //Debug.WriteLine("Decoded: " + status);
+
+                                    //};
+
+                                    //device.ServicesDiscovered -= Device_ServicesDiscovered; ;
+                                    //characteristicData.StartUpdates();
+
+                                    //for (int i = 0; i < 1000; i++)
+                                    //{
+                                    //   Debug.WriteLine(characteristicData.Value[0]);
+                                    //   Debug.WriteLine(characteristicData.Value[0]);
+                                    //    Debug.WriteLine(characteristicData.Value[0]);
+                                    //    Debug.WriteLine("-----");
+                                    //}
+
+                            //}
+                            //characteristicData.StartUpdates();
+                        }
+                        else
+                        {
+                            Debug.WriteLine("foutieve chararcterisics");
+                        }
+                    }
+                    else
+                    {
+                            Debug.WriteLine("Geen chararcterisics gevonden");
+                    }
+                    
+
+
                     if (characteristicConfig.Uuid == UUID_CONFIG)
                     {
                         //enable the Accelerometer features 
-                        characteristicConfig.Write(new byte[] { 0x07 });
-
-                        if (characteristicData != null)
-                        {
-                            if (characteristicData.CanUpdate)
-                            {
-                                characteristicData.ValueUpdated += async (object sender, CharacteristicReadEventArgs e) =>
-                                {
-                                    /*string data = */
-                                    await GetData(e);
-                                    //var status = Decode(e.Characteristic.Value);
-                                    //Debug.WriteLine("Update: " + e.Characteristic.Value);
-                                    //Debug.WriteLine("Decoded: " + status);
-
-                                };
-
-                                //device.ServicesDiscovered -= Device_ServicesDiscovered; ;
-                                characteristicData.StartUpdates();
-                            }
-                        }
+                        //characteristicPeriod.Write(new byte[] { 0x64 });
+                        
                     }
                 
                     else
@@ -81,12 +125,18 @@ namespace HeadphoneDataApp.ViewModel
 
         }
 
-        private async Task GetData(CharacteristicReadEventArgs e)
-        {
-            string status = Decode(e.Characteristic.Value);
-            Debug.WriteLine("Update: " + e.Characteristic.Value);
-            //return status;
-        }
+        //private async void CharacteristicData_ValueUpdated(object sender, CharacteristicReadEventArgs e)
+        //{
+        //    //await GetData(e);
+        //    await GetData(e);
+        //}
+
+        //private async Task GetData(CharacteristicReadEventArgs e)
+        //{
+        //    string status = Decode(e.Characteristic.Value);
+        //    Debug.WriteLine("Update: " + e.Characteristic.Value);
+        //    //return status;
+        //}
     
         private string Decode(byte[] value)
         {
@@ -166,6 +216,7 @@ namespace HeadphoneDataApp.ViewModel
                         {
                             Debug.WriteLine("Found Accelerometer Service");
                             _accelerometerService = service;
+                            device.ServicesDiscovered -= Device_ServicesDiscovered;
 
                         }
                     }
@@ -189,6 +240,7 @@ namespace HeadphoneDataApp.ViewModel
         }
 
         public Command GetServicesCommand { get; private set; }
+        public object WorkThreadFunction { get; private set; }
 
         protected virtual void OnPropertyChanged(string propertyName)
         {

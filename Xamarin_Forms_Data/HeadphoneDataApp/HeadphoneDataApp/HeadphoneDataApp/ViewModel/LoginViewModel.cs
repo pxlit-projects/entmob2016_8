@@ -20,7 +20,6 @@ namespace HeadphoneDataApp.ViewModel
         {
             //get the adapter via messenger
             Messenger.Default.Register<IAdapter>(this, AdapterMessage);
-
             this.LoginCommand = new Command(async () =>
             {
                 //TO DO
