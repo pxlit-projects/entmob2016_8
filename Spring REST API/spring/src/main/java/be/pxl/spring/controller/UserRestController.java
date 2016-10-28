@@ -1,10 +1,12 @@
 package be.pxl.spring.controller;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 
 import be.pxl.spring.domain.User;
 import be.pxl.spring.service.UserService;
@@ -18,8 +20,17 @@ public class UserRestController {
 	UserService us;
 	
 	@RequestMapping(method = RequestMethod.GET, value="{id}")
-	public User getUserById(@PathVariable("id") int id){
-		return us.findOne(id);
+	public ResponseEntity<User> getUserById(@PathVariable("id") int id){
+		// need to explicitly set Sessions to null or the Json serializer will load the Sessions despite lazy loading
+		HttpStatus status;
+		User u = us.findOne(id);
+		if(u == null){
+			status = HttpStatus.NOT_FOUND;		
+		}else{
+			u.setSessions(null);	
+			status = HttpStatus.OK;
+		}
+		return new ResponseEntity<User>(u, status);
 	}
 	@RequestMapping(method= RequestMethod.GET)
 	public String hello()
@@ -27,12 +38,28 @@ public class UserRestController {
 		return "hello";
 	}
 	@RequestMapping(method = RequestMethod.GET, value="ByName/{name}")
-	public List<User> getUsersByName(@PathVariable("name") String name){
-		return us.findByName(name);
+	public ResponseEntity<List<User>> getUsersByName(@PathVariable("name") String name){
+		HttpStatus status;
+		List<User> userList = us.findByName(name);
+		if(userList == null || userList.isEmpty()){
+			status = HttpStatus.NOT_FOUND;		
+		}else{
+			this.removeSessions(userList);
+			status = HttpStatus.OK;
+		}
+		return new ResponseEntity<List<User>>(userList, status);
 	}
 	@RequestMapping(method = RequestMethod.GET, value="ByDepartment/{department}")
-	public List<User> getUsersByDepartment(@PathVariable("department") String department){
-		return us.findByName(department);
+	public  ResponseEntity<List<User>> getUsersByDepartment(@PathVariable("department") String department){
+		HttpStatus status;
+		List<User> userList = us.findByDepartment(department);
+		if(userList == null || userList.isEmpty()){
+			status = HttpStatus.NOT_FOUND;		
+		}else{
+			this.removeSessions(userList);
+			status = HttpStatus.OK;
+		}
+		return new ResponseEntity<List<User>>(userList, status);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
@@ -51,7 +78,7 @@ public class UserRestController {
 	@RequestMapping(method = RequestMethod.POST, value="{id}/{pw}")
 	public Boolean login(@PathVariable("id") int id, @PathVariable("pw") String pw){
 		User user = us.findOne(id);
-		if(user.getPassword().equals(pw))
+		if(us != null && user.getPassword().equals(pw))
 		{
 			return true;
 		}
@@ -64,7 +91,7 @@ public class UserRestController {
 	@RequestMapping(method = RequestMethod.POST, value="werkgever/{id}/{pw}")
 	public Boolean loginWerkgever(@PathVariable("id") int id, @PathVariable("pw") String pw){
 		User user = us.findOne(id);
-		if(user.getPassword().equals(pw) && user.getRole() == "admin")
+		if(user != null && user.getPassword().equals(pw) && user.getRole() == "admin")
 		{
 			return true;
 		}
@@ -74,4 +101,9 @@ public class UserRestController {
 		}
 	}
 	
+	private void removeSessions(Collection<User> users){
+		for (User user : users) {
+			user.setSessions(null);
+		}
+	}
 }

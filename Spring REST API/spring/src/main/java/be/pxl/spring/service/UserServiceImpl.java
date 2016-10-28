@@ -18,6 +18,8 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	  private UserRepository repository;
 	  
+	@Autowired
+	private SessionUtility sessionUtil;
 	
 	@Override
 	@Transactional
@@ -113,13 +115,55 @@ public class UserServiceImpl implements UserService {
 	public double getAverageActualTime(int id, Timestamp startTime,
 			Timestamp endTime) {
 		
-		Set<Session> sessionList = (this.findBetween(id, startTime, endTime)).getSessions();
-		double sum = 0;
-		for (Session session : sessionList) {
-			sum += session.getActualTime();
-		}
-		return sum/sessionList.size();
+		Set<Session> sessions = (this.findBetween(id, startTime, endTime)).getSessions();		
+		return sessionUtil.AverageActual(sessions);
 	}
+
+
+	@Override
+	public double getAverageActualTime(int id) {
+		Set<Session> sessions = repository.findById(id).getSessions();
+		return sessionUtil.AverageActual(sessions);
+		
+	}
+
+
+	@Override
+	public int getMinimalActualTime(int id) {
+		Set<Session> sessions = repository.findById(id).getSessions();		
+		return sessionUtil.MinimalActual(sessions);
+	}
+
+
+	@Override
+	public int getMinimalActualTime(int id, Timestamp startTime,
+			Timestamp endTime) {
+		Set<Session> sessions = (this.findBetween(id, startTime, endTime)).getSessions();
+		return sessionUtil.MinimalActual(sessions);
+	}
+
+
+	@Override
+	public int getMaximalActualTime(int id) {
+		Set<Session> sessions = repository.findById(id).getSessions();
+		return sessionUtil.MaximalActual(sessions);
+	}
+
+
+	@Override
+	public int getMaximalActualTime(int id, Timestamp startTime,
+			Timestamp endTime) {
+		Set<Session> sessions = (this.findBetween(id, startTime, endTime)).getSessions();
+		return sessionUtil.MaximalActual(sessions);
+	}
+
+
+	@Override
+	public int getTotalActualTime(int id) {		
+		return repository.findTotalActualTime(id);
+	}
+	
+	
 
 	
 }

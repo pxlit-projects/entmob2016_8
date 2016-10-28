@@ -3,7 +3,6 @@ package be.pxl.spring.service;
 import java.sql.Timestamp;
 import java.util.List;
 
-import be.pxl.spring.domain.Session;
 import be.pxl.spring.domain.User;
 
 public interface UserService {
@@ -40,6 +39,20 @@ public interface UserService {
 
 	public abstract double getAverageActualTime(int id, Timestamp startTime,
 			Timestamp endTime);
+
+	public abstract double getAverageActualTime(int id);
+
+	public abstract int getMinimalActualTime(int id);
+
+	public abstract int getMinimalActualTime(int id, Timestamp startTime,
+			Timestamp endTime);
+
+	public abstract int getMaximalActualTime(int id);
+
+	public abstract int getMaximalActualTime(int id, Timestamp startTime,
+			Timestamp endTime);
+
+	public abstract int getTotalActualTime(int id);
 
 	
 	

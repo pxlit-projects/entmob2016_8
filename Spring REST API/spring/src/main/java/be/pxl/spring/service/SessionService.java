@@ -34,6 +34,10 @@ public interface SessionService{
 	public abstract double getAverageActualTime(Timestamp startTime,
 			Timestamp endTime);
 
+	public abstract Session getLastSession(int userId);
+
+	public abstract Session getFirstSession(int userId);
+
 	
 	
 }

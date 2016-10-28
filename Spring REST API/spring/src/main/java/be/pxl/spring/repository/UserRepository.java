@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import be.pxl.spring.domain.Session;
 import be.pxl.spring.domain.User;
 
 @Repository
@@ -49,5 +48,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	@Transactional(readOnly = true)
 	@Query("select u from User u LEFT JOIN FETCH u.sessions s where u.id = ?1 and (s.startTime >= ?2) and (s.endTime <= ?3)")
 	User findBetween(int id, Timestamp startTime, Timestamp endTime);
+	@Transactional(readOnly = true)
+	@Query("select SUM(s.actualTime) from Session s where s.userId = ?1")
+	int findTotalActualTime(int id);
 
 }
