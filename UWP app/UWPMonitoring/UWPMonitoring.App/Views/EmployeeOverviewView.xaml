@@ -10,11 +10,16 @@
     xmlns:Interactivity="using:Microsoft.Xaml.Interactivity" 
     xmlns:Interactions="using:Microsoft.Xaml.Interactions.Core">
 
+    <Interactivity:Interaction.Behaviors>
+        <Interactions:EventTriggerBehavior EventName="Loaded">
+            <Interactions:InvokeCommandAction Command="{Binding LoadCommand}"/>
+        </Interactions:EventTriggerBehavior>
+    </Interactivity:Interaction.Behaviors>
+
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="*"> 
-            </RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -92,7 +97,7 @@
             <TextBlock x:Name="employeesTitelTextBlock" Text="Employees" 
                        Style="{ThemeResource SubheaderTextBlockStyle}"
                        />
-  
+
             <ListView x:Name="employeesListView" RelativePanel.AlignHorizontalCenterWithPanel="True"
                       RelativePanel.Below="employeesTitelTextBlock"
                       ItemsSource="{Binding Employees, Mode=OneWay}"
@@ -112,7 +117,15 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            
         </RelativePanel>
+
+        <RelativePanel x:Name="sessionInfoRelativePanel" Grid.Row="1" Grid.Column="1" Padding="10">
+            <TextBlock x:Name="averageTimeTextBlock" Text="Average time:" 
+                       Style="{ThemeResource SubheaderTextBlockStyle}" FontWeight="Bold" />
+            <TextBlock x:Name="averageTimeContentTextBlock" Text="{Binding AverageTime}" 
+                       Style="{ThemeResource SubheaderTextBlockStyle}" 
+                       RelativePanel.RightOf="averageTimeTextBlock" Margin="6,0,0,0"/>
+        </RelativePanel>
+        
     </Grid>
 </Page>

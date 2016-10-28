@@ -6,12 +6,9 @@ namespace UWPMonitoring.DAL
     public interface IRepository
     {
         User GetUserById(int userId);
-        User GetUserBySessionId(int sessionId);
-        List<User> GetAllUsers();
+        List<User> GetAllUsersByRole(string role);
         bool CheckIfUserIsValid(int userId);
 
-        Session GetSession(int sessionId);
-        Session GetSessionByUserId(int userId);
-        List<Session> GetAllSessions();
+        double GetAverageTimeForuserId(int id);
     }
 }

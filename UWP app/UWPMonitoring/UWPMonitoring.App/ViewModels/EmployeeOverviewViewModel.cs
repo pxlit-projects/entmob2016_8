@@ -20,11 +20,14 @@ namespace UWPMonitoring.App.ViewModels
         private User selectedEmployee;
         private List<User> omittedUsers = new List<User>();
         private string searchString;
+        private double averageTime;
 
         //Commands
         public CustomCommand LogOutCommand { get; set; }
         public CustomCommand SearchCommand { get; set; }
         public CustomCommand ClearSearchCommand { get; set; }
+        public CustomCommand LoadCommand { get; set; }
+        public CustomCommand SelectionChangedCommand { get; set; }
 
         //Properties
         public User LoggedInUser { get; set; }
@@ -67,6 +70,19 @@ namespace UWPMonitoring.App.ViewModels
             }
         }
 
+        public double AverageTime
+        {
+            get
+            {
+                return averageTime;
+            }
+            set
+            {
+                averageTime = value;
+                RaisePropertyChanged();
+            }
+        }
+
         //Constructor
         public EmployeeOverviewViewModel(INavigationService navigationService, IRepository repository)
         {
@@ -74,7 +90,6 @@ namespace UWPMonitoring.App.ViewModels
             this.repository = repository;
 
             LoadCommands();
-            LoadTestData();
 
             Messenger.Default.Register<User>(this, OnUserReceived);
         }
@@ -82,10 +97,7 @@ namespace UWPMonitoring.App.ViewModels
         //Methode om de ingelogde user in de property te laden
         private void OnUserReceived(User user)
         {
-            //TODO: Extra gegevens van de ingelogde gebruiker ophalen via een methode van de repository
             LoggedInUser = user;
-            LoggedInUser.FirstName = "Koen";
-            LoggedInUser.LastName = "Castermans";
         }
 
         //Methode om de commands in te laden
@@ -94,6 +106,8 @@ namespace UWPMonitoring.App.ViewModels
             LogOutCommand = new CustomCommand(LogOut, CanLogOut);
             SearchCommand = new CustomCommand(Search, CanSearch);
             ClearSearchCommand = new CustomCommand(ClearSearch, CanClearSearch);
+            LoadCommand = new CustomCommand(Load, CanLoad);
+            SelectionChangedCommand = new CustomCommand(SelectionChanged, CanSelectionChangedExecute);
             
         }
 
@@ -148,216 +162,26 @@ namespace UWPMonitoring.App.ViewModels
             
         }
 
-        //methode voor testdata te laden
-        public void LoadTestData()
+        //Implentatie voor het load command dat uitgevoerd moet worden bij het laden van het scherm
+        private void Load(object obj)
         {
-            List<Session> sessionListKoen = new List<Session>
-            {
-                new Session
-                {
-                    SessionId = 1,
-                    UserId = 1309,
-                    Start_Time = new DateTime(2016,10,18,13,0,0),
-                    End_Time = new DateTime(2016,10,18,14,0,0),
-                    Actual_Time = new DateTime(),
-                },
+            Employees = repository.GetAllUsersByRole("user");
+        }
 
-                 new Session
-                {
-                    SessionId = 2,
-                    UserId = 1309,
-                    Start_Time = new DateTime(2016,10,18,14,0,0),
-                    End_Time = new DateTime(2016,10,18,15,0,0),
-                    Actual_Time = new DateTime(),
-                },
-            };
+        private bool CanLoad(object obj)
+        {
+            return true;
+        }
 
-            List<Session> sessionListBrecht = new List<Session>
-            {
-                new Session
-                {
-                    SessionId = 3,
-                    UserId = 1234,
-                    Start_Time = new DateTime(2016,10,18,13,0,0),
-                    End_Time = new DateTime(2016,10,18,14,0,0),
-                    Actual_Time = new DateTime(),
-                },
+        //Implementatie van het selection changed command dat uitgevoerd word als er een user geselecteerd word
+        private void SelectionChanged(object obj)
+        {
+            AverageTime = repository.GetAverageTimeForuserId(SelectedEmployee.UserId);
+        }
 
-                 new Session
-                {
-                    SessionId = 4,
-                    UserId = 1234,
-                    Start_Time = new DateTime(2016,10,18,14,0,0),
-                    End_Time = new DateTime(2016,10,18,15,0,0),
-                    Actual_Time = new DateTime(),
-                },
-            };
-
-            List<Session> sessionListJasper = new List<Session>
-            {
-                new Session
-                {
-                    SessionId = 5,
-                    UserId = 4321,
-                    Start_Time = new DateTime(2016,10,18,13,0,0),
-                    End_Time = new DateTime(2016,10,18,14,0,0),
-                    Actual_Time = new DateTime(),
-                },
-
-                 new Session
-                {
-                    SessionId = 6,
-                    UserId = 4321,
-                    Start_Time = new DateTime(2016,10,18,14,0,0),
-                    End_Time = new DateTime(2016,10,18,15,0,0),
-                    Actual_Time = new DateTime(),
-                },
-            };
-
-            List<Session> sessionListStephane = new List<Session>
-            {
-                new Session
-                {
-                    SessionId = 7,
-                    UserId = 5678,
-                    Start_Time = new DateTime(2016,10,18,13,0,0),
-                    End_Time = new DateTime(2016,10,18,14,0,0),
-                    Actual_Time = new DateTime(),
-                },
-
-                 new Session
-                {
-                    SessionId = 8,
-                    UserId = 5678,
-                    Start_Time = new DateTime(2016,10,18,14,0,0),
-                    End_Time = new DateTime(2016,10,18,15,0,0),
-                    Actual_Time = new DateTime(),
-                },
-            };
-
-            Employees = new List<User>
-            {
-                new User
-                {
-                    UserId = 1309,
-                    FirstName = "Koen",
-                    LastName = "Castermans",
-                    Password = "KoenPass",
-                    Department = "Verkoop",
-                    Sessions = sessionListKoen
-                },
-
-                new User
-                {
-                    UserId = 1234,
-                    FirstName = "Brecht",
-                    LastName = "Morrhey",
-                    Password = "BrechtPass",
-                    Department = "Verkoop",
-                    Sessions = sessionListBrecht
-                },
-
-                new User
-                {
-                    UserId = 4321,
-                    FirstName = "Jasper",
-                    LastName = "Szkudlarski",
-                    Password = "JasperPass",
-                    Department = "Verkoop",
-                    Sessions = sessionListJasper
-                },
-
-                new User
-                {
-                    UserId = 5678,
-                    FirstName = "Stephane",
-                    LastName = "Oris",
-                    Password = "StephanePass",
-                    Department = "Verkoop",
-                    Sessions = sessionListStephane
-                },
-
-                new User
-                {
-                    UserId = 1309,
-                    FirstName = "Koen",
-                    LastName = "Castermans",
-                    Password = "KoenPass",
-                    Department = "Verkoop",
-                    Sessions = sessionListKoen
-                },
-
-                new User
-                {
-                    UserId = 1234,
-                    FirstName = "Brecht",
-                    LastName = "Morrhey",
-                    Password = "BrechtPass",
-                    Department = "Verkoop",
-                    Sessions = sessionListBrecht
-                },
-
-                new User
-                {
-                    UserId = 4321,
-                    FirstName = "Jasper",
-                    LastName = "Szkudlarski",
-                    Password = "JasperPass",
-                    Department = "Verkoop",
-                    Sessions = sessionListJasper
-                },
-
-                new User
-                {
-                    UserId = 5678,
-                    FirstName = "Stephane",
-                    LastName = "Oris",
-                    Password = "StephanePass",
-                    Department = "Verkoop",
-                    Sessions = sessionListStephane
-                },
-
-                new User
-                {
-                    UserId = 1309,
-                    FirstName = "Koen",
-                    LastName = "Castermans",
-                    Password = "KoenPass",
-                    Department = "Verkoop",
-                    Sessions = sessionListKoen
-                },
-
-                new User
-                {
-                    UserId = 1234,
-                    FirstName = "Brecht",
-                    LastName = "Morrhey",
-                    Password = "BrechtPass",
-                    Department = "Verkoop",
-                    Sessions = sessionListBrecht
-                },
-
-                new User
-                {
-                    UserId = 4321,
-                    FirstName = "Jasper",
-                    LastName = "Szkudlarski",
-                    Password = "JasperPass",
-                    Department = "Verkoop",
-                    Sessions = sessionListJasper
-                },
-
-                new User
-                {
-                    UserId = 5678,
-                    FirstName = "Stephane",
-                    LastName = "Oris",
-                    Password = "StephanePass",
-                    Department = "Verkoop",
-                    Sessions = sessionListStephane
-                },
-
-            };
+        private bool CanSelectionChangedExecute(object obj)
+        {
+            return true;
         }
 
         //Implementatie van de interface INotifyPropertyChanged

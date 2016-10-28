@@ -189,5 +189,25 @@ namespace UWPMonitoring.Test.Mocks
         {
             throw new NotImplementedException();
         }
+
+        public User GetUserById(int userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<User> GetAllUsersByRole(string role)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CheckIfUserIsValid(int userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public double GetAverageTimeForuserId(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

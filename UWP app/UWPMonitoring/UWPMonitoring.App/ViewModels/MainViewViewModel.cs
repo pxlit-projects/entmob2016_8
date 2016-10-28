@@ -60,8 +60,6 @@ namespace UWPMonitoring.App.ViewModels
         //Methodes voor implementatie van LoginCommand
         private void Login(object obj) 
         {
-            //TODO: De username en password via een methode in de repo opsturen naar de backend en een boolean terug krijgen.
-            //De gebruiker moet doorgestuurd worden naar het volgende scherm als zijn gegevens correct zijn
             bool userExists =  repository.CheckIfUserIsValid(User.UserId);
 
             if (userExists)
@@ -73,7 +71,7 @@ namespace UWPMonitoring.App.ViewModels
                 {
                     if (passwordCorrect)
                     {
-                        Messenger.Default.Send<User>(User); //Object van de ingelogde gebruiker doorsturen naar het volgende scherm
+                        Messenger.Default.Send<User>(retrievedUser); //Object van de ingelogde gebruiker doorsturen naar het volgende scherm
                         navigationService.NavigateTo("Overview"); //Naar het overzicht scherm gaan
                         User = new User();//Toegevoegd zodat het User object ook effectief leeg is als er word uitgelogd. Anders was deze niet leeg
                         Message = ""; //Bericht ook terug leegmaken zodat bij het uitloggen deze ook leeg is
