@@ -55,13 +55,13 @@
     <Reference Include="Mono.Android" />
     <Reference Include="mscorlib" />
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\..\android\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\HeadPhoneDataApp\App\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Robotics.Mobile.Core">
-      <HintPath>..\..\..\..\android\Robotics.Mobile.Core.dll</HintPath>
+      <HintPath>..\HeadPhoneDataApp\App\Robotics.Mobile.Core.dll</HintPath>
     </Reference>
     <Reference Include="Robotics.Mobile.Core.Droid">
-      <HintPath>..\..\..\..\android\Robotics.Mobile.Core.Droid.dll</HintPath>
+      <HintPath>..\HeadPhoneDataApp\App\Robotics.Mobile.Core.Droid.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

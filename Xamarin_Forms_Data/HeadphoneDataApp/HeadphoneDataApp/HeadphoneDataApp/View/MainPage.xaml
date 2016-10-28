@@ -30,26 +30,18 @@
             FontSize="Large"
             FontAttributes="Bold"
             TextColor="Red"
-            Command="{Binding SelectedDeviceCommand}"
-    >
-    </Button>
-    <!--<ListView x:Name="devicesListView"
+            Command="{Binding SelectedDeviceCommand}"/>
+    <ListView x:Name="devicesListView"
               HorizontalOptions="Center"
               VerticalOptions="Center"
-              BackgroundColor="#CCCCCC">
+              BackgroundColor="#CCCCCC"
+              ItemsSource ="{Binding Devices}">
       <ListView.ItemTemplate>
         <DataTemplate>
-          <Grid>
-            <Label
-            Text="{Binding Devices}"
-            VerticalOptions="Start"
-            HorizontalTextAlignment="Center"
-            IsVisible="true"
-            FontSize="Large" />
-          </Grid>
+          <TextCell Text="{Binding Name}" />
         </DataTemplate>
       </ListView.ItemTemplate>
-    </ListView>-->
+    </ListView>
 
   </StackLayout>
 </ContentPage>
