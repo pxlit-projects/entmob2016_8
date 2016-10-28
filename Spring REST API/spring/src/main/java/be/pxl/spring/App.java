@@ -12,14 +12,14 @@ import be.pxl.spring.domain.User;
  * Hello world!
  *
  */
-@SpringBootApplication
+//@SpringBootApplication
 public class App {
 	
 
 	
 	public static void main(String[] args) {
 		ConfigurableApplicationContext ctx = SpringApplication.run(
-				App.class, args);
+				AppConfig.class, args);
 		User u = ctx.getBean(User.class);
 		u.setFirstName("brecht");
 		u.setDepartment("test");

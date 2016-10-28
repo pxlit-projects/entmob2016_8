@@ -1,4 +1,6 @@
-package be.pxl.spring.config;
+package be.pxl.spring;
+
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 //import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 //import org.springframework.context.annotation.*;
@@ -6,9 +8,7 @@ package be.pxl.spring.config;
 //import be.pxl.spring.domain.User;
 
 
-//@Configuration
-//@EnableAutoConfiguration
-//@ComponentScan()
+@SpringBootApplication
 public class AppConfig {
 
 //	@Bean
