@@ -1,5 +1,7 @@
 package be.pxl.spring;
 
+import java.sql.Timestamp;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -37,6 +39,7 @@ public class App {
 		
 		UserSessionRestController usrc = ctx.getBean(UserSessionRestController.class);
 		System.out.println("Totale tijd user 1: "+ usrc.getTotalActualTime(1));
+		
 		
 //		Session s = ctx.getBean(Session.class);
 //		s.setUserId(1);
