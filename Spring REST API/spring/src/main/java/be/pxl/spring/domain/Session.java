@@ -1,14 +1,13 @@
 package be.pxl.spring.domain;
 
-import java.io.*;
 import java.sql.Timestamp;
 
 import javax.persistence.*;
 
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Entity
+@Component
 @Table(name="sessions")
 public class Session {
 
@@ -28,28 +27,28 @@ public class Session {
 		this.userId = userId;
 	}
 
-	public Timestamp getStart_time() {
-		return start_time;
+	public Timestamp getStartTime() {
+		return startTime;
 	}
 
-	public void setStart_time(Timestamp start_time) {
-		this.start_time = start_time;
+	public void setStartTime(Timestamp startTime) {
+		this.startTime = startTime;
 	}
 
-	public Timestamp getEnd_time() {
-		return end_time;
+	public Timestamp getEndTime() {
+		return endTime;
 	}
 
-	public void setEnd_time(Timestamp end_time) {
-		this.end_time = end_time;
+	public void setEndTime(Timestamp endTime) {
+		this.endTime = endTime;
 	}
 
-	public Timestamp getActual_time() {
-		return actual_time;
+	public int getActualTime() {
+		return actualTime;
 	}
 
-	public void setActual_time(Timestamp actual_time) {
-		this.actual_time = actual_time;
+	public void setActualTime(int actualTime) {
+		this.actualTime = actualTime;
 	}
 
 	@Id
@@ -57,16 +56,15 @@ public class Session {
 	@Column(name="session_id")
 	private int sessionId;
 	
-	@ManyToOne
-	@JoinColumn(name="user_id")
+	@Column(name="user_id")
 	private int userId;
 	
 	@Column(name="start_time")
-	private Timestamp start_time;
+	private Timestamp startTime;
 	
 	@Column(name="end_time")
-	private Timestamp end_time;
+	private Timestamp endTime;
 	
 	@Column(name="actual_time")
-	private Timestamp actual_time;
+	private int actualTime;
 }

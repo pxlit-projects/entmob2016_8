@@ -2,8 +2,6 @@ package be.pxl.spring.domain;
 
 import javax.persistence.*;
 
-import org.springframework.context.annotation.Scope;
-import org.springframework.data.authentication.UserCredentials;
 import org.springframework.stereotype.Component;
 
 import java.io.*;
@@ -11,8 +9,12 @@ import java.util.*;
 
 @Entity
 @Table(name="users")
+@Component
 public class User implements Serializable {
-	
+	public User()
+	{
+		
+	}
 	public int getUserId() {
 		return userId;
 	}
@@ -56,29 +58,21 @@ public class User implements Serializable {
 	public void setSessions(Set<Session> sessions) {
 		this.sessions = sessions;
 	}
-
-	public UserCredentials getTwitterCredentials() {
-		return twitterCredentials;
+	
+	public String getSalt() {
+		return salt;
 	}
-
-	public void setTwitterCredentials(UserCredentials twitterCredentials) {
-		this.twitterCredentials = twitterCredentials;
+	
+	public void setSalt(String salt) {
+		this.salt = salt;
 	}
-
-	public UserCredentials getFacebookCredentials() {
-		return facebookCredentials;
+	
+	public String getRole() {
+		return role;
 	}
-
-	public void setFacebookCredentials(UserCredentials facebookCredentials) {
-		this.facebookCredentials = facebookCredentials;
-	}
-
-	public UserCredentials getSteamCredentials() {
-		return steamCredentials;
-	}
-
-	public void setSteamCredentials(UserCredentials steamCredentials) {
-		this.steamCredentials = steamCredentials;
+	
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	@Id
@@ -95,20 +89,18 @@ public class User implements Serializable {
 	@Column(name="password")
 	private String password;
 	
+	@Column(name="salt")
+	private String salt;
+
 	@Column(name="department")
 	private String department;
 	
-	@OneToMany(mappedBy="session_id")
-	private Set<Session> sessions = new HashSet<Session>();
+	@Column(name="role")
+	private String role;
 	
-	@OneToOne(mappedBy="user_id")
-	private UserCredentials twitterCredentials;
-	
-	@OneToOne(mappedBy="user_id")
-	private UserCredentials facebookCredentials;
-	
-	@OneToOne(mappedBy="user_id")
-	private UserCredentials steamCredentials;
+
+	@OneToMany(targetEntity=Session.class, mappedBy="userId", fetch= FetchType.LAZY)		
+	private Set<Session> sessions;
 	
 	
 
