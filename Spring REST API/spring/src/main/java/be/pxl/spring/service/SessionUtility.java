@@ -40,10 +40,11 @@ public class SessionUtility {
 		int sum = 0;
 		int seconds;
 		for (Session session : sessions) {
-			seconds = (int) ((session.getEndTime().getTime() - session.getStartTime().getTime())*1000);
+			seconds = (int) ((session.getEndTime().getTime() - session.getStartTime().getTime())/1000);
 			sum += seconds;
 		}
 		return sum;
 	}
+	
 
 }
