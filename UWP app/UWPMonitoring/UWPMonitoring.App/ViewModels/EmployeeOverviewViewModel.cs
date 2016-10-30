@@ -181,7 +181,16 @@ namespace UWPMonitoring.App.ViewModels
 
         private bool CanSelectionChangedExecute(object obj)
         {
-            return true;
+            //Controle anders ontstaat er bij het zoeken op naam een exception 
+            if (SelectedEmployee != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
         }
 
         //Implementatie van de interface INotifyPropertyChanged
