@@ -22,6 +22,7 @@ namespace UWPMonitoring.App.ViewModels
         private string searchString;
         private int averageTime;
         private int minimumTime;
+        private int maximumTime;
 
         //Commands
         public CustomCommand LogOutCommand { get; set; }
@@ -93,6 +94,19 @@ namespace UWPMonitoring.App.ViewModels
             set
             {
                 minimumTime = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public int MaximumTime
+        {
+            get
+            {
+                return maximumTime;
+            }
+            set
+            {
+                maximumTime = value;
                 RaisePropertyChanged();
             }
         }
@@ -193,6 +207,7 @@ namespace UWPMonitoring.App.ViewModels
         {
             AverageTime = repository.GetAverageTimeForUserId(SelectedEmployee.UserId);
             MinimumTime = repository.GetMinimalTimeForUserId(SelectedEmployee.UserId);
+            MaximumTime = repository.GetMaximumTimeForUserId(SelectedEmployee.UserId);
         }
 
         private bool CanSelectionChangedExecute(object obj)

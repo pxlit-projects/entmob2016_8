@@ -14,7 +14,7 @@
         <RelativePanel HorizontalAlignment="Center" Height="305" VerticalAlignment="Center" Width="322">
             <TextBlock x:Name="welkomTextBlock" HorizontalAlignment="Left" Height="72" TextWrapping="Wrap" Text="Welkom" Style="{ThemeResource HeaderTextBlockStyle}" VerticalAlignment="Top" Width="164" Margin="84,16,-186,-88" 
                        RelativePanel.Above="usernameTextBlock"/>
-            <TextBlock x:Name="usernameTextBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top" Margin="44,93,0,-118" Style="{ThemeResource CaptionTextBlockStyle}" 
+            <TextBlock x:Name="usernameTextBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Id" VerticalAlignment="Top" Margin="44,93,0,-118" Style="{ThemeResource CaptionTextBlockStyle}" 
                        RelativePanel.Above="usernameTextBox" RelativePanel.AlignLeftWith="usernameTextBox" Height="25" />
             <TextBox x:Name="usernameTextBox" Margin="44,114,-284,-114" Style="{ThemeResource AutoSuggestBoxTextBoxStyle}"
                         Text="{Binding User.UserId, Mode=TwoWay}"/>
