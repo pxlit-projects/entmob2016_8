@@ -20,7 +20,8 @@ namespace UWPMonitoring.App.ViewModels
         private User selectedEmployee;
         private List<User> omittedUsers = new List<User>();
         private string searchString;
-        private double averageTime;
+        private int averageTime;
+        private int minimumTime;
 
         //Commands
         public CustomCommand LogOutCommand { get; set; }
@@ -70,7 +71,7 @@ namespace UWPMonitoring.App.ViewModels
             }
         }
 
-        public double AverageTime
+        public int AverageTime
         {
             get
             {
@@ -82,6 +83,20 @@ namespace UWPMonitoring.App.ViewModels
                 RaisePropertyChanged();
             }
         }
+
+        public int MinimumTime
+        {
+            get
+            {
+                return minimumTime;
+            }
+            set
+            {
+                minimumTime = value;
+                RaisePropertyChanged();
+            }
+        }
+
 
         //Constructor
         public EmployeeOverviewViewModel(INavigationService navigationService, IRepository repository)
@@ -176,7 +191,8 @@ namespace UWPMonitoring.App.ViewModels
         //Implementatie van het selection changed command dat uitgevoerd word als er een user geselecteerd word
         private void SelectionChanged(object obj)
         {
-            AverageTime = repository.GetAverageTimeForuserId(SelectedEmployee.UserId);
+            AverageTime = repository.GetAverageTimeForUserId(SelectedEmployee.UserId);
+            MinimumTime = repository.GetMinimalTimeForUserId(SelectedEmployee.UserId);
         }
 
         private bool CanSelectionChangedExecute(object obj)

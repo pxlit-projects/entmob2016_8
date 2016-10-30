@@ -45,9 +45,21 @@ namespace UWPMonitoring.DAL
 
         }
 
-        public int GetAverageTimeForuserId(int userId)
+        public int GetAverageTimeForUserId(int userId)
         {
             string url = string.Format("http://127.0.0.1:8181/usersession/TotalSessionLength/{0}", userId);
+            Uri uri = new Uri(url);
+            HttpClient client = new HttpClient();
+            HttpResponseMessage response = Task.Run(() => client.GetAsync(url)).Result;
+            response.EnsureSuccessStatusCode();
+            string result = Task.Run(() => response.Content.ReadAsStringAsync()).Result;
+            int seconden = JsonConvert.DeserializeObject<int>(result);
+            return seconden;
+        }
+
+        public int GetMinimalTimeForUserId(int userId)
+        {
+            string url = string.Format("http://127.0.0.1:8181/usersession/MinimalActualTime/{0}", userId);
             Uri uri = new Uri(url);
             HttpClient client = new HttpClient();
             HttpResponseMessage response = Task.Run(() => client.GetAsync(url)).Result;

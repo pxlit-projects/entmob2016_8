@@ -128,9 +128,18 @@
         <RelativePanel x:Name="sessionInfoRelativePanel" Grid.Row="1" Grid.Column="1" Padding="10">
             <TextBlock x:Name="averageTimeTextBlock" Text="Average time:" 
                        Style="{ThemeResource SubheaderTextBlockStyle}" FontWeight="Bold" />
-            <TextBlock x:Name="averageTimeContentTextBlock" Text="{Binding AverageTime}" 
+            
+            <TextBlock x:Name="averageTimeContentTextBlock" Text="{Binding AverageTime, Mode=OneWay}" 
                        Style="{ThemeResource SubheaderTextBlockStyle}" 
                        RelativePanel.RightOf="averageTimeTextBlock" Margin="6,0,0,0"/>
+
+            <TextBlock x:Name="minimumTimeTextBlock" Text="Shortest session: "
+                       Style="{ThemeResource SubheaderTextBlockStyle}" FontWeight="Bold"
+                       RelativePanel.Below="averageTimeTextBlock"/>
+            <TextBlock x:Name="minimumTimeContentTextBlock" Text="{Binding MinimumTime, Mode=OneWay}"
+                       Style="{ThemeResource SubheaderTextBlockStyle}"
+                       RelativePanel.RightOf="minimumTimeTextBlock"
+                       RelativePanel.Below="averageTimeContentTextBlock" Margin="6,0,0,0"/>
         </RelativePanel>
         
     </Grid>
