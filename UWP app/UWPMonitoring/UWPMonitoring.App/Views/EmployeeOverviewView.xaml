@@ -125,39 +125,40 @@
             </ListView>
         </RelativePanel>
 
-        <RelativePanel x:Name="sessionInfoRelativePanel" Grid.Row="1" Grid.Column="1" Padding="10">
+        <ScrollViewer Grid.Row="1" Grid.Column="1">
+            <RelativePanel x:Name="sessionInfoRelativePanel"  Padding="10" >
 
-            <TextBlock x:Name="averageTimeTextBlock" Text="Average time:" 
+                <TextBlock x:Name="averageTimeTextBlock" Text="Average time:" 
                        Style="{ThemeResource SubheaderTextBlockStyle}" FontWeight="Bold" />
-            <TextBlock x:Name="averageTimeContentTextBlock" Text="{Binding AverageTime, Mode=OneWay}" 
+                <TextBlock x:Name="averageTimeContentTextBlock" Text="{Binding AverageTime, Mode=OneWay,
+                       Converter={StaticResource localSecondConverter}}" 
                        Style="{ThemeResource SubheaderTextBlockStyle}" 
-                       RelativePanel.RightOf="averageTimeTextBlock" Margin="6,0,0,0"/>
+                       RelativePanel.Below="averageTimeTextBlock" Margin="6,0,0,0"/>
 
-            <TextBlock x:Name="minimumTimeTextBlock" Text="Shortest session: "
+                <TextBlock x:Name="minimumTimeTextBlock" Text="Shortest session: "
                        Style="{ThemeResource SubheaderTextBlockStyle}" FontWeight="Bold"
-                       RelativePanel.Below="averageTimeTextBlock"/>
-            <TextBlock x:Name="minimumTimeContentTextBlock" Text="{Binding MinimumTime, Mode=OneWay}"
-                       Style="{ThemeResource SubheaderTextBlockStyle}"
-                       RelativePanel.RightOf="minimumTimeTextBlock"
-                       RelativePanel.Below="averageTimeContentTextBlock" Margin="6,0,0,0"/>
-
-            <TextBlock x:Name="maximumTimeTextBlock" Text="Longest session: "
-                       Style="{ThemeResource SubheaderTextBlockStyle}" FontWeight="Bold"
-                       RelativePanel.Below="minimumTimeTextBlock"/>
-            <TextBlock x:Name="maximumTimeContentTextBlock" Text="{Binding MaximumTime, Mode=OneWay}"
-                       Style="{ThemeResource SubheaderTextBlockStyle}"
-                       RelativePanel.RightOf="minimumTimeTextBlock"
-                       RelativePanel.Below="minimumTimeContentTextBlock" Margin="6,0,0,0"/>
-
-            <TextBlock x:Name="totalTimeTextBlock" Text="Total time: "
-                       Style="{ThemeResource SubheaderTextBlockStyle}" FontWeight="Bold"
-                       RelativePanel.Below="maximumTimeTextBlock"/>
-            <TextBlock x:Name="totalTimeContentTextBlock" Text="{Binding TotalLength, Mode=OneWay, 
+                       RelativePanel.Below="averageTimeContentTextBlock"/>
+                <TextBlock x:Name="minimumTimeContentTextBlock" Text="{Binding MinimumTime, Mode=OneWay,
                        Converter={StaticResource localSecondConverter}}"
                        Style="{ThemeResource SubheaderTextBlockStyle}"
-                       RelativePanel.RightOf="totalTimeTextBlock"
-                       RelativePanel.Below="maximumTimeContentTextBlock" Margin="6,0,0,0"/>
-        </RelativePanel>
-        
+                       RelativePanel.Below="minimumTimeTextBlock" Margin="6,0,0,0"/>
+
+                <TextBlock x:Name="maximumTimeTextBlock" Text="Longest session: "
+                       Style="{ThemeResource SubheaderTextBlockStyle}" FontWeight="Bold"
+                       RelativePanel.Below="minimumTimeContentTextBlock"/>
+                <TextBlock x:Name="maximumTimeContentTextBlock" Text="{Binding MaximumTime, Mode=OneWay,
+                       Converter={StaticResource localSecondConverter}}"
+                       Style="{ThemeResource SubheaderTextBlockStyle}"
+                       RelativePanel.Below="maximumTimeTextBlock" Margin="6,0,0,0"/>
+
+                <TextBlock x:Name="totalTimeTextBlock" Text="Total time: "
+                       Style="{ThemeResource SubheaderTextBlockStyle}" FontWeight="Bold"
+                       RelativePanel.Below="maximumTimeContentTextBlock"/>
+                <TextBlock x:Name="totalTimeContentTextBlock" Text="{Binding TotalLength, Mode=OneWay, 
+                       Converter={StaticResource localSecondConverter}}"
+                       Style="{ThemeResource SubheaderTextBlockStyle}"
+                       RelativePanel.Below="totalTimeTextBlock" Margin="6,0,0,0"/>
+            </RelativePanel>
+        </ScrollViewer>
     </Grid>
 </Page>
