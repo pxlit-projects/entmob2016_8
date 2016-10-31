@@ -219,7 +219,7 @@ namespace UWPMonitoring.App.ViewModels
         //Implementatie van het selection changed command dat uitgevoerd word als er een user geselecteerd word
         private void SelectionChanged(object obj)
         {
-            //AverageTime = repository.GetAverageTimeForUserId(SelectedEmployee.UserId);
+            AverageTime = repository.GetAverageTimeForUserId(SelectedEmployee.UserId);
             MinimumTime = repository.GetMinimalTimeForUserId(SelectedEmployee.UserId);
             MaximumTime = repository.GetMaximumTimeForUserId(SelectedEmployee.UserId);
             TotalLength = repository.GetTotalLengthForUserId(SelectedEmployee.UserId);
