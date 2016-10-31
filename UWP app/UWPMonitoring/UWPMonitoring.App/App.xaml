@@ -3,11 +3,13 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:UWPMonitoring.App"
+    xmlns:converter="using:UWPMonitoring.App.Converters"
     RequestedTheme="Light">
 
     <Application.Resources>
         <ResourceDictionary>
             <local:ViewModelLocator x:Key="localViewModelLocator"></local:ViewModelLocator>
+            <converter:SecondConverter x:Key="localSecondConverter"></converter:SecondConverter>
         </ResourceDictionary>
     </Application.Resources>
 

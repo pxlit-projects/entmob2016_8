@@ -152,7 +152,8 @@
             <TextBlock x:Name="totalTimeTextBlock" Text="Total time: "
                        Style="{ThemeResource SubheaderTextBlockStyle}" FontWeight="Bold"
                        RelativePanel.Below="maximumTimeTextBlock"/>
-            <TextBlock x:Name="totalTimeContentTextBlock" Text="{Binding TotalLength, Mode=OneWay}"
+            <TextBlock x:Name="totalTimeContentTextBlock" Text="{Binding TotalLength, Mode=OneWay, 
+                       Converter={StaticResource localSecondConverter}}"
                        Style="{ThemeResource SubheaderTextBlockStyle}"
                        RelativePanel.RightOf="totalTimeTextBlock"
                        RelativePanel.Below="maximumTimeContentTextBlock" Margin="6,0,0,0"/>
