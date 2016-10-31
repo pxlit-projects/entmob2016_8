@@ -3,6 +3,8 @@ package be.pxl.spring.service;
 import java.util.Collection;
 
 
+import java.util.Set;
+
 import org.springframework.stereotype.Component;
 
 import be.pxl.spring.domain.Session;
@@ -33,5 +35,44 @@ public class SessionUtility {
 		}
 		return max;
 	}
+
+	public int TotalLength(Collection<Session> sessions) {
+		int sum = 0;
+		int seconds;
+		for (Session session : sessions) {
+			seconds = (int) ((session.getEndTime().getTime() - session.getStartTime().getTime())/1000);
+			sum += seconds;
+		}
+		return sum;
+	}
+
+	public double AverageLength(Collection<Session> sessions) {
+		double sum = 0;
+		for (Session session : sessions) {
+			sum += ((session.getEndTime().getTime() - session.getStartTime().getTime())/1000);
+		}
+		return sum/sessions.size();
+	}
+
+	public int MinimalLength(Collection<Session> sessions) {
+		int min = Integer.MAX_VALUE;
+		int seconds;
+		for (Session session : sessions) {
+			seconds = (int) ((session.getEndTime().getTime() - session.getStartTime().getTime())/1000);
+			min = seconds < min ? seconds: min;
+		}
+		return min;
+	}
+
+	public int MaximalLength(Collection<Session> sessions) {		
+		int max = Integer.MIN_VALUE;
+		int seconds;
+		for (Session session : sessions) {
+			seconds = (int) ((session.getEndTime().getTime() - session.getStartTime().getTime())/1000);
+			max = session.getActualTime() > max ? session.getActualTime() : max;
+		}
+		return max;
+	}
+	
 
 }

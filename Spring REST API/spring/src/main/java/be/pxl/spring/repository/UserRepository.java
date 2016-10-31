@@ -54,5 +54,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	
 	@Transactional(readOnly = true)
 	List<User> findByRole(String role);
+	
+	
 
 }

@@ -175,6 +175,35 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return repository.findByRole(role);
 	}
+
+
+	@Override
+	public int getTotalSessionLength(int userId) {
+		Set<Session> sessions = this.findById(userId).getSessions();
+		return sessionUtil.TotalLength(sessions);
+		
+	}
+
+
+	@Override
+	public double getAverageSessionLength(int userId) {
+		Set<Session> sessions = this.findById(userId).getSessions();
+		return sessionUtil.AverageLength(sessions);
+	}
+
+
+	@Override
+	public int getMinimalSessionLength(int userId) {
+		Set<Session> sessions = this.findById(userId).getSessions();
+		return sessionUtil.MinimalLength(sessions);
+	}
+
+
+	@Override
+	public int getMaximalSessionLength(int userId) {
+		Set<Session> sessions = this.findById(userId).getSessions();
+		return sessionUtil.MaximalLength(sessions);
+	}
 	
 	
 
