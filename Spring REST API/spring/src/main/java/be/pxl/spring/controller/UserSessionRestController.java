@@ -146,7 +146,21 @@ public class UserSessionRestController {
 		return us.getTotalActualTime(id);
 	}
 	@RequestMapping(method = RequestMethod.GET, value="TotalSessionLength/{id}")
-	public int getTotalSessionLength(@PathVariable("id") int id){
-		return us.getTotalSessionLength(id);
+	public int getTotalSessionLength(@PathVariable("id") int userId){
+		return us.getTotalSessionLength(userId);
 	}
+	@RequestMapping(method = RequestMethod.GET, value="AverageSessionLength/{id}")
+	public double getAverageSessionLength(@PathVariable("id") int userId){
+		return us.getAverageSessionLength(userId);
+	}
+	@RequestMapping(method = RequestMethod.GET, value="MinimalSessionLength/{id}")
+	public int getMinimalSessionLength(@PathVariable("id") int userId){
+		return us.getMinimalSessionLength(userId);		
+	}
+	@RequestMapping(method = RequestMethod.GET, value ="MaximalSessionLength/{id}")
+	public int getMaximalSessionLength(@PathVariable("id") int userId){
+		return us.getMaximalSessionLength(userId);
+	}
+	
+	
 }
