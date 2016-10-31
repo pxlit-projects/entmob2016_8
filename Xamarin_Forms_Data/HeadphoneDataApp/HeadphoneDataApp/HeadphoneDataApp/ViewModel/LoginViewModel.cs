@@ -48,7 +48,7 @@ namespace HeadphoneDataApp.ViewModel
 
                                 //Messenger aanspreken en User&Adapter doorsturen naar andere viewmodels
                                 Messenger.Default.Send<IAdapter>(adapter);
-                                //TO-DO USER
+                                Messenger.Default.Send<User>(retrievedUser);
                             }
                             else
                             {

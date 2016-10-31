@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.Windows.Input;
 using Xamarin.Forms;
 using System.Threading.Tasks;
+using HeadphoneDataApp.Model;
 
 namespace HeadphoneDataApp.ViewModel
 {
@@ -27,56 +28,32 @@ namespace HeadphoneDataApp.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase, INotifyPropertyChanged
     {
-        /// <summary>
-        /// Initializes a new instance of the MainViewModel class.
-        /// </summary>
-        //public MainViewModel()
-        //{
-            ////if (IsInDesignMode)
-            ////{
-            ////    // Code runs in Blend --> create design time data.
-            ////}
-            ////else
-            ////{
-            ////    // Code runs "for real"
-            ////}
-
-
         private IAdapter adapter;
         private string deviceName;
+        private User user;
+
         ObservableCollection<IService> services;
 
         private ObservableCollection<IDevice> devices;
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public ObservableCollection<IDevice> Devices
-        {
-            get
-            {
-                return devices;
-            }
-            set
-            {
-                devices = value;
-                OnPropertyChanged("Devices");
-            }
-        }
-
+        //constructor
         public MainViewModel()
         {
             DeviceSelectedCommand = new Command(async (device) =>
             {
                 await App.Current.MainPage.Navigation.PushModalAsync(ViewLocator.DeviceServicePage);
+                //stuur de geselecteerde device en de bluetoothadapter door 
                 Messenger.Default.Send<IAdapter>(adapter);
                 Messenger.Default.Send<IDevice>((IDevice)device);
+                Messenger.Default.Send<User>(user);
             });
             //get the adapter via messenger
             Messenger.Default.Register<IAdapter>(this, Adapter);
+            //get the user via messenger
+            Messenger.Default.Register<User>(this, User);
             devices = new ObservableCollection<IDevice>();
             this.services = new ObservableCollection<IService>();
-
-
-            //navigation
 
             this.ScanCommand = new Command(() =>
             {
@@ -106,6 +83,19 @@ namespace HeadphoneDataApp.ViewModel
             }
         }
 
+        void StopScanning()
+        {
+            // stop scanning
+            new Task(() =>
+            {
+                if (adapter.IsScanning)
+                {
+                    Debug.WriteLine("Still scanning, stopping the scan");
+                    adapter.StopScanningForDevices();
+                }
+            }).Start();
+        }
+        
         private void Adapter(IAdapter obj)
         {
             this.adapter = obj;
@@ -129,18 +119,12 @@ namespace HeadphoneDataApp.ViewModel
             };
         }
 
-        void StopScanning()
+        private void User(User obj)
         {
-            // stop scanning
-            new Task(() =>
-            {
-                if (adapter.IsScanning)
-                {
-                    Debug.WriteLine("Still scanning, stopping the scan");
-                    adapter.StopScanningForDevices();
-                }
-            }).Start();
+            this.user = obj;
         }
+
+        public ICommand DeviceSelectedCommand { get; set; }
 
         public ICommand ScanCommand { protected set; get; }
 
@@ -160,7 +144,18 @@ namespace HeadphoneDataApp.ViewModel
             }
         }
 
-        public ICommand DeviceSelectedCommand { get; set; }
+        public ObservableCollection<IDevice> Devices
+        {
+            get
+            {
+                return devices;
+            }
+            set
+            {
+                devices = value;
+                OnPropertyChanged("Devices");
+            }
+        }
 
         protected virtual void OnPropertyChanged(string propertyName)
         {

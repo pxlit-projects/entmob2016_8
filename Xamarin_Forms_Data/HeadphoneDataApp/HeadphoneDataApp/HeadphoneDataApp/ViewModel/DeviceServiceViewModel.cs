@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
+using HeadphoneDataApp.Model;
 using Java.Lang;
 using Java.Util;
 using Robotics.Mobile.Core.Bluetooth.LE;
@@ -21,6 +22,7 @@ namespace HeadphoneDataApp.ViewModel
         private IDevice device;
         private ObservableCollection<IService> services;
         private string deviceName;
+        private User user;
 
 
         private ICharacteristic characteristicData;
@@ -45,6 +47,7 @@ namespace HeadphoneDataApp.ViewModel
             //get the adapter via messenger
             Messenger.Default.Register<IAdapter>(this, AdapterMessage);
             Messenger.Default.Register<IDevice>(this, DeviceMessage);
+            Messenger.Default.Register<User>(this, User);
             this.services = new ObservableCollection<IService>();
 
 
@@ -125,31 +128,6 @@ namespace HeadphoneDataApp.ViewModel
 
         }
 
-        //private async void CharacteristicData_ValueUpdated(object sender, CharacteristicReadEventArgs e)
-        //{
-        //    //await GetData(e);
-        //    await GetData(e);
-        //}
-
-        //private async Task GetData(CharacteristicReadEventArgs e)
-        //{
-        //    string status = Decode(e.Characteristic.Value);
-        //    Debug.WriteLine("Update: " + e.Characteristic.Value);
-        //    //return status;
-        //}
-    
-        private string Decode(byte[] value)
-        {
-            var sensorData = value;
-            // Accelerometer sensorKXTJ9
-            int x = sensorData[0];
-            int y = sensorData[1];
-            int z = sensorData[2];
-            Debug.WriteLine("x: " + x + " y: " + y + " z:" + z);
-            string data = "x: " + x + " y: " + y + " z:" + z;
-            return data;
-        }
-
         private void AdapterMessage(IAdapter obj)
         {
             this.adapter = obj;
@@ -160,6 +138,11 @@ namespace HeadphoneDataApp.ViewModel
             this.device = obj;
             ScanForServices();
             DeviceName = device.Name;
+        }
+
+        private void User(User obj)
+        {
+            this.user = obj;
         }
 
         public void ScanForServices()
