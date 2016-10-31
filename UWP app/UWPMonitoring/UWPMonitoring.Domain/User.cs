@@ -5,11 +5,16 @@ using Newtonsoft.Json;
 
 namespace UWPMonitoring.Domain
 {
+
     public class User : INotifyPropertyChanged
     {
         //Variabelen
         private int userId;
         private string password;
+        private string firstName;
+        private string lastName;
+        private string department;
+        private string role;
 
         //Constructor
 
@@ -35,10 +40,34 @@ namespace UWPMonitoring.Domain
         }
 
         [JsonProperty(PropertyName = "firstName")]
-        public string FirstName { get; set; }
+        public string FirstName
+        {
+            get
+            {
+                return firstName;
+            }
+
+            set
+            {
+                firstName = value;
+                RaisePropertyChanged();
+            }
+        }
 
         [JsonProperty(PropertyName = "lastName")]
-        public string LastName { get; set; }
+        public string LastName
+        {
+            get
+            {
+                return lastName;
+            }
+
+            set
+            {
+                lastName = value;
+                RaisePropertyChanged();
+            }
+        }
 
         public string FullName
         {
@@ -64,13 +93,37 @@ namespace UWPMonitoring.Domain
         }
 
         [JsonProperty(PropertyName = "department")]
-        public string Department { get; set; }
+        public string Department
+        {
+            get
+            {
+                return department;
+            }
+
+            set
+            {
+                department = value;
+                RaisePropertyChanged();
+            }
+        }
 
         [JsonProperty(PropertyName = "salt")]
         public string Salt { get; set; }
 
         [JsonProperty(PropertyName = "role")]
-        public string Role { get; set; }
+        public string Role
+        {
+            get
+            {
+                return role;
+            }
+
+            set
+            {
+                role = value;
+                RaisePropertyChanged();
+            }
+        }
 
         [JsonIgnore]
         public List<Session> Sessions { get; set; }

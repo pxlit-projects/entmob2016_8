@@ -85,12 +85,20 @@
                     </Interactions:EventTriggerBehavior>
                 </Interactivity:Interaction.Behaviors>
             </Button>
-            
+
             <Button x:Name="registerButton" Content="Register a new employee" 
                     Style="{ThemeResource PivotTitleContentControlStyle}"
                     Height="auto"
                     RelativePanel.AlignRightWithPanel="True"
-                    RelativePanel.AlignVerticalCenterWithPanel="True"/>
+                    RelativePanel.AlignVerticalCenterWithPanel="True">
+                
+                <Interactivity:Interaction.Behaviors>
+                    <Interactions:EventTriggerBehavior EventName="Click">
+                        <Interactions:InvokeCommandAction Command="{Binding NavigateToRegisterPageCommand}"/>
+                    </Interactions:EventTriggerBehavior>
+                </Interactivity:Interaction.Behaviors>
+                
+            </Button>
         </RelativePanel>
 
         <RelativePanel x:Name="employeesRelativePanel" Grid.Row="1" Grid.Column="0" Padding="10">

@@ -102,6 +102,7 @@
     <Compile Include="Utility\INavigationService.cs" />
     <Compile Include="Utility\Messenger.cs" />
     <Compile Include="Utility\NavigationService.cs" />
+    <Compile Include="Utility\RandomPassword.cs" />
     <Compile Include="ViewModelLocator.cs" />
     <Compile Include="ViewModels\EmployeeOverviewViewModel.cs" />
     <Compile Include="ViewModels\MainViewViewModel.cs" />

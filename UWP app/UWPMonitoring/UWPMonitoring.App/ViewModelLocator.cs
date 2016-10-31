@@ -12,7 +12,9 @@ namespace UWPMonitoring.App
 
         private static MainViewViewModel mainViewViewModel = new MainViewViewModel(repository, navigationService);
         private static EmployeeOverviewViewModel employeeOverviewViewModel = new EmployeeOverviewViewModel(navigationService, repository);
+        private static RegisterEmployeeViewModel registerEmployeeViewModel = new RegisterEmployeeViewModel(repository, navigationService);
 
+        //Properties
         public static MainViewViewModel MainViewViewModel
         {
             get
@@ -26,6 +28,14 @@ namespace UWPMonitoring.App
             get
             {
                 return employeeOverviewViewModel;
+            }
+        }
+
+        public static RegisterEmployeeViewModel RegisterEmployeeViewModel
+        {
+            get
+            {
+                return registerEmployeeViewModel;
             }
         }
     }
