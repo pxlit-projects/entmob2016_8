@@ -13,7 +13,7 @@ using System.Net.Http;
 
 namespace HeadphoneDataApp.Repository
 {
-    class Repository : IRepository
+    public class Repository : IRepository
     {
         public User GetUserById(int userId)
         {
