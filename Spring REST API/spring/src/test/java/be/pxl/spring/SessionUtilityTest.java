@@ -25,18 +25,11 @@ import be.pxl.spring.domain.Session;
 import be.pxl.spring.service.SessionUtility;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@DirtiesContext
-@ContextConfiguration(classes=TestConfig.class)
 public class SessionUtilityTest {
-	@Autowired
-	SessionUtility su;
-//	@Before
-//	public void before(){
-//		su = new SessionUtility();
-//	}
 	
 	@Test
 	public void testAverage(){
+		SessionUtility su = new SessionUtility();
 		int actualTime, sum, count;
 		Session s;
 		List<Session> sessionList = new ArrayList<Session>();
@@ -54,6 +47,7 @@ public class SessionUtilityTest {
 	}
 	@Test
 	public void testMinimal(){
+		SessionUtility su = new SessionUtility();
 		int actualTime, min, count;
 		Session s;
 		List<Session> sessionList = new ArrayList<Session>();
@@ -71,6 +65,7 @@ public class SessionUtilityTest {
 	}
 	@Test
 	public void testMaximal(){
+		SessionUtility su = new SessionUtility();
 		int actualTime, max, count;
 		Session s;
 		List<Session> sessionList = new ArrayList<Session>();
