@@ -29,6 +29,7 @@ namespace UWPMonitoring.App.ViewModels
         {
             this.repository = repository;
             this.navigationService = navigationService;
+            NewUser = new User();
 
             LoadCommands();
         }
@@ -43,7 +44,12 @@ namespace UWPMonitoring.App.ViewModels
         //Implementatie van het register command
         private void Register(object obj)
         {
-            
+            NewUser.Role = "user";
+            string password = RandomPassword.Generate(12);
+            NewUser.Salt = RandomPassword.Generate(30);
+            NewUser.Password = Hasher.ConvertStringToHash(password, NewUser.Salt);
+            repository.RegisterEmployee(NewUser);
+
         }
 
         private bool CanRegister(object obj)

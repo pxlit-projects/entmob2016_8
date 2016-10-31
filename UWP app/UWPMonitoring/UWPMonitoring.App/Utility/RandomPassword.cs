@@ -113,8 +113,8 @@ namespace UWPMonitoring.App.Utility
             //RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
             //rng.GetBytes(randomBytes);
 
-            // Convert 4 bytes into a 32-bit integer value.
-            int seed = (int)CryptographicBuffer.GenerateRandomNumber();
+            // Convert 4 bytes into a 32-bit integer value. AANGEPAST BECAUSE UWP!
+            int seed = (int)CryptographicBuffer.GenerateRandomNumber(); //Bron: https://msdn.microsoft.com/en-us/windows/uwp/security/create-random-numbers
 
             // Now, this is real randomization.
             Random random = new Random(seed);

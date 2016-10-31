@@ -92,5 +92,18 @@ namespace UWPMonitoring.DAL
             int seconden = JsonConvert.DeserializeObject<int>(result);
             return seconden;
         }
+
+        public int RegisterEmployee(User newUser)
+        {
+            string url = string.Format("http://127.0.0.1:8181/user/");
+            Uri uri = new Uri(url);
+            HttpClient client = new HttpClient();
+            HttpContent json = new StringContent(JsonConvert.SerializeObject(newUser));
+            HttpResponseMessage response = Task.Run(() => client.PostAsync(url, json)).Result;
+            //response.EnsureSuccessStatusCode();
+            string result = Task.Run(() => response.Content.ReadAsStringAsync()).Result;
+            int id = JsonConvert.DeserializeObject<int>(result);
+            return id;
+        }
     }
 }
