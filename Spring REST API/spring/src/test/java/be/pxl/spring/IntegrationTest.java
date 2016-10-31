@@ -1,6 +1,6 @@
 package be.pxl.spring;
 
-import org.hamcrest.beans.SamePropertyValuesAs;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,14 +24,14 @@ public class IntegrationTest {
 				AppConfig.class);
 		User u = ctx.getBean(User.class);
 		u.setFirstName("brecht");
-		u.setDepartment("test");
+		u.setDepartment("Integration");
 		u.setLastName("morrhey");
 		u.setPassword("test");
 		u.setSalt("test");
 		u.setRole("test");
 		UserRestController urc = ctx.getBean(UserRestController.class);
 		int newUserId = urc.updateUser(u);
-		User u2 = urc.getUserById(newUserId).getBody();	
+		User u2 = urc.getUserById(newUserId).getBody();		
 		Assert.assertNotNull(u2);		
 	}
 }
