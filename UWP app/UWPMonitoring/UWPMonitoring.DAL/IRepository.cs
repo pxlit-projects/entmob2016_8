@@ -12,5 +12,6 @@ namespace UWPMonitoring.DAL
         int GetAverageTimeForUserId(int userId);
         int GetMinimalTimeForUserId(int userId);
         int GetMaximumTimeForUserId(int userId);
+        int GetTotalLengthForUserId(int userId);
     }
 }
