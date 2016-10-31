@@ -26,13 +26,26 @@ namespace HeadphoneDataApp.Repository
             return user;
         }
 
-        bool IRepository.CheckIfUserIsValid(int userId)
+        public bool CheckIfUserIsValid(int userId)
         {
             string url = string.Format("http://127.0.0.1:8181/user/{0}", userId);
             Uri uri = new Uri(url);
             HttpClient client = new HttpClient();
             HttpResponseMessage response = Task.Run(() => client.GetAsync(url)).Result;
             return response.IsSuccessStatusCode;
+        }
+
+        public async Task<string> sendSession(Session s)
+        {
+            string url = string.Format("http://127.0.0.1:8181/session");
+            Uri uri = new Uri(url);
+            HttpClient client = new HttpClient();
+
+            var content = new StringContent(JsonConvert.SerializeObject(s), Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await client.PostAsync(url, content);
+
+            var result = await response.Content.ReadAsStringAsync();
+            return result;
         }
     }
 }
