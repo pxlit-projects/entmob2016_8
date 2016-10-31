@@ -30,58 +30,43 @@ namespace HeadphoneDataApp.ViewModel
             this.LoginCommand = new Command(async () =>
             {
                 //login controle
-                //if (adapter==null)
-                //{
-                //    Debug.WriteLine("Geen bluetooth adapter gevonden");
-                //}
-                //else
-                //{
-                    
-                    if (CanLogin)
+                if (CanLogin)
+                {
+                    try
                     {
-                        try
+                        int id = Convert.ToInt32(Username.Trim());
+                        bool userExists = repository.CheckIfUserIsValid(id);
+
+                        if (userExists)
                         {
-                            int id = Convert.ToInt32(Username.Trim());
-                            bool userExists = repository.CheckIfUserIsValid(id);
-
-                            if (userExists)
+                            User retrievedUser = repository.GetUserById(id);
+                            bool passwordCorrect = this.CheckUserPassword(retrievedUser);
+                            if (passwordCorrect)
                             {
-                                User retrievedUser = repository.GetUserById(id);
-                                bool passwordCorrect = this.CheckUserPassword(retrievedUser);
-                                if (passwordCorrect)
-                                {
-                                    //Open een andere view
-                                    await App.Current.MainPage.Navigation.PushModalAsync(ViewLocator.MainPage);
+                                //Open een andere view
+                                await App.Current.MainPage.Navigation.PushModalAsync(ViewLocator.MainPage);
 
-                                    //Messenger aanspreken en User&Adapter doorsturen naar andere viewmodels
-                                    Messenger.Default.Send<IAdapter>(adapter);
-
-                                    //TO-DO USER
-
-
-                                }
-                                else
-                                {
-                                    ValidationErrors = "Password is incorrect";
-                                    OnPropertyChanged("ValidationErrors");
-                                }
+                                //Messenger aanspreken en User&Adapter doorsturen naar andere viewmodels
+                                Messenger.Default.Send<IAdapter>(adapter);
+                                //TO-DO USER
                             }
                             else
                             {
-                                ValidationErrors = "UserId is Incorrect";
+                                ValidationErrors = "Password is incorrect";
                                 OnPropertyChanged("ValidationErrors");
                             }
                         }
-                        catch (Exception)
+                        else
                         {
-
-                            throw;
+                            ValidationErrors = "UserId is Incorrect";
+                            OnPropertyChanged("ValidationErrors");
                         }
-                       
                     }
-                    
-                //}
-                
+                    catch (Exception)
+                    {
+                        throw;
+                    }             
+                }
             });
         }
 
