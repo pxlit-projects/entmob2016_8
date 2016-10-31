@@ -69,7 +69,7 @@ public class SessionUtility {
 		int seconds;
 		for (Session session : sessions) {
 			seconds = (int) ((session.getEndTime().getTime() - session.getStartTime().getTime())/1000);
-			max = session.getActualTime() > max ? session.getActualTime() : max;
+			max = seconds > max ? seconds : max;
 		}
 		return max;
 	}
