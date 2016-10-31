@@ -31,6 +31,7 @@ namespace UWPMonitoring.App.ViewModels
         public CustomCommand ClearSearchCommand { get; set; }
         public CustomCommand LoadCommand { get; set; }
         public CustomCommand SelectionChangedCommand { get; set; }
+        public CustomCommand NavigateToRegisterPageCommand { get; set; }
 
         //Properties
         public User LoggedInUser { get; set; }
@@ -151,6 +152,7 @@ namespace UWPMonitoring.App.ViewModels
             ClearSearchCommand = new CustomCommand(ClearSearch, CanClearSearch);
             LoadCommand = new CustomCommand(Load, CanLoad);
             SelectionChangedCommand = new CustomCommand(SelectionChanged, CanSelectionChangedExecute);
+            NavigateToRegisterPageCommand = new CustomCommand(NavigateToRegisterPage, CanNavigateToRegisterPage);
             
         }
 
@@ -237,6 +239,17 @@ namespace UWPMonitoring.App.ViewModels
                 return false;
             }
             
+        }
+
+        //Implementatie van navigate to register page command
+        private void NavigateToRegisterPage(object obj)
+        {
+            navigationService.NavigateTo("register");
+        }
+
+        private bool CanNavigateToRegisterPage(object obj)
+        {
+            return true;
         }
 
         //Implementatie van de interface INotifyPropertyChanged

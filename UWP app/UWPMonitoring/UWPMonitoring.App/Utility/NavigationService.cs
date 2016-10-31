@@ -18,6 +18,11 @@ namespace UWPMonitoring.App.Utility
                 Frame rootFrame = Window.Current.Content as Frame;
                 rootFrame.Navigate(typeof(MainView));
             }
+            if (key == "register")
+            {
+                Frame rootFrame = Window.Current.Content as Frame;
+                rootFrame.Navigate(typeof(RegisterEmployeeView));
+            }
         }
     }
 }

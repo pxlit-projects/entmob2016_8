@@ -105,6 +105,7 @@
     <Compile Include="ViewModelLocator.cs" />
     <Compile Include="ViewModels\EmployeeOverviewViewModel.cs" />
     <Compile Include="ViewModels\MainViewViewModel.cs" />
+    <Compile Include="ViewModels\RegisterEmployeeViewModel.cs" />
     <Compile Include="Views\EmployeeOverviewView.xaml.cs">
       <DependentUpon>EmployeeOverviewView.xaml</DependentUpon>
     </Compile>
