@@ -60,6 +60,12 @@ public interface UserService {
 	
 	public abstract int getTotalSessionLength(int userId);
 
+	public abstract double getAverageSessionLength(int userId);
+
+	public abstract int getMinimalSessionLength(int userId);
+
+	public abstract int getMaximalSessionLength(int userId);
+
 	
 	
 
