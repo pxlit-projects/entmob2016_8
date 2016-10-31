@@ -39,12 +39,6 @@ public class App {
 		System.out.println(urc.login(1, "test"));
 		
 		UserSessionRestController usrc = ctx.getBean(UserSessionRestController.class);
-<<<<<<< HEAD
-		u = usrc.getUserSessionById(1).getBody();
-//		System.out.println("Totale tijd user 1: "+ usrc.getTotalActualTime(1));
-=======
-	
->>>>>>> master
 		
 		
 //		Session s = ctx.getBean(Session.class);
