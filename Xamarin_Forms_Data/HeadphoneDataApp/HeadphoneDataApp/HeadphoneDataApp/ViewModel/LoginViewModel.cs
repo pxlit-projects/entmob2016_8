@@ -1,4 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
+using HeadphoneDataApp.Model;
+using HeadphoneDataApp.Repository;
+using HeadphoneDataApp.Utility;
 using HeadphoneDataApp.View;
 using Robotics.Mobile.Core.Bluetooth.LE;
 using System;
@@ -15,31 +18,80 @@ namespace HeadphoneDataApp.ViewModel
     public class LoginViewModel: INotifyPropertyChanged
     {
         private IAdapter adapter;
+        private IRepository repository;
 
+
+        //Constructor
         public LoginViewModel()
         {
             //get the adapter via messenger
             Messenger.Default.Register<IAdapter>(this, AdapterMessage);
+            this.repository = new HeadphoneDataApp.Repository.Repository();
             this.LoginCommand = new Command(async () =>
             {
-                //TO DO
                 //login controle
-                if (adapter==null)
-                {
-                    Debug.WriteLine("Geen bluetooth adapter gevonden");
-                }
-                else
-                {
-                    //TO DO
+                //if (adapter==null)
+                //{
+                //    Debug.WriteLine("Geen bluetooth adapter gevonden");
+                //}
+                //else
+                //{
+                    
                     if (CanLogin)
                     {
-                        await App.Current.MainPage.Navigation.PushModalAsync(ViewLocator.MainPage);
-                        Messenger.Default.Send<IAdapter>(adapter);
+                        try
+                        {
+                            int id = Convert.ToInt32(Username.Trim());
+                            bool userExists = repository.CheckIfUserIsValid(id);
+
+                            if (userExists)
+                            {
+                                User retrievedUser = repository.GetUserById(id);
+                                bool passwordCorrect = this.CheckUserPassword(retrievedUser);
+                                if (passwordCorrect)
+                                {
+                                    //Open een andere view
+                                    await App.Current.MainPage.Navigation.PushModalAsync(ViewLocator.MainPage);
+
+                                    //Messenger aanspreken en User&Adapter doorsturen naar andere viewmodels
+                                    Messenger.Default.Send<IAdapter>(adapter);
+
+                                    //TO-DO USER
+
+
+                                }
+                                else
+                                {
+                                    ValidationErrors = "Password is incorrect";
+                                    OnPropertyChanged("ValidationErrors");
+                                }
+                            }
+                            else
+                            {
+                                ValidationErrors = "UserId is Incorrect";
+                                OnPropertyChanged("ValidationErrors");
+                            }
+                        }
+                        catch (Exception)
+                        {
+
+                            throw;
+                        }
+                       
                     }
                     
-                }
+                //}
                 
             });
+        }
+
+        private bool CheckUserPassword(User retrievedUser)
+        {
+            string password = Password.Trim(); //Wachtwoord die de gebruiker heeft ingegeven
+            string salt = retrievedUser.Salt; //Salt van het opgehaalde user object
+            string hashedPasswordWithSalt = Hasher.ConvertStringToHash(password, salt);
+            bool passwordCorrect = hashedPasswordWithSalt.Equals(retrievedUser.Password);
+            return passwordCorrect;
         }
 
         public bool CanLogin

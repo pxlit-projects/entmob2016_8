@@ -17,7 +17,7 @@ namespace HeadphoneDataApp.Repository
     {
         public User GetUserById(int userId)
         {
-            string url = string.Format("http://127.0.0.1:8181/user/{0}", userId);
+            string url = string.Format("http://192.168.137.1:8181/user/{0}", userId);
             Uri uri = new Uri(url);
             HttpClient client = new HttpClient();
             HttpResponseMessage response = Task.Run(() => client.GetAsync(url)).Result;
@@ -28,7 +28,7 @@ namespace HeadphoneDataApp.Repository
 
         public bool CheckIfUserIsValid(int userId)
         {
-            string url = string.Format("http://127.0.0.1:8181/user/{0}", userId);
+            string url = string.Format("http://192.168.137.1:8181/user/{0}", userId);
             Uri uri = new Uri(url);
             HttpClient client = new HttpClient();
             HttpResponseMessage response = Task.Run(() => client.GetAsync(url)).Result;
