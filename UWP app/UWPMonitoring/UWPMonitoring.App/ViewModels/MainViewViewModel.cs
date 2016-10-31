@@ -99,20 +99,10 @@ namespace UWPMonitoring.App.ViewModels
         {
             string password = User.Password; //Wachtwoord die de gebruiker heeft ingegeven
             string salt = retrievedUser.Salt; //Salt van het opgehaalde user object
-            string hashedPasswordWithSalt = ConvertStringToHash(password, salt);
+            string hashedPasswordWithSalt = Hasher.ConvertStringToHash(password, salt);
             bool passwordCorrect = hashedPasswordWithSalt.Equals(retrievedUser.Password);
             return passwordCorrect;
 
-        }
-
-        private string ConvertStringToHash(string password, string salt)
-        {
-            byte[] data = Encoding.UTF8.GetBytes(password + "" + salt);
-            HashAlgorithmProvider alg = HashAlgorithmProvider.OpenAlgorithm(HashAlgorithmNames.Sha512);
-            IBuffer buffer = CryptographicBuffer.ConvertStringToBinary(password + salt, BinaryStringEncoding.Utf8);
-            IBuffer hashed = alg.HashData(buffer);
-            string res = CryptographicBuffer.EncodeToHexString(hashed);
-            return res;
         }
 
         private bool CanLogin(object obj)
