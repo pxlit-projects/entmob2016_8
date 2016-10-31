@@ -14,15 +14,16 @@ import be.pxl.spring.domain.User;
  * Hello world!
  *
  */
-@SpringBootApplication
+//@SpringBootApplication
 public class App {
 	
 
 	
 	public static void main(String[] args) {
 		ConfigurableApplicationContext ctx = SpringApplication.run(
-				App.class, args);
-		User u = ctx.getBean(User.class);
+				AppConfig.class, args);
+		
+		User u = ctx.getBean(User.class);		
 		u.setFirstName("brecht");
 		u.setDepartment("test");
 		u.setLastName("morrhey");
@@ -38,7 +39,12 @@ public class App {
 		System.out.println(urc.login(1, "test"));
 		
 		UserSessionRestController usrc = ctx.getBean(UserSessionRestController.class);
+<<<<<<< HEAD
+		u = usrc.getUserSessionById(1).getBody();
+//		System.out.println("Totale tijd user 1: "+ usrc.getTotalActualTime(1));
+=======
 	
+>>>>>>> master
 		
 		
 //		Session s = ctx.getBean(Session.class);
