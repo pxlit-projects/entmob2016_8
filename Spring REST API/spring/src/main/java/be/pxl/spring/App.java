@@ -24,21 +24,21 @@ public class App {
 				AppConfig.class, args);
 		
 		User u = ctx.getBean(User.class);		
-		u.setFirstName("brecht");
-		u.setDepartment("test");
-		u.setLastName("morrhey");
-		u.setPassword("test");
-		u.setSalt("test");
-		u.setRole("test");
-		System.out.println(u.getFirstName());		
-		UserRestController urc = ctx.getBean(UserRestController.class);
-		int newUserId = urc.updateUser(u);
-		System.out.println("Nieuwe UserId: "+newUserId);
-		User morrhey = urc.getUserById(1).getBody();
-		System.out.println(morrhey.getLastName());
-		System.out.println(urc.login(1, "test"));
-		
-		UserSessionRestController usrc = ctx.getBean(UserSessionRestController.class);
+//		u.setFirstName("brecht");
+//		u.setDepartment("test");
+//		u.setLastName("morrhey");
+//		u.setPassword("test");
+//		u.setSalt("test");
+//		u.setRole("test");
+//		System.out.println(u.getFirstName());		
+//		UserRestController urc = ctx.getBean(UserRestController.class);
+//		int newUserId = urc.updateUser(u);
+//		System.out.println("Nieuwe UserId: "+newUserId);
+//		User morrhey = urc.getUserById(1).getBody();
+//		System.out.println(morrhey.getLastName());
+//		System.out.println(urc.login(1, "test"));
+//		
+//		UserSessionRestController usrc = ctx.getBean(UserSessionRestController.class);
 		
 		
 //		Session s = ctx.getBean(Session.class);
