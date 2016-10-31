@@ -22,7 +22,8 @@ public class App {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext ctx = SpringApplication.run(
 				AppConfig.class, args);
-		User u = ctx.getBean(User.class);
+		
+		User u = ctx.getBean(User.class);		
 		u.setFirstName("brecht");
 		u.setDepartment("test");
 		u.setLastName("morrhey");
@@ -38,6 +39,7 @@ public class App {
 		System.out.println(urc.login(1, "test"));
 		
 		UserSessionRestController usrc = ctx.getBean(UserSessionRestController.class);
+		u = usrc.getUserSessionById(1).getBody();
 //		System.out.println("Totale tijd user 1: "+ usrc.getTotalActualTime(1));
 		
 		
