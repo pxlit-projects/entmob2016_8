@@ -47,19 +47,19 @@ namespace UWPMonitoring.DAL
 
         public int GetAverageTimeForUserId(int userId)
         {
-            string url = string.Format("http://127.0.0.1:8181/usersession/AverageActualTime/{0}", userId);
+            string url = string.Format("http://127.0.0.1:8181/usersession/AverageSessionLength/{0}", userId);
             Uri uri = new Uri(url);
             HttpClient client = new HttpClient();
             HttpResponseMessage response = Task.Run(() => client.GetAsync(url)).Result;
             response.EnsureSuccessStatusCode();
             string result = Task.Run(() => response.Content.ReadAsStringAsync()).Result;
-            int seconden = JsonConvert.DeserializeObject<int>(result);
-            return seconden;
+            double seconden = JsonConvert.DeserializeObject<double>(result);
+            return (int)seconden;
         }
 
         public int GetMinimalTimeForUserId(int userId)
         {
-            string url = string.Format("http://127.0.0.1:8181/usersession/MinimalActualTime/{0}", userId);
+            string url = string.Format("http://127.0.0.1:8181/usersession/MinimalSessionLength/{0}", userId);
             Uri uri = new Uri(url);
             HttpClient client = new HttpClient();
             HttpResponseMessage response = Task.Run(() => client.GetAsync(url)).Result;
@@ -71,7 +71,7 @@ namespace UWPMonitoring.DAL
 
         public int GetMaximumTimeForUserId(int userId)
         {
-            string url = string.Format("http://127.0.0.1:8181/usersession/MaximalActualTime/{0}", userId);
+            string url = string.Format("http://127.0.0.1:8181/usersession/MaximalSessionLength/{0}", userId);
             Uri uri = new Uri(url);
             HttpClient client = new HttpClient();
             HttpResponseMessage response = Task.Run(() => client.GetAsync(url)).Result;
