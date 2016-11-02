@@ -1,9 +1,9 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace UWPMonitoring.Domain
 {
-    public class Session
+    public class SessionWithLongs
     {
         [JsonProperty(PropertyName = "sessionId")]
         public int SessionId { get; set; }
@@ -12,10 +12,10 @@ namespace UWPMonitoring.Domain
         public int UserId { get; set; }
 
         [JsonProperty(PropertyName = "startTime")]
-        public DateTime Start_Time { get; set; }
+        public long Start_Time { get; set; }
 
         [JsonProperty(PropertyName = "endTime")]
-        public DateTime End_Time { get; set; }
+        public long End_Time { get; set; }
 
         [JsonProperty(PropertyName = "actualTime")]
         public int Actual_Time { get; set; }

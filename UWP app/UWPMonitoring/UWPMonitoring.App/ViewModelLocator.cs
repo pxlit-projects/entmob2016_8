@@ -1,4 +1,5 @@
-﻿using UWPMonitoring.App.Utility;
+﻿using UWPMonitoring.App.Service;
+using UWPMonitoring.App.Utility;
 using UWPMonitoring.App.ViewModels;
 using UWPMonitoring.DAL;
 
@@ -9,9 +10,10 @@ namespace UWPMonitoring.App
         //Variabelen
         private static INavigationService navigationService = new NavigationService();
         private static IRepository repository = new Repository();
+        private static IDataService dataService = new DataService(repository);
 
         private static MainViewViewModel mainViewViewModel = new MainViewViewModel(repository, navigationService);
-        private static EmployeeOverviewViewModel employeeOverviewViewModel = new EmployeeOverviewViewModel(navigationService, repository);
+        private static EmployeeOverviewViewModel employeeOverviewViewModel = new EmployeeOverviewViewModel(navigationService, repository, dataService);
         private static RegisterEmployeeViewModel registerEmployeeViewModel = new RegisterEmployeeViewModel(repository, navigationService);
 
         //Properties

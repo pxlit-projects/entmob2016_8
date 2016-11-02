@@ -166,6 +166,15 @@
                        Converter={StaticResource localSecondConverter}}"
                        Style="{ThemeResource SubheaderTextBlockStyle}"
                        RelativePanel.Below="totalTimeTextBlock" Margin="6,0,0,0"/>
+                
+                <TextBlock x:Name="lastSessionDateTextBlock" Text="Date of last session: "
+                       Style="{ThemeResource SubheaderTextBlockStyle}" FontWeight="Bold"
+                       RelativePanel.Below="totalTimeContentTextBlock"/>
+                <TextBlock x:Name="lastSessionDateContentTextBlock" 
+                       Text="{Binding LastSessionDate, Mode=OneWay, Converter={StaticResource localDateConverter}}"
+                       Style="{ThemeResource SubheaderTextBlockStyle}"
+                       RelativePanel.Below="lastSessionDateTextBlock" Margin="6,0,0,0"/>
+
             </RelativePanel>
         </ScrollViewer>
     </Grid>

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UWPMonitoring.Domain;
 
 namespace UWPMonitoring.DAL
@@ -14,5 +15,6 @@ namespace UWPMonitoring.DAL
         int GetMinimalTimeForUserId(int userId);
         int GetMaximumTimeForUserId(int userId);
         int GetTotalLengthForUserId(int userId);
+
     }
 }

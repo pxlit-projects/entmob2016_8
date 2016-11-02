@@ -10,6 +10,7 @@
         <ResourceDictionary>
             <local:ViewModelLocator x:Key="localViewModelLocator"></local:ViewModelLocator>
             <converter:SecondConverter x:Key="localSecondConverter"></converter:SecondConverter>
+            <converter:DateConverter x:Key="localDateConverter"></converter:DateConverter>
         </ResourceDictionary>
     </Application.Resources>
 

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using UWPMonitoring.App.Service;
 using UWPMonitoring.App.Utility;
 using UWPMonitoring.DAL;
 using UWPMonitoring.Domain;
@@ -16,6 +17,7 @@ namespace UWPMonitoring.App.ViewModels
         //Variabbelen
         private INavigationService navigationService;
         private IRepository repository;
+        private IDataService dataService;
         private List<User> employees;
         private User selectedEmployee;
         private List<User> omittedUsers = new List<User>();
@@ -24,6 +26,7 @@ namespace UWPMonitoring.App.ViewModels
         private int minimumTime;
         private int maximumTime;
         private int totalLength;
+        private DateTime lastSessionDate;
 
         //Commands
         public CustomCommand LogOutCommand { get; set; }
@@ -126,12 +129,26 @@ namespace UWPMonitoring.App.ViewModels
             }
         }
 
+        public DateTime LastSessionDate
+        {
+            get
+            {
+                return lastSessionDate;
+            }
+            set
+            {
+                lastSessionDate = value;
+                RaisePropertyChanged();
+            }
+        }
+
 
         //Constructor
-        public EmployeeOverviewViewModel(INavigationService navigationService, IRepository repository)
+        public EmployeeOverviewViewModel(INavigationService navigationService, IRepository repository, IDataService dataService)
         {
             this.navigationService = navigationService;
             this.repository = repository;
+            this.dataService = dataService;
 
             LoadCommands();
 
@@ -229,6 +246,18 @@ namespace UWPMonitoring.App.ViewModels
             MinimumTime = repository.GetMinimalTimeForUserId(SelectedEmployee.UserId);
             MaximumTime = repository.GetMaximumTimeForUserId(SelectedEmployee.UserId);
             TotalLength = repository.GetTotalLengthForUserId(SelectedEmployee.UserId);
+
+            //Als een user geen sessies heeft dan vervangen we de datum met een nieuwe datetime die door de converter in een boodschap word omgezet
+            try
+            {
+                Session session = dataService.GetLastSession(SelectedEmployee.UserId);
+                LastSessionDate = session.End_Time;
+            }
+            catch (Exception)
+            {
+                LastSessionDate = new DateTime();
+            }
+            
         }
 
         private bool CanSelectionChangedExecute(object obj)

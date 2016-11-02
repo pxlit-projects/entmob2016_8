@@ -101,10 +101,20 @@ namespace UWPMonitoring.DAL
             HttpClient client = new HttpClient();
             HttpContent json = new StringContent(JsonConvert.SerializeObject(newUser), Encoding.UTF8, "application/json");
             HttpResponseMessage response = Task.Run(() => client.PostAsync(url, json)).Result;
-            //response.EnsureSuccessStatusCode();
+            response.EnsureSuccessStatusCode();
             string result = Task.Run(() => response.Content.ReadAsStringAsync()).Result;
             int id = JsonConvert.DeserializeObject<int>(result);
             return id;
+        }
+
+        {
+            string url = string.Format("http://127.0.0.1:8181/session/LastSession/{0}", userId);
+            Uri uri = new Uri(url);
+            HttpClient client = new HttpClient();
+            HttpResponseMessage response = Task.Run(() => client.GetAsync(url)).Result;
+            response.EnsureSuccessStatusCode();
+            string result = Task.Run(() => response.Content.ReadAsStringAsync()).Result;
+            return session;
         }
     }
 }
