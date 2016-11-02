@@ -69,6 +69,7 @@ namespace UWPMonitoring.App.ViewModels
         //Implementatie van het back command
         private void Back(object obj)
         {
+            NewUser = new User(); //Eventuele ingevulde waarden terug leeg maken
             navigationService.NavigateTo("Overview");
         }
 

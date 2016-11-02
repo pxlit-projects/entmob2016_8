@@ -159,6 +159,10 @@ namespace UWPMonitoring.App.ViewModels
         //Implementatie van het log out command
         private void LogOut(object obj)
         {
+            AverageTime = 0;
+            MinimumTime = 0;
+            MaximumTime = 0;
+            TotalLength = 0;
             navigationService.NavigateTo("main");
         }
 
@@ -244,6 +248,10 @@ namespace UWPMonitoring.App.ViewModels
         //Implementatie van navigate to register page command
         private void NavigateToRegisterPage(object obj)
         {
+            AverageTime = 0;
+            MinimumTime = 0;
+            MaximumTime = 0;
+            TotalLength = 0;
             navigationService.NavigateTo("register");
         }
 
