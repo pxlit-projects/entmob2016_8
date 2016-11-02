@@ -4,6 +4,7 @@ using UWPMonitoring.Domain;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Text;
 
 namespace UWPMonitoring.DAL
 {
@@ -98,7 +99,7 @@ namespace UWPMonitoring.DAL
             string url = string.Format("http://127.0.0.1:8181/user/");
             Uri uri = new Uri(url);
             HttpClient client = new HttpClient();
-            HttpContent json = new StringContent(JsonConvert.SerializeObject(newUser));
+            HttpContent json = new StringContent(JsonConvert.SerializeObject(newUser), Encoding.UTF8, "application/json");
             HttpResponseMessage response = Task.Run(() => client.PostAsync(url, json)).Result;
             //response.EnsureSuccessStatusCode();
             string result = Task.Run(() => response.Content.ReadAsStringAsync()).Result;

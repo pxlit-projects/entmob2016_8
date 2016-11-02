@@ -69,6 +69,7 @@ namespace UWPMonitoring.Domain
             }
         }
 
+        [JsonIgnore]
         public string FullName
         {
             get
