@@ -69,36 +69,6 @@ namespace HeadphoneDataApp.ViewModel
                         {
                             AccelerometerData data = new AccelerometerData(characteristicData, characteristicConfig, characteristicPeriod);
                             data.Start();
-                            //set characteristic 
-                            //characteristicConfig.Write(new byte[] { 0x07 });
-
-                            //if (characteristicData.CanUpdate)
-                            //{
-                                //characteristicData.ValueUpdated += CharacteristicData_ValueUpdated;
-                                //characteristicData.ValueUpdated += async (object sender, CharacteristicReadEventArgs e) =>
-                                //{
-                                //    /*string data = */
-                                //    await GetData(e);
-                                //    //Debug.WriteLine("*");
-                                //    //var status = Decode(e.Characteristic.Value);
-                                //    //Debug.WriteLine("Update: " + e.Characteristic.Value);
-                                //    //Debug.WriteLine("Decoded: " + status);
-
-                                    //};
-
-                                    //device.ServicesDiscovered -= Device_ServicesDiscovered; ;
-                                    //characteristicData.StartUpdates();
-
-                                    //for (int i = 0; i < 1000; i++)
-                                    //{
-                                    //   Debug.WriteLine(characteristicData.Value[0]);
-                                    //   Debug.WriteLine(characteristicData.Value[0]);
-                                    //    Debug.WriteLine(characteristicData.Value[0]);
-                                    //    Debug.WriteLine("-----");
-                                    //}
-
-                            //}
-                            //characteristicData.StartUpdates();
                         }
                         else
                         {
@@ -163,25 +133,9 @@ namespace HeadphoneDataApp.ViewModel
                 device = e.Device; // do we need to overwrite this?
                 //when services are discovered
                 device.ServicesDiscovered += Device_ServicesDiscovered;
-                //device.ServicesDiscovered += (object se, EventArgs ea) =>
-                //{
-                //    Debug.WriteLine("device.ServicesDiscovered");
-                //    //services = (List<IService>)device.Services;
-                //    if (services.Count == 0)
-                //        Device.BeginInvokeOnMainThread(() =>
-                //        {
-                //            foreach (var service in device.Services)
-                //            {
-                //                services.Add(service);
-                //            }
-                //        });
-                //};
-                // start looking for services
                 device.DiscoverServices();
 
             };
-            
-            //adapter.ConnectToDevice(device);
             
         }
 

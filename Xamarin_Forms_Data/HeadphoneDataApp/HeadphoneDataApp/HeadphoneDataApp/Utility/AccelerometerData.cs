@@ -5,7 +5,9 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace HeadphoneDataApp.ViewModel
 {
@@ -25,38 +27,39 @@ namespace HeadphoneDataApp.ViewModel
 
         public void Start()
         {
-            characteristicConfig.Write(new byte[] { 0x00 });
-            characteristicConfig.Write(new byte[] { 0x01 });
-            characteristicConfig.Write(new byte[] { 0x02 });
-            characteristicConfig.Write(new byte[] { 0x03 });
-            characteristicConfig.Write(new byte[] { 0x04 });
-            characteristicConfig.Write(new byte[] { 0x05 });
-            characteristicConfig.Write(new byte[] { 0x06 });
-            //characteristicConfig.Write(new byte[] { 0x07 });
+            characteristicConfig.Write(new byte[] { 0xF7, 0x00 });
 
             //characteristicPeriod.Write(new byte[] { 0x0A });
             if (characteristicData.CanUpdate)
             {
 
                 characteristicData.ValueUpdated += CharacteristicData_ValueUpdated;
-                
+                /*Device.StartTimer(new TimeSpan(0, 0, 1), () => {
+                    CharacteristicData_ValueUpdated(characteristicData.Value);
+                    return true; });*///always return true, timer should never stop.
             }
 
-            characteristicData.StartUpdates();
+            characteristicData.StartUpdates(); 
+
 
             //characteristicData.ValueUpdated();
-          
+
         }
 
         private void CharacteristicData_ValueUpdated(object sender, CharacteristicReadEventArgs e)
         {
-            GetData(e);
+            Debug.WriteLine("CHECK");
+            if(e != null)
+            {
+                GetData(e);
+            }
+            
         }
 
         public void GetData(CharacteristicReadEventArgs e)
         {
             string data = Decode(e.Characteristic.Value);
-            Debug.WriteLine("Update: " + e.Characteristic.Value);
+            Debug.WriteLine("Update: " + e);
             //return status;
         }
 
@@ -67,7 +70,7 @@ namespace HeadphoneDataApp.ViewModel
             int x = sensorData[0];
             int y = sensorData[1];
             int z = sensorData[2];
-            Debug.WriteLine("x: " + x + " y: " + y + " z:" + z);
+            Debug.WriteLine("x: " + x + " y: " + y + " z: " + z);
             string data = "x: " + x + " y: " + y + " z:" + z;
             return data;
         }
