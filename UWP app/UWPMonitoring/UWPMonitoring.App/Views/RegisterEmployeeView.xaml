@@ -59,7 +59,14 @@
             <Button x:Name="backButton" Content="Back"
                     Style="{ThemeResource PivotTitleContentControlStyle}" 
                     RelativePanel.Below="departmentTextBox"
-                    Margin="0,10,0,0" />
+                    Margin="0,10,0,0" >
+                
+                <Interactivity:Interaction.Behaviors>
+                    <Interactions:EventTriggerBehavior EventName="Click">
+                        <Interactions:InvokeCommandAction Command="{Binding BackCommand}"/>
+                    </Interactions:EventTriggerBehavior>
+                </Interactivity:Interaction.Behaviors>
+            </Button>
         </RelativePanel>
     </Grid>
 </Page>
