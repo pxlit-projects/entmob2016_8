@@ -107,6 +107,7 @@ namespace UWPMonitoring.DAL
             return id;
         }
 
+        public SessionWithLongs GetLastSession(int userId)
         {
             string url = string.Format("http://127.0.0.1:8181/session/LastSession/{0}", userId);
             Uri uri = new Uri(url);
@@ -114,6 +115,7 @@ namespace UWPMonitoring.DAL
             HttpResponseMessage response = Task.Run(() => client.GetAsync(url)).Result;
             response.EnsureSuccessStatusCode();
             string result = Task.Run(() => response.Content.ReadAsStringAsync()).Result;
+            SessionWithLongs session = JsonConvert.DeserializeObject<SessionWithLongs>(result);
             return session;
         }
     }

@@ -16,5 +16,6 @@ namespace UWPMonitoring.DAL
         int GetMaximumTimeForUserId(int userId);
         int GetTotalLengthForUserId(int userId);
 
+        SessionWithLongs GetLastSession(int userId);
     }
 }
