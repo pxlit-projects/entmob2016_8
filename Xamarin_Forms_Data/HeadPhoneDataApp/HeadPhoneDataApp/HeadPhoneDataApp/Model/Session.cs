@@ -14,9 +14,9 @@ namespace HeadphoneDataApp.Model
         [JsonProperty(PropertyName = "userId")]
         public int UserId { get; set; }
 
-        public DateTime Start_Time { get; set; }
+        public String Start_Time { get; set; }
 
-        public DateTime End_Time { get; set; }
+        public String End_Time { get; set; }
 
         public int Actual_Time { get; set; }
     }

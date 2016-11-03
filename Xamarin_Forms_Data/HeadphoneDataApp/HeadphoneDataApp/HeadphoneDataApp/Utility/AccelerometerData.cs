@@ -20,7 +20,7 @@ namespace HeadphoneDataApp.ViewModel
         private bool isLocked;
         private List<double> xValues = new List<double>();
         private List<double> yValues = new List<double>();
-        private DateTime startTime, endTime;
+        private DateTime startTime;
         private int userId;
         private IRepository repository;
         public object WorkThreadFunction { get; private set; }
@@ -58,27 +58,14 @@ namespace HeadphoneDataApp.ViewModel
             
         }
 
-        public void GetData(CharacteristicReadEventArgs e)
-        {
-            Decode(e.Characteristic.Value);
-            
-            //TO-DO controle sensor voorlopig staat de bool nog op false
-            if (isLocked)
-            {
-                endTime = DateTime.Now;
-                SessionEnd(endTime);
-            }
-            Debug.WriteLine("Update: " + e);
-            //return status;
-        }
-
-        private async void SessionEnd(DateTime endTime)
+        private async void SessionEnd()
         {
             Session s = new Session();
-            s.Start_Time = startTime;
-            s.End_Time = endTime;
+            DateTime endTime = DateTime.Now;
+            s.Start_Time = startTime.ToString("yyyy-MM-dd HH:mm:ss");
+            s.End_Time = endTime.ToString("yyyy-MM-dd HH:mm:ss");
             s.UserId = userId;
-            //s.Actual_Time = endTime - startTime;
+            s.Actual_Time = (int)((endTime.Ticks - startTime.Ticks)/10000000);
             await repository.sendSession(s);
         }
 
@@ -108,8 +95,6 @@ namespace HeadphoneDataApp.ViewModel
                         avgY += d;
                     }
                     avgY = avgY / 10;
-                    Debug.WriteLine("avarage X: " + avgX);
-                    Debug.WriteLine("avarage Y: " + avgY);
                     xValues.Clear();
                     yValues.Clear();
 
@@ -117,16 +102,18 @@ namespace HeadphoneDataApp.ViewModel
                     {
                         if (avgX > 1.6)
                         {
+                            Debug.WriteLine("UNLOCKED");
                             isLocked = false;
-                            Debug.WriteLine("UNLOCK");
+                            startTime = DateTime.Now;
                         }
                     }
                     if (!isLocked)
                     {
                         if (avgX < 1.5)
                         {
+                            Debug.WriteLine("LOCKED");
                             isLocked = true;
-                            Debug.WriteLine("LOCK");
+                            SessionEnd();
                         }
                     }
                 }
