@@ -33,7 +33,7 @@ namespace UWPMonitoring.Test.Mocks
                     UserId = 1309,
                     Start_Time = new DateTime(2016,10,18,13,0,0),
                     End_Time = new DateTime(2016,10,18,14,0,0),
-                    Actual_Time = new DateTime(),
+                    Actual_Time = 2,
                 },
 
                  new Session
@@ -42,7 +42,7 @@ namespace UWPMonitoring.Test.Mocks
                     UserId = 1309,
                     Start_Time = new DateTime(2016,10,18,14,0,0),
                     End_Time = new DateTime(2016,10,18,15,0,0),
-                    Actual_Time = new DateTime(),
+                    Actual_Time = 2,
                 },
             };
 
@@ -54,7 +54,7 @@ namespace UWPMonitoring.Test.Mocks
                     UserId = 1234,
                     Start_Time = new DateTime(2016,10,18,13,0,0),
                     End_Time = new DateTime(2016,10,18,14,0,0),
-                    Actual_Time = new DateTime(),
+                    Actual_Time = 2,
                 },
 
                  new Session
@@ -63,7 +63,7 @@ namespace UWPMonitoring.Test.Mocks
                     UserId = 1234,
                     Start_Time = new DateTime(2016,10,18,14,0,0),
                     End_Time = new DateTime(2016,10,18,15,0,0),
-                    Actual_Time = new DateTime(),
+                    Actual_Time = 2,
                 },
             };
 
@@ -75,7 +75,7 @@ namespace UWPMonitoring.Test.Mocks
                     UserId = 4321,
                     Start_Time = new DateTime(2016,10,18,13,0,0),
                     End_Time = new DateTime(2016,10,18,14,0,0),
-                    Actual_Time = new DateTime(),
+                    Actual_Time = 2,
                 },
 
                  new Session
@@ -84,7 +84,7 @@ namespace UWPMonitoring.Test.Mocks
                     UserId = 4321,
                     Start_Time = new DateTime(2016,10,18,14,0,0),
                     End_Time = new DateTime(2016,10,18,15,0,0),
-                    Actual_Time = new DateTime(),
+                    Actual_Time = 2,
                 },
             };
 
@@ -96,7 +96,7 @@ namespace UWPMonitoring.Test.Mocks
                     UserId = 5678,
                     Start_Time = new DateTime(2016,10,18,13,0,0),
                     End_Time = new DateTime(2016,10,18,14,0,0),
-                    Actual_Time = new DateTime(),
+                    Actual_Time = 2,
                 },
 
                  new Session
@@ -105,7 +105,7 @@ namespace UWPMonitoring.Test.Mocks
                     UserId = 5678,
                     Start_Time = new DateTime(2016,10,18,14,0,0),
                     End_Time = new DateTime(2016,10,18,15,0,0),
-                    Actual_Time = new DateTime(),
+                    Actual_Time = 2,
                 },
             };
 
@@ -155,41 +155,6 @@ namespace UWPMonitoring.Test.Mocks
             
         }
 
-        public bool CheckIfUserIsValid(int userId, string password)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Session> GetAllSessions()
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<User> GetAllUsers()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Session GetSession(int sessionId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Session GetSessionByUserId(int userId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public User GetUser(int userId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public User GetUserBySessionId(int sessionId)
-        {
-            throw new NotImplementedException();
-        }
-
         public User GetUserById(int userId)
         {
             throw new NotImplementedException();
@@ -205,7 +170,32 @@ namespace UWPMonitoring.Test.Mocks
             throw new NotImplementedException();
         }
 
-        public double GetAverageTimeForuserId(int id)
+        public int RegisterEmployee(User newUser)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetAverageTimeForUserId(int userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetMinimalTimeForUserId(int userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetMaximumTimeForUserId(int userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetTotalLengthForUserId(int userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public SessionWithLongs GetLastSession(int userId)
         {
             throw new NotImplementedException();
         }
