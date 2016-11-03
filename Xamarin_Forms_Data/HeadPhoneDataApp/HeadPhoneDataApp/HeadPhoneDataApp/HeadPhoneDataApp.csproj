@@ -106,7 +106,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Robotics.Mobile.Core">
-      <HintPath>..\..\..\..\..\..\..\Desktop\android\Robotics.Mobile.Core.dll</HintPath>
+      <HintPath>App\Robotics.Mobile.Core.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.dll</HintPath>

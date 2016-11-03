@@ -37,7 +37,7 @@ namespace HeadphoneDataApp.Repository
 
         public async Task<string> sendSession(Session s)
         {
-            string url = string.Format("http://127.0.0.1:8181/session");
+            string url = string.Format("http://192.168.137.1:8181/session");
             Uri uri = new Uri(url);
             HttpClient client = new HttpClient();
 
