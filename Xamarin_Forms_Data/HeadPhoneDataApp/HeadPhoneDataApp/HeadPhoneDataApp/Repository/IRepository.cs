@@ -11,5 +11,6 @@ namespace HeadphoneDataApp.Repository
     {
         User GetUserById(int userId);
         bool CheckIfUserIsValid(int userId);
+        Task<string> sendSession(Session s);
     }
 }

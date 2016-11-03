@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using HeadphoneDataApp.Model;
+using HeadphoneDataApp.Repository;
 
 namespace HeadphoneDataApp.ViewModel
 {
@@ -15,17 +17,23 @@ namespace HeadphoneDataApp.ViewModel
     {
 
         private ICharacteristic characteristicData, characteristicConfig, characteristicPeriod;
-        private bool isLocked = false;
+        private bool isLocked;
         private List<double> xValues = new List<double>();
         private List<double> yValues = new List<double>();
-
+        private DateTime startTime, endTime;
+        private int userId;
+        private IRepository repository;
         public object WorkThreadFunction { get; private set; }
 
-        public AccelerometerData(ICharacteristic characteristicData, ICharacteristic characteristicConfig, ICharacteristic characteristicPeriod)
+        public AccelerometerData(ICharacteristic characteristicData, ICharacteristic characteristicConfig, ICharacteristic characteristicPeriod, DateTime startTime, int userId)
         {
             this.characteristicData = characteristicData;
             this.characteristicConfig = characteristicConfig;
             this.characteristicPeriod = characteristicPeriod;
+            this.startTime = startTime;
+            this.userId = userId;
+            repository = new Repository.Repository();
+            isLocked = false;
         }
 
         public void Start()
@@ -48,6 +56,30 @@ namespace HeadphoneDataApp.ViewModel
                 Decode(e.Characteristic.Value);
             }
             
+        }
+
+        public void GetData(CharacteristicReadEventArgs e)
+        {
+            Decode(e.Characteristic.Value);
+            
+            //TO-DO controle sensor voorlopig staat de bool nog op false
+            if (isLocked)
+            {
+                endTime = DateTime.Now;
+                SessionEnd(endTime);
+            }
+            Debug.WriteLine("Update: " + e);
+            //return status;
+        }
+
+        private async void SessionEnd(DateTime endTime)
+        {
+            Session s = new Session();
+            s.Start_Time = startTime;
+            s.End_Time = endTime;
+            s.UserId = userId;
+            //s.Actual_Time = endTime - startTime;
+            await repository.sendSession(s);
         }
 
         private void Decode(byte[] value)

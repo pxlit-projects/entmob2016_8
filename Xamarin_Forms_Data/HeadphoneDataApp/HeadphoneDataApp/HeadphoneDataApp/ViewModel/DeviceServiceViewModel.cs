@@ -67,7 +67,8 @@ namespace HeadphoneDataApp.ViewModel
                                             characteristicConfig.Uuid == UUID_CONFIG &&
                                            characteristicPeriod.Uuid == UUID_PERIOD)
                         {
-                            AccelerometerData data = new AccelerometerData(characteristicData, characteristicConfig, characteristicPeriod);
+                            DateTime now = DateTime.Now;
+                            AccelerometerData data = new AccelerometerData(characteristicData, characteristicConfig, characteristicPeriod, now, user.UserId);
                             data.Start();
                         }
                         else
