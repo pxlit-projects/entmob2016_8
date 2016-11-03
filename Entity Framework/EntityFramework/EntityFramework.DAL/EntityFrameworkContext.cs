@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using EntityFramework.Domain;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UWPMonitoring.Domain;
 
 namespace EntityFramework.DAL
 {
@@ -13,7 +8,8 @@ namespace EntityFramework.DAL
     {
         //DbSets
         public DbSet<User> User { get; set; }
-        public DbSet<Session>  Session { get; set; }
+        public DbSet<Session> Session { get; set; }
+        public DbSet<Credentials> Credentials { get; set; }
 
         //Naam van de database meegeven
         public EntityFrameworkContext() : base("EntityFrameworkDB")
@@ -31,11 +27,22 @@ namespace EntityFramework.DAL
             modelBuilder.Entity<Session>().HasKey(k => k.SessionId); //PK instellen
             modelBuilder.Entity<Session>().Property(k => k.SessionId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity); //PK automatisch laten genereren bij het maken van een nieuwe rij
 
-            //Fluent API voor relationship
+            //Credentials fluent API
+            modelBuilder.Entity<Credentials>().HasKey(k => k.CredentialId); //PK instellen
+            modelBuilder.Entity<Credentials>().Property(k => k.CredentialId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity); //PK automatisch laten genereren bij het mqken vqn een nieuwe rij
+
+            //Fluent API voor relationship tussen Session en User
             modelBuilder.Entity<Session>()
                 .HasRequired(s => s.User)
                 .WithMany(u => u.Sessions)
                 .HasForeignKey(s => s.UserId);
+
+            //Fluent API voor relationshop tussen User en Credentials
+            modelBuilder.Entity<Credentials>()
+                .HasRequired(c => c.User)
+                .WithMany(u => u.Credentials)
+                .HasForeignKey(c => c.UserId);
+
         }
 
 

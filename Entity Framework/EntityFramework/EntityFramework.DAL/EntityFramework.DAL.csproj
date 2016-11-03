@@ -50,6 +50,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntityFrameworkContext.cs" />
+    <Compile Include="Migrations\201611031001468_init.cs" />
+    <Compile Include="Migrations\201611031001468_init.Designer.cs">
+      <DependentUpon>201611031001468_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611031006142_AddedSession.cs" />
+    <Compile Include="Migrations\201611031006142_AddedSession.Designer.cs">
+      <DependentUpon>201611031006142_AddedSession.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611031009311_AddedCredentials.cs" />
+    <Compile Include="Migrations\201611031009311_AddedCredentials.Designer.cs">
+      <DependentUpon>201611031009311_AddedCredentials.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -61,6 +74,17 @@
       <Project>{9072AABF-9962-459A-B0D9-33CBD09384AC}</Project>
       <Name>EntityFramework.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201611031001468_init.resx">
+      <DependentUpon>201611031001468_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611031006142_AddedSession.resx">
+      <DependentUpon>201611031006142_AddedSession.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611031009311_AddedCredentials.resx">
+      <DependentUpon>201611031009311_AddedCredentials.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

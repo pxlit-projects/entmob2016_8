@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace UWPMonitoring.Domain
+namespace EntityFramework.Domain
 {
 
     public class User
@@ -10,6 +10,7 @@ namespace UWPMonitoring.Domain
         public User()
         {
             Sessions = new List<Session>();
+            Credentials = new List<Credentials>();
         }
 
         //Properties
@@ -28,5 +29,7 @@ namespace UWPMonitoring.Domain
         public string Role { get; set; }
 
         public List<Session> Sessions { get; set; }
+
+        public List<Credentials> Credentials { get; set; }
     }
 }

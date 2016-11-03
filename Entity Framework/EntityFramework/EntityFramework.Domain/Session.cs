@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace UWPMonitoring.Domain
+namespace EntityFramework.Domain
 {
     public class Session
     {
