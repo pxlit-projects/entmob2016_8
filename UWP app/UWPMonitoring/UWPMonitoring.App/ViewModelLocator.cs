@@ -12,7 +12,7 @@ namespace UWPMonitoring.App
         private static IRepository repository = new Repository();
         private static IDataService dataService = new DataService(repository);
 
-        private static MainViewViewModel mainViewViewModel = new MainViewViewModel(repository, navigationService);
+        private static MainViewViewModel mainViewViewModel = new MainViewViewModel(navigationService, dataService);
         private static EmployeeOverviewViewModel employeeOverviewViewModel = new EmployeeOverviewViewModel(navigationService, repository, dataService);
         private static RegisterEmployeeViewModel registerEmployeeViewModel = new RegisterEmployeeViewModel(repository, navigationService);
 
