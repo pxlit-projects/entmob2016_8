@@ -94,6 +94,7 @@
     <SDKReference Include="TestPlatform.Universal, Version=$(UnitTestPlatformVersion)" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConverterTests\DataConverterTest.cs" />
     <Compile Include="ConverterTests\SecondConverterTest.cs" />
     <Compile Include="UtilityTests\HasherTest.cs" />
     <Compile Include="Mocks\NavigationServiceMock.cs" />
