@@ -14,7 +14,7 @@ namespace UWPMonitoring.App
 
         private static MainViewViewModel mainViewViewModel = new MainViewViewModel(navigationService, dataService);
         private static EmployeeOverviewViewModel employeeOverviewViewModel = new EmployeeOverviewViewModel(navigationService, dataService);
-        private static RegisterEmployeeViewModel registerEmployeeViewModel = new RegisterEmployeeViewModel(repository, navigationService);
+        private static RegisterEmployeeViewModel registerEmployeeViewModel = new RegisterEmployeeViewModel(dataService, navigationService);
 
         //Properties
         public static MainViewViewModel MainViewViewModel

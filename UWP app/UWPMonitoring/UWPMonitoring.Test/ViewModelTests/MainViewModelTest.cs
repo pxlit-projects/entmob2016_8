@@ -57,7 +57,7 @@ namespace UWPMonitoring.Test.ViewModelTests
         {
             //Arrange
             init();
-            mainViewViewModel.User.UserId = 1;
+            mainViewViewModel.User.UserId = 999;
             mainViewViewModel.User.Password = "koen";
 
             //Act

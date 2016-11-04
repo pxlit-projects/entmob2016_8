@@ -105,7 +105,7 @@ namespace UWPMonitoring.Test.ViewModelTests
 
             //Assert
             Assert.NotEmpty(employeeOverviewViewmodel.Employees);
-            Assert.Equal(3, employeeOverviewViewmodel.Employees.Count);
+            Assert.Equal(4, employeeOverviewViewmodel.Employees.Count);
         }
 
         //Test van het selection changed command

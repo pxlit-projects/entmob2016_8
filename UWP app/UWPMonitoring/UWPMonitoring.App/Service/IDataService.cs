@@ -17,5 +17,6 @@ namespace UWPMonitoring.App.Service
         int GetMinimalTimeForUserId(int userId);
         int GetMaximumTimeForUserId(int userId);
         int GetTotalLengthForUserId(int userId);
+        int RegisterEmployee(User newUser);
     }
 }

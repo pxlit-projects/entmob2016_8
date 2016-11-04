@@ -124,5 +124,10 @@ namespace UWPMonitoring.App.Service
         {
             return repository.GetTotalLengthForUserId(userId);
         }
+
+        public int RegisterEmployee(User newUser)
+        {
+            return repository.RegisterEmployee(newUser);
+        }
     }
 }
