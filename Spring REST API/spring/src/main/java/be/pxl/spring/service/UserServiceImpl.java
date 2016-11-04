@@ -183,6 +183,27 @@ public class UserServiceImpl implements UserService {
 		return sessionUtil.TotalLength(sessions);
 		
 	}
+
+
+	@Override
+	public double getAverageSessionLength(int userId) {
+		Set<Session> sessions = this.findById(userId).getSessions();
+		return sessionUtil.AverageLength(sessions);
+	}
+
+
+	@Override
+	public int getMinimalSessionLength(int userId) {
+		Set<Session> sessions = this.findById(userId).getSessions();
+		return sessionUtil.MinimalLength(sessions);
+	}
+
+
+	@Override
+	public int getMaximalSessionLength(int userId) {
+		Set<Session> sessions = this.findById(userId).getSessions();
+		return sessionUtil.MaximalLength(sessions);
+	}
 	
 	
 
