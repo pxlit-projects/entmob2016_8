@@ -29,6 +29,13 @@ namespace HeadphoneDataApp.ViewModel
     public class MainViewModel : ViewModelBase, INotifyPropertyChanged
     {
         private IAdapter adapter;
+        public IAdapter Adapter
+        {
+            get { return adapter; }
+            set { adapter = value; }
+        }
+        
+
         private User user;
 
         private ObservableCollection<IDevice> devices;
@@ -46,7 +53,7 @@ namespace HeadphoneDataApp.ViewModel
                 Messenger.Default.Send<User>(user);
             });
             //get the adapter via messenger
-            Messenger.Default.Register<IAdapter>(this, Adapter);
+            Messenger.Default.Register<IAdapter>(this, AdapterMessage);
             //get the user via messenger
             Messenger.Default.Register<User>(this, User);
             devices = new ObservableCollection<IDevice>();
@@ -60,12 +67,12 @@ namespace HeadphoneDataApp.ViewModel
            
         }
 
-        void StartScanning()
+        public void StartScanning()
         {
             StartScanning(Guid.Empty);
         }
 
-        void StartScanning(Guid forService)
+        public void StartScanning(Guid forService)
         {
             if (adapter.IsScanning)
             {
@@ -80,7 +87,7 @@ namespace HeadphoneDataApp.ViewModel
             }
         }
 
-        void StopScanning()
+        public void StopScanning()
         {
             // stop scanning
             new Task(() =>
@@ -93,7 +100,7 @@ namespace HeadphoneDataApp.ViewModel
             }).Start();
         }
         
-        private void Adapter(IAdapter obj)
+        private void AdapterMessage(IAdapter obj)
         {
             this.adapter = obj;
             adapter.DeviceDiscovered += (object sender, DeviceDiscoveredEventArgs e) =>
@@ -101,7 +108,7 @@ namespace HeadphoneDataApp.ViewModel
                 Device.BeginInvokeOnMainThread(() =>
                 {
                     devices.Add(e.Device);
-                    Devices = devices;
+                    //Devices = devices;
                 });
             };
 
