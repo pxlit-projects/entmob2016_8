@@ -41,6 +41,12 @@ namespace HeadphoneDataApp.Tests.Mocks
             }
         }
 
+        private IList<IService> services;
+
+        public IList<IService> ServicesIncorrect
+        {
+            set { services = value; }
+        }
         public IList<IService> Services
         {
             get
@@ -68,7 +74,7 @@ namespace HeadphoneDataApp.Tests.Mocks
 
             remove
             {
-                throw new NotImplementedException();
+                //throw new NotImplementedException();
             }
         }
 

@@ -46,7 +46,9 @@ namespace HeadphoneDataApp.Tests.Mocks
         {
             add
             {
-                throw new NotImplementedException();
+                
+                //return new DeviceConnectionEventArgs();
+                //throw new NotImplementedException();
             }
 
             remove
@@ -96,7 +98,7 @@ namespace HeadphoneDataApp.Tests.Mocks
 
         void IAdapter.ConnectToDevice(IDevice device)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         void IAdapter.DisconnectDevice(IDevice device)
