@@ -100,6 +100,29 @@ namespace UWPMonitoring.App.Service
             return sessionLong.ToNormalSession();
         }
 
-       
+        public List<User> GetAllUsersByRole(string role)
+        {
+            return repository.GetAllUsersByRole(role);
+        }
+
+        public int GetAverageTimeForUserId(int userId)
+        {
+            return repository.GetAverageTimeForUserId(userId);
+        }
+
+        public int GetMinimalTimeForUserId(int userId)
+        {
+            return repository.GetMinimalTimeForUserId(userId);
+        }
+
+        public int GetMaximumTimeForUserId(int userId)
+        {
+            return repository.GetMaximumTimeForUserId(userId);
+        }
+
+        public int GetTotalLengthForUserId(int userId)
+        {
+            return repository.GetTotalLengthForUserId(userId);
+        }
     }
 }

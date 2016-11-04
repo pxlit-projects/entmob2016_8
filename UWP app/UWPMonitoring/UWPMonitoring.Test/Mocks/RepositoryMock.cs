@@ -137,6 +137,18 @@ namespace UWPMonitoring.Test.Mocks
                     Role = "user",
                     Sessions = sessionListStephane
                 },
+
+                new User
+                {
+                    UserId = 1,
+                    FirstName = "Stephane",
+                    LastName = "Oris",
+                    Password = "50b3edb7ce73fb7a0a48ff74c69be838e67c5fb2d8bfa2084d457e6cc5213849205a1476fc4dbd7d73070377dad7b99b885b63219518a3f8792679b2a49cba61", //stephane
+                    Salt = "salt",
+                    Department = "Verkoop",
+                    Role = "user",
+                    Sessions = new List<Session>()
+                },
             };
 
             
@@ -170,6 +182,7 @@ namespace UWPMonitoring.Test.Mocks
 
         public int RegisterEmployee(User newUser)
         {
+            newUser.UserId = 1337;
             userList.Add(newUser);
             return newUser.UserId;
         }
@@ -178,12 +191,21 @@ namespace UWPMonitoring.Test.Mocks
         {
             int sum = 0;
             User user = userList.Where(u => u.UserId == userId).First();
-            foreach (Session s in user.Sessions)
-            {
-                sum += (int)s.End_Time.Subtract(s.Start_Time).TotalSeconds;
-            }
 
-            return sum / user.Sessions.Count();
+            if (user.Sessions.Count != 0)
+            {
+                foreach (Session s in user.Sessions)
+                {
+                    sum += (int)s.End_Time.Subtract(s.Start_Time).TotalSeconds;
+                }
+
+                return sum / user.Sessions.Count();
+            }
+            else
+            {
+                return 0;
+            }
+            
         }
 
         public int GetMinimalTimeForUserId(int userId)
@@ -191,16 +213,25 @@ namespace UWPMonitoring.Test.Mocks
             int min = int.MaxValue;
             int result;
             User user = userList.Where(u => u.UserId == userId).First();
-            foreach (Session s in user.Sessions)
-            {
-                result = (int)s.End_Time.Subtract(s.Start_Time).TotalSeconds;
-                if (result < min)
-                {
-                    min = result;
-                }
-            }
 
-            return min;
+            if (user.Sessions.Count != 0)
+            {
+                foreach (Session s in user.Sessions)
+                {
+                    result = (int)s.End_Time.Subtract(s.Start_Time).TotalSeconds;
+                    if (result < min)
+                    {
+                        min = result;
+                    }
+                }
+
+                return min;
+            }
+            else
+            {
+                return 0;
+            }
+               
         }
 
         public int GetMaximumTimeForUserId(int userId)
@@ -208,33 +239,87 @@ namespace UWPMonitoring.Test.Mocks
             int max = int.MinValue;
             int result;
             User user = userList.Where(u => u.UserId == userId).First();
-            foreach (Session s in user.Sessions)
-            {
-                result = (int)s.End_Time.Subtract(s.Start_Time).TotalSeconds;
-                if (result > max)
-                {
-                    max = result;
-                }
-            }
 
-            return max;
+            if (user.Sessions.Count != 0)
+            {
+                foreach (Session s in user.Sessions)
+                {
+                    result = (int)s.End_Time.Subtract(s.Start_Time).TotalSeconds;
+                    if (result > max)
+                    {
+                        max = result;
+                    }
+                }
+
+                return max;
+            }
+            else
+            {
+                return 0;
+            }
+            
         }
 
         public int GetTotalLengthForUserId(int userId)
         {
             int sum = 0;
             User user = userList.Where(u => u.UserId == userId).First();
-            foreach (Session s in user.Sessions)
-            {
-                sum += (int)s.End_Time.Subtract(s.Start_Time).TotalSeconds;
-            }
 
-            return sum;
+            if (user.Sessions.Count != 0)
+            {
+                foreach (Session s in user.Sessions)
+                {
+                    sum += (int)s.End_Time.Subtract(s.Start_Time).TotalSeconds;
+                }
+
+                return sum;
+            }
+            else
+            {
+                return 0;
+            }
+            
         }
 
         public SessionWithLongs GetLastSession(int userId)
         {
-            throw new NotImplementedException();
+            Session session = new Session();
+            DateTime date = new DateTime();
+            User user = userList.Where(u => u.UserId == userId).First();
+
+            if (user.Sessions.Count != 0)
+            {
+                foreach (Session s in user.Sessions)
+                {
+                    if (s.End_Time > date )
+                    {
+                        date = s.End_Time;
+                        session = s;
+                    }
+
+                   
+                }
+
+                return new SessionWithLongs
+                {
+                    SessionId = session.SessionId,
+                    UserId = session.UserId,
+                    Start_Time = ConvertToUnixTimestamp(session.Start_Time),
+                    End_Time = ConvertToUnixTimestamp(session.End_Time),
+                    Actual_Time = session.Actual_Time,
+                };
+            }
+            else
+            {
+                throw new Exception();
+            }
+        }
+
+        private static long ConvertToUnixTimestamp(DateTime date)
+        {
+            DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+            TimeSpan diff = date.ToUniversalTime() - origin;
+            return (long)Math.Floor(diff.TotalSeconds);
         }
     }
 }

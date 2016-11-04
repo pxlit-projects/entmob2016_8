@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UWPMonitoring.App.Service;
+﻿using UWPMonitoring.App.Service;
 using UWPMonitoring.App.Utility;
 using UWPMonitoring.App.ViewModels;
 using UWPMonitoring.DAL;
@@ -20,8 +15,6 @@ namespace UWPMonitoring.Test.ViewModelTests
         private IDataService dataService;
         private IRepository repository;
         private INavigationService navigationService;
-        private User user;
-        private Button button;
 
         public void init()
         {
@@ -29,6 +22,17 @@ namespace UWPMonitoring.Test.ViewModelTests
             dataService = new DataService(repository);
             navigationService = new NavigationServiceMock();
             mainViewViewModel = new MainViewViewModel(navigationService, dataService);
+        }
+
+        //Testen of de commands goed geladen worden
+        [Fact]
+        public void LoadCommandsTest()
+        {
+            //Arrange + act
+            init();
+
+            //Assert
+            Assert.NotNull(mainViewViewModel.LoginCommand);
         }
 
         //Test een goede login
@@ -44,7 +48,7 @@ namespace UWPMonitoring.Test.ViewModelTests
             mainViewViewModel.LoginCommand.Execute("test");
 
             //Assert
-            Assert.Equal(navigationService.Key, "Overview");
+            Assert.Equal("Overview",navigationService.Key);
         }
 
         //Test van een login met een onbestaand user ID
@@ -60,7 +64,7 @@ namespace UWPMonitoring.Test.ViewModelTests
             mainViewViewModel.LoginCommand.Execute("test");
 
             //Assert
-            Assert.Equal(mainViewViewModel.Message, "Het ingevulde id bestaat niet.");
+            Assert.Equal("Het ingevulde id bestaat niet.", mainViewViewModel.Message);
         }
 
         //Test van een login met een verkeerd wachtwoord
@@ -76,7 +80,7 @@ namespace UWPMonitoring.Test.ViewModelTests
             mainViewViewModel.LoginCommand.Execute("test");
 
             //Assert
-            Assert.Equal(mainViewViewModel.Message, "Dit is geen geldig wachtwoord.");
+            Assert.Equal("Dit is geen geldig wachtwoord.", mainViewViewModel.Message);
         }
 
         //Test van een login van een user met de role user
@@ -92,7 +96,7 @@ namespace UWPMonitoring.Test.ViewModelTests
             mainViewViewModel.LoginCommand.Execute("test");
 
             //Assert
-            Assert.Equal(mainViewViewModel.Message, "Deze gebruiker heeft geen admin rechten.");
+            Assert.Equal("Deze gebruiker heeft geen admin rechten.", mainViewViewModel.Message);
         }
     }
 }
