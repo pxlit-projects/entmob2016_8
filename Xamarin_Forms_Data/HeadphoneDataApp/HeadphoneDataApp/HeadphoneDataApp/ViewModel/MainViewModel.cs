@@ -29,10 +29,7 @@ namespace HeadphoneDataApp.ViewModel
     public class MainViewModel : ViewModelBase, INotifyPropertyChanged
     {
         private IAdapter adapter;
-        private string deviceName;
         private User user;
-
-        ObservableCollection<IService> services;
 
         private ObservableCollection<IDevice> devices;
         public event PropertyChangedEventHandler PropertyChanged;
@@ -53,7 +50,7 @@ namespace HeadphoneDataApp.ViewModel
             //get the user via messenger
             Messenger.Default.Register<User>(this, User);
             devices = new ObservableCollection<IDevice>();
-            this.services = new ObservableCollection<IService>();
+            
 
             this.ScanCommand = new Command(() =>
             {
@@ -105,7 +102,6 @@ namespace HeadphoneDataApp.ViewModel
                 {
                     devices.Add(e.Device);
                     Devices = devices;
-                    DeviceName = e.Device.Name;
                 });
             };
 
@@ -127,22 +123,6 @@ namespace HeadphoneDataApp.ViewModel
         public ICommand DeviceSelectedCommand { get; set; }
 
         public ICommand ScanCommand { protected set; get; }
-
-        public string DeviceName
-        {
-            get
-            {
-                return deviceName;
-            }
-            set
-            {
-                if (deviceName != value)
-                {
-                    deviceName = value;
-                    OnPropertyChanged("DeviceName");
-                }
-            }
-        }
 
         public ObservableCollection<IDevice> Devices
         {
