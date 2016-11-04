@@ -43,8 +43,16 @@ namespace HeadphoneDataApp.ViewModel
             set { user = value; }
         }
 
-        public string Ready { get; set; }
+        private string ready;
 
+        public string Ready
+        {
+            get { return ready; }
+            set { 
+                    ready = value;
+                    OnPropertyChanged("Ready");
+                }
+        }
 
 
         private ICharacteristic characteristicConfig;
@@ -196,19 +204,36 @@ namespace HeadphoneDataApp.ViewModel
             if (services.Count == 0)
                 Xamarin.Forms.Device.BeginInvokeOnMainThread(() =>
                 {
-                    foreach (var service in device.Services)
-                    {
-                        //services.Add(service);
-                        if (service.ID.ToString() == ID_SERVICE)
-                        {
-                            Debug.WriteLine("Found Accelerometer Service");
-                            Ready = "Found Accelerometer Service, feel free to press the button";
-                            _accelerometerService = service;
-                            device.ServicesDiscovered -= Device_ServicesDiscovered;
+                    findService();
+                    //foreach (var service in device.Services)
+                    //{
+                    //    //services.Add(service);
+                    //    if (service.ID.ToString() == ID_SERVICE)
+                    //    {
+                    //        Debug.WriteLine("Found Accelerometer Service");
+                    //        Ready = "Found Accelerometer Service, feel free to press the button";
+                    //        _accelerometerService = service;
+                    //        device.ServicesDiscovered -= Device_ServicesDiscovered;
 
-                        }
-                    }
+                    //    }
+                    //}
                 });
+        }
+
+        public void findService()
+        {
+            foreach (var service in device.Services)
+            {
+                //services.Add(service);
+                if (service.ID.ToString() == ID_SERVICE)
+                {
+                    Debug.WriteLine("Found Accelerometer Service");
+                    Ready = "Found Accelerometer Service, feel free to press the button";
+                    _accelerometerService = service;
+                    device.ServicesDiscovered -= Device_ServicesDiscovered;
+
+                }
+            }
         }
 
         public string DeviceName
