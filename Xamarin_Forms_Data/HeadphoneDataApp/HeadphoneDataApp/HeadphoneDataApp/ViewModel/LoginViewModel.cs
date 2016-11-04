@@ -19,18 +19,20 @@ namespace HeadphoneDataApp.ViewModel
     {
         private IAdapter adapter;
         private IRepository repository;
+        
 
 
         //Constructor
-        public LoginViewModel()
+        public LoginViewModel(IRepository repository)
         {
+            this.repository = repository;
             //get the adapter via messenger
             Messenger.Default.Register<IAdapter>(this, AdapterMessage);
             this.repository = new HeadphoneDataApp.Repository.Repository();
             this.LoginCommand = new Command(async () =>
             {
                 //login controle
-                if (CanLogin)
+                if (CanLogin(this.Username, this.Password))
                 {
                     try
                     {
@@ -79,13 +81,13 @@ namespace HeadphoneDataApp.ViewModel
             return passwordCorrect;
         }
 
-        public bool CanLogin
+        public bool CanLogin(string Id, string Password)
         {
-            get
+            //get
             {
                 ValidationErrors = string.Empty;
 
-                if (string.IsNullOrEmpty(Username))
+                if (string.IsNullOrEmpty(Id))
                 {
                     ValidationErrors = "Please enter a username.";
                     OnPropertyChanged("ValidationErrors");

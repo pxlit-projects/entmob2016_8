@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HeadphoneDataApp.Repository
 {
-    interface IRepository
+    public interface IRepository
     {
         User GetUserById(int userId);
         bool CheckIfUserIsValid(int userId);
