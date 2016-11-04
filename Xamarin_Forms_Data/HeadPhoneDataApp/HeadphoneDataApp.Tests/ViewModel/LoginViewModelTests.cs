@@ -13,7 +13,8 @@ namespace HeadphoneDataApp.Tests
         public void Valid_Login_Test()
         {
             IRepository repo = new Mocks.RepositoryMock();
-            LoginViewModel vm = new LoginViewModel(repo);
+            LoginViewModel vm = new LoginViewModel();
+            vm.Repository = repo;
 
             vm.Username = "7";
             vm.Password = "koen";
@@ -27,7 +28,8 @@ namespace HeadphoneDataApp.Tests
         public void Invalid_Id_Login_Test()
         {
             IRepository repo = new Mocks.RepositoryMock();
-            LoginViewModel vm = new LoginViewModel(repo);
+            LoginViewModel vm = new LoginViewModel();
+            vm.Repository = repo;
 
             vm.Username = "999999";
             vm.Password = "koen";
@@ -42,7 +44,8 @@ namespace HeadphoneDataApp.Tests
         public void Invalid_Password_Login_Test()
         {
             IRepository repo = new Mocks.RepositoryMock();
-            LoginViewModel vm = new LoginViewModel(repo);
+            LoginViewModel vm = new LoginViewModel();
+            vm.Repository = repo;
 
             vm.Username = "7";
             vm.Password = "koed";
@@ -56,7 +59,8 @@ namespace HeadphoneDataApp.Tests
         public void Empty_Password_Login_Test()
         {
             IRepository repo = new Mocks.RepositoryMock();
-            LoginViewModel vm = new LoginViewModel(repo);
+            LoginViewModel vm = new LoginViewModel();
+            vm.Repository = repo;
 
             vm.Username = "7";
             vm.Password = "";
@@ -70,7 +74,8 @@ namespace HeadphoneDataApp.Tests
         public void Empty_Id_Login_Test()
         {
             IRepository repo = new Mocks.RepositoryMock();
-            LoginViewModel vm = new LoginViewModel(repo);
+            LoginViewModel vm = new LoginViewModel();
+            vm.Repository = repo;
 
             vm.Username = "";
             vm.Password = "koen";
@@ -84,7 +89,8 @@ namespace HeadphoneDataApp.Tests
         public void Empty_Id_And_Password_Login_Test()
         {
             IRepository repo = new Mocks.RepositoryMock();
-            LoginViewModel vm = new LoginViewModel(repo);
+            LoginViewModel vm = new LoginViewModel();
+            vm.Repository = repo;
 
             vm.Username = "";
             vm.Password = "";

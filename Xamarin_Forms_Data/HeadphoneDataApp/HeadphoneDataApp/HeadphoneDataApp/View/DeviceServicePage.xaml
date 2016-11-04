@@ -24,9 +24,9 @@
     <!--<Button Text="Services" VerticalOptions="Center" HorizontalOptions="FillAndExpand"  Command="{Binding GetServicesCommand}" />-->
     <!--</RelativeLayout>--> 
     <StackLayout Grid.Row="1">
-      <Button Text="Services" AbsoluteLayout.LayoutBounds=".5,80,100,40"
-             AbsoluteLayout.LayoutFlags="PositionProportional"
+      <Button Text="Services" HorizontalOptions="FillAndExpand"
               Command="{Binding GetServicesCommand}" />
+      <Label Text="{Binding Ready}" HorizontalOptions="Center"></Label>
      
     </StackLayout>
  

@@ -19,6 +19,7 @@ using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Practices.ServiceLocation;
 using Robotics.Mobile.Core.Bluetooth.LE;
 using GalaSoft.MvvmLight.Views;
+using HeadphoneDataApp.Repository;
 
 namespace HeadphoneDataApp.ViewModel
 {

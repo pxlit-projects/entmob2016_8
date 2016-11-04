@@ -18,16 +18,48 @@ namespace HeadphoneDataApp.ViewModel
 {
     public class DeviceServiceViewModel: INotifyPropertyChanged
     {
+
         private IAdapter adapter;
+
+        public IAdapter Adapter
+        {
+            get { return adapter; }
+            set { adapter = value; }
+        }
+
         private IDevice device;
+        public IDevice Device
+        {
+            get { return device; }
+            set { device = value; }
+        }
         private ObservableCollection<IService> services;
         private string deviceName;
         private User user;
+        public string Ready { get; set; }
 
 
-        private ICharacteristic characteristicData;
+
         private ICharacteristic characteristicConfig;
         private ICharacteristic characteristicPeriod;
+         private ICharacteristic characteristicData;
+
+
+        public ICharacteristic CharacteristicData
+        {
+            get { return characteristicData; }
+        }
+
+        public ICharacteristic CharacteristicConfig
+        {
+            get { return characteristicConfig; }
+        }
+
+        public ICharacteristic CharacteristicPeriod
+        {
+            get { return characteristicPeriod; }
+        }
+
 
 
         /** Service ID. */
@@ -40,10 +72,19 @@ namespace HeadphoneDataApp.ViewModel
         private static string UUID_PERIOD = "f000aa83-0451-4000-b000-000000000000";
         private IService _accelerometerService;
 
+        public IService AccelerometerService
+        {
+            get { return _accelerometerService; }
+            set { _accelerometerService = value; }
+        }
+
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public DeviceServiceViewModel()
         {
+
+            Ready = "please wait until the correct service has been found.";
             //get the adapter via messenger
             Messenger.Default.Register<IAdapter>(this, AdapterMessage);
             Messenger.Default.Register<IDevice>(this, DeviceMessage);
@@ -123,6 +164,7 @@ namespace HeadphoneDataApp.ViewModel
             if (services.Count == 0)
             {
                 Debug.WriteLine("No services, attempting to connect to device");
+                Ready = "No services, attempting to connect to device";
                 // start looking for the device
                 adapter.ConnectToDevice(device);
             }
@@ -145,7 +187,7 @@ namespace HeadphoneDataApp.ViewModel
             Debug.WriteLine("device.ServicesDiscovered");
             //services = (List<IService>)device.Services;
             if (services.Count == 0)
-                Device.BeginInvokeOnMainThread(() =>
+                Xamarin.Forms.Device.BeginInvokeOnMainThread(() =>
                 {
                     foreach (var service in device.Services)
                     {
@@ -153,6 +195,7 @@ namespace HeadphoneDataApp.ViewModel
                         if (service.ID.ToString() == ID_SERVICE)
                         {
                             Debug.WriteLine("Found Accelerometer Service");
+                            Ready = "Found Accelerometer Service, feel free to press the button";
                             _accelerometerService = service;
                             device.ServicesDiscovered -= Device_ServicesDiscovered;
 

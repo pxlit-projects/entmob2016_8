@@ -19,13 +19,19 @@ namespace HeadphoneDataApp.ViewModel
     {
         private IAdapter adapter;
         private IRepository repository;
-        
+
+        public IRepository Repository
+        {
+            get { return repository; }
+            set { repository = value; }
+        }
+
+
 
 
         //Constructor
-        public LoginViewModel(IRepository repository)
+        public LoginViewModel()
         {
-            this.repository = repository;
             //get the adapter via messenger
             Messenger.Default.Register<IAdapter>(this, AdapterMessage);
             this.repository = new HeadphoneDataApp.Repository.Repository();

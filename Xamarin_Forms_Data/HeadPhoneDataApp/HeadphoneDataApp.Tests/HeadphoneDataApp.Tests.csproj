@@ -11,6 +11,8 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -67,7 +69,13 @@
   <ItemGroup>
     <Compile Include="Converters\EmptyStringConverterTests.cs" />
     <Compile Include="Converters\SelectedItemEventArgsToSelectedItemConverterTests.cs" />
+    <Compile Include="Mocks\AdapterMock.cs" />
+    <Compile Include="Mocks\Characteristic81Mock.cs" />
+    <Compile Include="Mocks\Characteristic82Mock.cs" />
+    <Compile Include="Mocks\Characteristic83Mock.cs" />
+    <Compile Include="Mocks\DeviceMock.cs" />
     <Compile Include="Mocks\RepositoryMock.cs" />
+    <Compile Include="Mocks\ServiceMock.cs" />
     <Compile Include="ViewModel\DeviceServiceViewModelTests.cs" />
     <Compile Include="ViewModel\LoginViewModelTests.cs" />
     <Compile Include="ViewModel\MainViewModelTests.cs" />
