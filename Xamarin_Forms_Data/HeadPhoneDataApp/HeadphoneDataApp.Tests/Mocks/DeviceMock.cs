@@ -9,7 +9,7 @@ namespace HeadphoneDataApp.Tests.Mocks
 {
     class DeviceMock : IDevice
     {
-        public Guid ID
+        Guid IDevice.ID
         {
             get
             {
@@ -17,23 +17,15 @@ namespace HeadphoneDataApp.Tests.Mocks
             }
         }
 
-        public string Name
+        string IDevice.Name
         {
             get
             {
-                return "MockDevice";
+                return "CC2650 SensorTag";
             }
         }
 
-        public object NativeDevice
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public int Rssi
+        object IDevice.NativeDevice
         {
             get
             {
@@ -41,17 +33,7 @@ namespace HeadphoneDataApp.Tests.Mocks
             }
         }
 
-        public IList<IService> Services
-        {
-            get
-            {
-                IList <IService> services = new List<IService>();
-                services.Add(new ServiceMock());
-                return services;
-            }
-        }
-
-        public DeviceState State
+        int IDevice.Rssi
         {
             get
             {
@@ -59,9 +41,36 @@ namespace HeadphoneDataApp.Tests.Mocks
             }
         }
 
-        public event EventHandler ServicesDiscovered;
+        IList<IService> IDevice.Services
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
 
-        public void DiscoverServices()
+        DeviceState IDevice.State
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        event EventHandler IDevice.ServicesDiscovered
+        {
+            add
+            {
+                throw new NotImplementedException();
+            }
+
+            remove
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        void IDevice.DiscoverServices()
         {
             throw new NotImplementedException();
         }

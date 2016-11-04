@@ -29,10 +29,14 @@ namespace HeadphoneDataApp.ViewModel
     public class MainViewModel : ViewModelBase, INotifyPropertyChanged
     {
         private IAdapter adapter;
-        private string deviceName;
-        private User user;
+        public IAdapter Adapter
+        {
+            get { return adapter; }
+            set { adapter = value; }
+        }
+        
 
-        ObservableCollection<IService> services;
+        private User user;
 
         private ObservableCollection<IDevice> devices;
         public event PropertyChangedEventHandler PropertyChanged;
@@ -49,11 +53,11 @@ namespace HeadphoneDataApp.ViewModel
                 Messenger.Default.Send<User>(user);
             });
             //get the adapter via messenger
-            Messenger.Default.Register<IAdapter>(this, Adapter);
+            Messenger.Default.Register<IAdapter>(this, AdapterMessage);
             //get the user via messenger
             Messenger.Default.Register<User>(this, User);
             devices = new ObservableCollection<IDevice>();
-            this.services = new ObservableCollection<IService>();
+            
 
             this.ScanCommand = new Command(() =>
             {
@@ -63,12 +67,12 @@ namespace HeadphoneDataApp.ViewModel
            
         }
 
-        void StartScanning()
+        public void StartScanning()
         {
             StartScanning(Guid.Empty);
         }
 
-        void StartScanning(Guid forService)
+        public void StartScanning(Guid forService)
         {
             if (adapter.IsScanning)
             {
@@ -83,7 +87,7 @@ namespace HeadphoneDataApp.ViewModel
             }
         }
 
-        void StopScanning()
+        public void StopScanning()
         {
             // stop scanning
             new Task(() =>
@@ -96,7 +100,7 @@ namespace HeadphoneDataApp.ViewModel
             }).Start();
         }
         
-        private void Adapter(IAdapter obj)
+        private void AdapterMessage(IAdapter obj)
         {
             this.adapter = obj;
             adapter.DeviceDiscovered += (object sender, DeviceDiscoveredEventArgs e) =>
@@ -104,8 +108,7 @@ namespace HeadphoneDataApp.ViewModel
                 Device.BeginInvokeOnMainThread(() =>
                 {
                     devices.Add(e.Device);
-                    Devices = devices;
-                    DeviceName = e.Device.Name;
+                    //Devices = devices;
                 });
             };
 
@@ -127,22 +130,6 @@ namespace HeadphoneDataApp.ViewModel
         public ICommand DeviceSelectedCommand { get; set; }
 
         public ICommand ScanCommand { protected set; get; }
-
-        public string DeviceName
-        {
-            get
-            {
-                return deviceName;
-            }
-            set
-            {
-                if (deviceName != value)
-                {
-                    deviceName = value;
-                    OnPropertyChanged("DeviceName");
-                }
-            }
-        }
 
         public ObservableCollection<IDevice> Devices
         {

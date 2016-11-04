@@ -1,9 +1,12 @@
 package be.pxl.spring;
-
+// https://spring.io/blog/2016/04/15/testing-improvements-in-spring-boot-1-4
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -21,22 +24,22 @@ import java.util.concurrent.ThreadLocalRandom;
 
 
 
+
+
+
 import be.pxl.spring.domain.Session;
 import be.pxl.spring.service.SessionUtility;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@DirtiesContext
-@ContextConfiguration(classes=TestConfig.class)
+@SpringBootTest
 public class SessionUtilityTest {
+	
 	@Autowired
 	SessionUtility su;
-//	@Before
-//	public void before(){
-//		su = new SessionUtility();
-//	}
 	
 	@Test
 	public void testAverage(){
+		
 		int actualTime, sum, count;
 		Session s;
 		List<Session> sessionList = new ArrayList<Session>();
@@ -53,7 +56,7 @@ public class SessionUtilityTest {
 		Assert.assertEquals(((double)sum)/count, su.AverageActual(sessionList), 0);
 	}
 	@Test
-	public void testMinimal(){
+	public void testMinimal(){		
 		int actualTime, min, count;
 		Session s;
 		List<Session> sessionList = new ArrayList<Session>();
@@ -70,7 +73,7 @@ public class SessionUtilityTest {
 		Assert.assertEquals(min, su.MinimalActual(sessionList));
 	}
 	@Test
-	public void testMaximal(){
+	public void testMaximal(){		
 		int actualTime, max, count;
 		Session s;
 		List<Session> sessionList = new ArrayList<Session>();
