@@ -1,4 +1,5 @@
-﻿using HeadphoneDataApp.Tests.Mocks;
+﻿using HeadphoneDataApp.Model;
+using HeadphoneDataApp.Tests.Mocks;
 using HeadphoneDataApp.ViewModel;
 using NUnit.Framework;
 using System;
@@ -14,6 +15,9 @@ namespace HeadphoneDataApp.Tests
             DeviceServiceViewModel vm = new DeviceServiceViewModel();
             vm.Adapter = new AdapterMock();
             vm.Device = new DeviceMock();
+            User u = new User();
+            u.UserId = 15;
+            vm.User = u;
             vm.AccelerometerService = new ServiceMock();
 
             vm.GetServicesCommand.Execute(null);

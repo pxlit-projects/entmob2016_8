@@ -36,6 +36,13 @@ namespace HeadphoneDataApp.ViewModel
         private ObservableCollection<IService> services;
         private string deviceName;
         private User user;
+
+        public User User
+        {
+            get { return user; }
+            set { user = value; }
+        }
+
         public string Ready { get; set; }
 
 
@@ -88,7 +95,7 @@ namespace HeadphoneDataApp.ViewModel
             //get the adapter via messenger
             Messenger.Default.Register<IAdapter>(this, AdapterMessage);
             Messenger.Default.Register<IDevice>(this, DeviceMessage);
-            Messenger.Default.Register<User>(this, User);
+            Messenger.Default.Register<User>(this, UserMessage);
             this.services = new ObservableCollection<IService>();
 
 
@@ -152,7 +159,7 @@ namespace HeadphoneDataApp.ViewModel
             DeviceName = device.Name;
         }
 
-        private void User(User obj)
+        private void UserMessage(User obj)
         {
             this.user = obj;
         }
