@@ -114,7 +114,7 @@ namespace HeadphoneDataApp.Tests.Mocks
 
         public void StartUpdates()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public void StopUpdates()

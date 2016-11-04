@@ -41,11 +41,13 @@ namespace HeadphoneDataApp.Tests.Mocks
             }
         }
 
-        IList<IService> IDevice.Services
+        public IList<IService> Services
         {
             get
             {
-                throw new NotImplementedException();
+                IList<IService> services = new List<IService>();
+                services.Add(new ServiceMock());
+                return services;
             }
         }
 

@@ -116,7 +116,7 @@ namespace HeadphoneDataApp.Tests.Mocks
 
         public void Write(byte[] data)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
     }
 }
