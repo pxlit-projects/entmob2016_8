@@ -1,13 +1,19 @@
 package be.pxl.spring;
 
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
+import be.pxl.spring.controller.SessionRestController;
 import be.pxl.spring.controller.UserRestController;
 import be.pxl.spring.controller.UserSessionRestController;
+import be.pxl.spring.domain.Session;
 import be.pxl.spring.domain.User;
 
 /**
@@ -41,16 +47,29 @@ public class App {
 		UserSessionRestController usrc = ctx.getBean(UserSessionRestController.class);
 		
 		
-//		Session s = ctx.getBean(Session.class);
-//		s.setUserId(1);
-//		java.util.Date date = new Date();
-//		Timestamp ts = new Timestamp(date.getTime());
-//		s.setActualTime(10);
-//		s.setStartTime(ts);
-//		s.setEndTime(ts);
-//		s.setUserId(1);
-//		SessionRestController src = ctx.getBean(SessionRestController.class);
-//		src.updateSession(s);
+		Session s = ctx.getBean(Session.class);
+		s.setUserId(1);
+		java.util.Date date = new Date();
+		java.util.Date date2 = new Date();
+		date2.setHours(date.getHours()+2);
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		Date date3 = null;
+		try {
+			date3 = dateFormat.parse("23/09/2007");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		long time = date3.getTime();
+		Timestamp ts3 = new Timestamp(time);
+		Timestamp ts = new Timestamp(date.getTime());
+		Timestamp ts2 = new Timestamp(date.getTime());
+		s.setActualTime(10);
+		s.setStartTime(ts.getTime());
+		s.setEndTime(ts2.getTime());
+		s.setUserId(1);
+		SessionRestController src = ctx.getBean(SessionRestController.class);
+		src.updateSession(s);
 //		
 //		List<Session> sessionList = src.getSessionsByUserId(1);
 //		
