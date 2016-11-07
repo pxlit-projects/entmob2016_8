@@ -62,6 +62,10 @@
     <Compile Include="Migrations\201611031009311_AddedCredentials.Designer.cs">
       <DependentUpon>201611031009311_AddedCredentials.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611071226013_AddedConstraints.cs" />
+    <Compile Include="Migrations\201611071226013_AddedConstraints.Designer.cs">
+      <DependentUpon>201611071226013_AddedConstraints.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -84,6 +88,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611031009311_AddedCredentials.resx">
       <DependentUpon>201611031009311_AddedCredentials.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611071226013_AddedConstraints.resx">
+      <DependentUpon>201611071226013_AddedConstraints.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
