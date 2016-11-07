@@ -49,7 +49,7 @@ public class SessionUtility {
 		int sum = 0;
 		int seconds;
 		for (Session session : sessions) {
-			seconds = (int) ((session.getEndTime() - session.getStartTime())/1000);
+			seconds = (int) ((session.getEndTime() - session.getStartTime()));
 			sum += seconds;
 		}
 		return sum;
@@ -61,7 +61,7 @@ public class SessionUtility {
 		if(!sessions.isEmpty()){
 		double sum = 0;
 		for (Session session : sessions) {
-			sum += ((session.getEndTime() - session.getStartTime())/1000);
+			sum += ((session.getEndTime() - session.getStartTime()));
 		}
 		return sum/sessions.size();
 		}else
@@ -73,7 +73,7 @@ public class SessionUtility {
 		int min = Integer.MAX_VALUE;
 		int seconds;
 		for (Session session : sessions) {
-			seconds = (int) ((session.getEndTime() - session.getStartTime())/1000);
+			seconds = (int) ((session.getEndTime() - session.getStartTime()));			
 			min = seconds < min ? seconds: min;
 		}
 		return min;
@@ -86,7 +86,7 @@ public class SessionUtility {
 		int max = Integer.MIN_VALUE;
 		int seconds;
 		for (Session session : sessions) {
-			seconds = (int) ((session.getEndTime() - session.getStartTime())/1000);
+			seconds = (int) ((session.getEndTime() - session.getStartTime()));
 			max = seconds > max ? seconds : max;
 		}
 		return max;
