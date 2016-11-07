@@ -31,6 +31,12 @@ namespace HeadphoneDataApp.Repository
             string url = string.Format("http://192.168.137.1:8181/user/{0}", userId);
             Uri uri = new Uri(url);
             HttpClient client = new HttpClient();
+            
+            //string username = "entmob";
+            //string password = "entmob";
+            //string encoded = Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes(username + ":" + password));
+            //client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", encoded);
+            
             HttpResponseMessage response = Task.Run(() => client.GetAsync(url)).Result;
             return response.IsSuccessStatusCode;
         }
