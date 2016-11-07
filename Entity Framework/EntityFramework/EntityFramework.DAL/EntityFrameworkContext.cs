@@ -22,6 +22,13 @@ namespace EntityFramework.DAL
             //User fluent API
             modelBuilder.Entity<User>().HasKey(k => k.UserId); //PK instellen
             modelBuilder.Entity<User>().Property(k => k.UserId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity); //PK automatisch laten genereren bij het maken van een nieuwe rij
+            modelBuilder.Entity<User>().Property(u => u.FirstName).HasMaxLength(50);
+            modelBuilder.Entity<User>().Property(u => u.FirstName).IsRequired();
+            modelBuilder.Entity<User>().Property(u => u.LastName).HasMaxLength(50);
+            modelBuilder.Entity<User>().Property(u => u.LastName).IsRequired();
+            modelBuilder.Entity<User>().Property(u => u.Department).HasMaxLength(50);
+            modelBuilder.Entity<User>().Property(u => u.Department).IsRequired();
+            modelBuilder.Entity<User>().Property(u => u.Password).IsRequired();
 
             //Session fluent API
             modelBuilder.Entity<Session>().HasKey(k => k.SessionId); //PK instellen
@@ -29,7 +36,7 @@ namespace EntityFramework.DAL
 
             //Credentials fluent API
             modelBuilder.Entity<Credentials>().HasKey(k => k.CredentialId); //PK instellen
-            modelBuilder.Entity<Credentials>().Property(k => k.CredentialId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity); //PK automatisch laten genereren bij het mqken vqn een nieuwe rij
+            modelBuilder.Entity<Credentials>().Property(k => k.CredentialId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity); //PK automatisch laten genereren bij het maken van een nieuwe rij
 
             //Fluent API voor relationship tussen Session en User
             modelBuilder.Entity<Session>()

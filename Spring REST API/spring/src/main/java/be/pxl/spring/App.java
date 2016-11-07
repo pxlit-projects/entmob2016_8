@@ -40,9 +40,9 @@ public class App {
 		UserRestController urc = ctx.getBean(UserRestController.class);
 		int newUserId = urc.updateUser(u);
 		System.out.println("Nieuwe UserId: "+newUserId);
-		User morrhey = urc.getUserById(1).getBody();
+		User morrhey = urc.getUserById(newUserId).getBody();
 		System.out.println(morrhey.getLastName());
-		System.out.println(urc.login(1, "test"));
+		System.out.println(urc.login(newUserId, "test"));
 		
 		UserSessionRestController usrc = ctx.getBean(UserSessionRestController.class);
 		
@@ -66,7 +66,7 @@ public class App {
 		Timestamp ts2 = new Timestamp(date.getTime());
 		s.setActualTime(10);
 		s.setStartTime(ts.getTime());
-		s.setEndTime(ts2.getTime());
+		s.setEndTime(ts2.getTime()+20000);
 		s.setUserId(1);
 		SessionRestController src = ctx.getBean(SessionRestController.class);
 		src.updateSession(s);
