@@ -30,46 +30,45 @@ public class App {
 				AppConfig.class, args);
 		
 		User u = ctx.getBean(User.class);		
-		u.setFirstName("brecht");
-		u.setDepartment("test");
-		u.setLastName("morrhey");
-		u.setPassword("test");
-		u.setSalt("test");
-		u.setRole("test");
-		System.out.println(u.getFirstName());		
-		UserRestController urc = ctx.getBean(UserRestController.class);
-		int newUserId = urc.updateUser(u);
-		System.out.println("Nieuwe UserId: "+newUserId);
-		User morrhey = urc.getUserById(newUserId).getBody();
-		System.out.println(morrhey.getLastName());
-		System.out.println(urc.login(newUserId, "test"));
+//		u.setFirstName("brecht");
+//		u.setDepartment("test");
+//		u.setLastName("morrhey");
+//		u.setPassword("test");
+//		u.setSalt("test");
+//		u.setRole("test");
+//		System.out.println(u.getFirstName());		
+//		UserRestController urc = ctx.getBean(UserRestController.class);
+//		int newUserId = urc.updateUser(u);
+//		System.out.println("Nieuwe UserId: "+newUserId);
+//		User morrhey = urc.getUserById(1).getBody();
+//		System.out.println(morrhey.getLastName());
+//		System.out.println(urc.login(1, "test"));
+//		
+//		UserSessionRestController usrc = ctx.getBean(UserSessionRestController.class);		
 		
-		UserSessionRestController usrc = ctx.getBean(UserSessionRestController.class);
-		
-		
-		Session s = ctx.getBean(Session.class);
-		s.setUserId(1);
-		java.util.Date date = new Date();
-		java.util.Date date2 = new Date();
-		date2.setHours(date.getHours()+2);
-		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-		Date date3 = null;
-		try {
-			date3 = dateFormat.parse("23/09/2007");
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		long time = date3.getTime();
-		Timestamp ts3 = new Timestamp(time);
-		Timestamp ts = new Timestamp(date.getTime());
-		Timestamp ts2 = new Timestamp(date.getTime());
-		s.setActualTime(10);
-		s.setStartTime(ts.getTime());
-		s.setEndTime(ts2.getTime()+20000);
-		s.setUserId(1);
-		SessionRestController src = ctx.getBean(SessionRestController.class);
-		src.updateSession(s);
+//		Session s = ctx.getBean(Session.class);
+//		s.setUserId(1);
+//		java.util.Date date = new Date();
+//		java.util.Date date2 = new Date();
+//		date2.setHours(date.getHours()+2);
+//		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+//		Date date3 = null;
+//		try {
+//			date3 = dateFormat.parse("23/09/2007");
+//		} catch (ParseException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		long time = date3.getTime();
+//		Timestamp ts3 = new Timestamp(time);
+//		Timestamp ts = new Timestamp(date.getTime());
+//		Timestamp ts2 = new Timestamp(date.getTime());
+//		s.setActualTime(10);
+//		s.setStartTime(ts.getTime());
+//		s.setEndTime(ts2.getTime()+20000);
+//		s.setUserId(1);
+//		SessionRestController src = ctx.getBean(SessionRestController.class);
+//		src.updateSession(s);
 //		
 //		List<Session> sessionList = src.getSessionsByUserId(1);
 //		

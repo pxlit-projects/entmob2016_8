@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import be.pxl.spring.domain.User;
@@ -20,7 +21,7 @@ public class UserRestController {
 	UserService us;
 	
 	
-	@RequestMapping(method = RequestMethod.GET, value="{id}")
+	@RequestMapping(method = RequestMethod.GET, value="{id}")	
 	public ResponseEntity<User> getUserById(@PathVariable("id") int id){
 		// need to explicitly set Sessions to null or the Json serializer will load the Sessions despite lazy loading
 		HttpStatus status;
@@ -88,6 +89,7 @@ public class UserRestController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
+	@Secured({"ROLE_ADMIN"})
 	public int updateUser(@RequestBody User u){
 		us.save(u);
 		us.flush();
@@ -96,6 +98,7 @@ public class UserRestController {
 	}
 	
 	@RequestMapping(method = RequestMethod.DELETE)
+	@Secured({"ROLE_ADMIN"})
 	public void deleteUser(@RequestBody User u){
 		us.delete(u);
 	}
