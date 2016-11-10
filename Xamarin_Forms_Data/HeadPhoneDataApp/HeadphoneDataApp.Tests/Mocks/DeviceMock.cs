@@ -9,6 +9,7 @@ namespace HeadphoneDataApp.Tests.Mocks
 {
     class DeviceMock : IDevice
     {
+        private string name;
         Guid IDevice.ID
         {
             get
@@ -16,13 +17,21 @@ namespace HeadphoneDataApp.Tests.Mocks
                 throw new NotImplementedException();
             }
         }
-
+        public string setName
+        {
+            set { name = value; }
+        }
+        public string getName
+        {
+            get { return name; }
+        }
         string IDevice.Name
         {
             get
             {
                 return "CC2650 SensorTag";
             }
+           
         }
 
         object IDevice.NativeDevice
