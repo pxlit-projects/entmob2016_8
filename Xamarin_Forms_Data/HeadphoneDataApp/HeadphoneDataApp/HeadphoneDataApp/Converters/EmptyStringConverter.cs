@@ -16,8 +16,14 @@ namespace HeadphoneDataApp.Converters
             object parameter,
             CultureInfo culture)
         {
-            String str = value.ToString();
+            String str ="";
+            if (value!=null)
+            {
+                str = value.ToString();
+                
+            }
             return String.IsNullOrWhiteSpace(str) ? "<un-named device>" : str;
+
         }
 
         public object ConvertBack(

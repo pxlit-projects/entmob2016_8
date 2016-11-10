@@ -39,8 +39,8 @@
       </ListView.Behaviors>
       <ListView.ItemTemplate>
         <DataTemplate>
-          <!--<TextCell Text="{Binding Name, Converter={StaticResource strConverter}"/>-->
-          <TextCell Text="{Binding NativeDevice.Address}"/>
+          <TextCell Text="{Binding Name, Converter={StaticResource strConverter}"/>
+          <!--<TextCell Text="{Binding NativeDevice.Address}"/>-->
         </DataTemplate>
       </ListView.ItemTemplate>
     </ListView>
