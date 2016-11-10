@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import be.pxl.spring.domain.Session;
@@ -30,6 +31,7 @@ public class SessionRestController {
 		
 	}
 	@RequestMapping(method = RequestMethod.POST)
+	@Secured({"ROLE_ADMIN"})
 	public int updateSession(@RequestBody Session s){
 		sessionservice.save(s);
 		sessionservice.flush();
@@ -106,6 +108,7 @@ public class SessionRestController {
 		
 	}
 	@RequestMapping(method = RequestMethod.DELETE)
+	@Secured({"ROLE_ADMIN"})
 	public void deleteSession(@RequestBody Session s){
 		sessionservice.delete(s);
 	}

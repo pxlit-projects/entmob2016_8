@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -21,7 +22,8 @@ public class IntegrationTest {
 	@Autowired
 	UserRestController urc;
 
-	@Test
+	@Test	
+	@WithMockUser(roles={"ADMIN"})
 	public void testCreateUser(){		
 		User u = new User();
 		u.setFirstName("brecht");

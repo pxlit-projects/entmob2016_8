@@ -23,21 +23,82 @@
             <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition x:Name="column01" Width="auto"></ColumnDefinition>
+            <ColumnDefinition x:Name="column02" Width="*" ></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="830"/>
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="titleTextBlock.FontSize" Value="50" />
+                        <Setter Target="clearSearchButton.(RelativePanel.AlignRightWithPanel)" Value="True" />
+                        <Setter Target="clearSearchButton.(RelativePanel.AlignVerticalCenterWithPanel)" Value="True" />
+                        <Setter Target="searchButton.(RelativePanel.LeftOf)" Value="clearSearchButton" />
+                        <Setter Target="searchButton.(RelativePanel.AlignVerticalCenterWithPanel)" Value="True" />
+                        <Setter Target="searchTextBox.(RelativePanel.LeftOf)" Value="searchButton" />
+                        <Setter Target="searchTextBox.(RelativePanel.AlignVerticalCenterWithPanel)" Value="True"/>
+                        <Setter Target="searchTextBox.Width" Value="200"/>
+                        <Setter Target="gegevensScrollViewer.(Grid.Column)" Value="1" />
+                        <Setter Target="employeesListView.MaxHeight" Value="500"/>
+                        <Setter Target="registerButton.(RelativePanel.AlignRightWithPanel)" Value="True" />
+                    </VisualState.Setters>
+                </VisualState>
+                
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="320"/>
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="titleTextBlock.FontSize" Value="40" />
+                        <Setter Target="searchTextBox.(RelativePanel.Below)" Value="titleTextBlock"/>
+                        <Setter Target="searchTextBox.Width" Value="170"/>
+                        <Setter Target="searchButton.(RelativePanel.RightOf)" Value="searchTextBox"/>
+                        <Setter Target="searchButton.(RelativePanel.Below)" Value="titleTextBlock"/>
+                        <Setter Target="searchButton.FontSize" Value="15"/>
+                        <Setter Target="searchButton.Margin" Value="5,5,0,0" />
+                        <Setter Target="clearSearchButton.(RelativePanel.RightOf)" Value="searchButton" />
+                        <Setter Target="clearSearchButton.(RelativePanel.Below)" Value="titleTextBlock" />
+                        <Setter Target="clearSearchButton.FontSize" Value="15" />
+                        <Setter Target="clearSearchButton.Margin" Value="5,5,0,0" />
+                        <Setter Target="employeesListView.Height" Value="150" />
+                        <Setter Target="gegevensScrollViewer.(Grid.Column)" Value="0" />
+                        <Setter Target="gegevensScrollViewer.Margin" Value="0,200,0,0" />
+                        <Setter Target="averageTimeTextBlock.FontSize" Value="20"/>
+                        <Setter Target="averageTimeContentTextBlock.FontSize" Value="20" />
+                        <Setter Target="minimumTimeTextBlock.FontSize" Value="20"/>
+                        <Setter Target="minimumTimeContentTextBlock.FontSize" Value="20" />
+                        <Setter Target="maximumTimeTextBlock.FontSize" Value="20"/>
+                        <Setter Target="maximumTimeContentTextBlock.FontSize" Value="20" />
+                        <Setter Target="totalTimeTextBlock.FontSize" Value="20"/>
+                        <Setter Target="totalTimeContentTextBlock.FontSize" Value="20" />
+                        <Setter Target="lastSessionDateTextBlock.FontSize" Value="20" />
+                        <Setter Target="lastSessionDateContentTextBlock.FontSize" Value="20" />
+                        <Setter Target="logOutButton.FontSize" Value="15" />
+                        <Setter Target="registerButton.FontSize" Value="15" />
+                        <Setter Target="registerButton.(RelativePanel.RightOf)" Value="logOutButton" />
+                        <Setter Target="column01.Width" Value="*" />
+                        <Setter Target="column02.Width" Value="0" />
+                    </VisualState.Setters>
+                </VisualState>
+
+                
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
         <RelativePanel x:Name="topRelativePanel" Grid.Row="0" Grid.ColumnSpan="2" Padding="5,0,5,0">
-            <TextBlock x:Name="titleTextBlock" Text="Employee overview"  
+            <TextBlock x:Name="titleTextBlock" Text="Employee overview"
                        RelativePanel.AlignLeftWithPanel="True"
-                       RelativePanel.LeftOf="searchAutoSuggestBox"
                        Style="{ThemeResource HeaderTextBlockStyle}"/>
 
             <Button x:Name="searchButton" Content="Search" 
-                    Style="{ThemeResource PivotTitleContentControlStyle}"
-                    RelativePanel.AlignVerticalCenterWithPanel="True"
-                    RelativePanel.LeftOf="clearSearchButton"
-                    >
+                    Style="{ThemeResource PivotTitleContentControlStyle}" Margin="5,0,5,0" >
                 <Interactivity:Interaction.Behaviors>
                     <Interactions:EventTriggerBehavior EventName="Click">
                         <Interactions:InvokeCommandAction Command="{Binding SearchCommand}"/>
@@ -46,9 +107,7 @@
             </Button>
 
             <Button x:Name="clearSearchButton" Content="Clear search"
-                    Style="{ThemeResource PivotTitleContentControlStyle}"
-                    RelativePanel.AlignRightWithPanel="True"
-                    RelativePanel.AlignVerticalCenterWithPanel="True">
+                    Style="{ThemeResource PivotTitleContentControlStyle}" Margin="5,0,5,0">
                 
                 <Interactivity:Interaction.Behaviors>
                     <Interactions:EventTriggerBehavior EventName="Click">
@@ -57,11 +116,8 @@
                 </Interactivity:Interaction.Behaviors>
             </Button>
 
-            <TextBox x:Name="searchAutoSuggestBox" MinWidth="150"
-                            RelativePanel.AlignVerticalCenterWithPanel="True"
-                            RelativePanel.LeftOf="searchButton"
-                     Text="{Binding SearchString, Mode=TwoWay}"
-                            />
+            <TextBox x:Name="searchTextBox" Margin="0,5,0,5"
+                       Text="{Binding SearchString, Mode=TwoWay}"/>
         </RelativePanel>
 
         <RelativePanel x:Name="bottomRelativePanel" Grid.Row="2" Grid.ColumnSpan="2" Padding="5,0,5,0">
@@ -76,8 +132,7 @@
             
             <Button x:Name="logOutButton" Content="Log out" 
                     Style="{ThemeResource PivotTitleContentControlStyle}"
-                    RelativePanel.RightOf="userNameTextblock"
-                    RelativePanel.AlignVerticalCenterWithPanel="True">
+                    RelativePanel.RightOf="userNameTextblock">
 
                 <Interactivity:Interaction.Behaviors>
                     <Interactions:EventTriggerBehavior EventName="Click">
@@ -89,8 +144,7 @@
             <Button x:Name="registerButton" Content="Register a new employee" 
                     Style="{ThemeResource PivotTitleContentControlStyle}"
                     Height="auto"
-                    RelativePanel.AlignRightWithPanel="True"
-                    RelativePanel.AlignVerticalCenterWithPanel="True">
+                    >
                 
                 <Interactivity:Interaction.Behaviors>
                     <Interactions:EventTriggerBehavior EventName="Click">
@@ -102,15 +156,16 @@
         </RelativePanel>
 
         <RelativePanel x:Name="employeesRelativePanel" Grid.Row="1" Grid.Column="0" Padding="10">
-            <TextBlock x:Name="employeesTitelTextBlock" Text="Employees" 
+            <TextBlock x:Name="employeesTitelTextBlock" Text="Employees" FontSize="25" 
                        Style="{ThemeResource SubheaderTextBlockStyle}"
                        />
 
-            <ListView x:Name="employeesListView" RelativePanel.AlignHorizontalCenterWithPanel="True"
+            <ListView x:Name="employeesListView"
                       RelativePanel.Below="employeesTitelTextBlock"
                       ItemsSource="{Binding Employees, Mode=OneWay}"
                       SelectedItem="{Binding SelectedEmployee, Mode=TwoWay}"
-                      MinWidth="150" Width="300">
+                      MinWidth="150" Width="300"
+                      BorderThickness="1" BorderBrush="Black">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid>
@@ -133,7 +188,7 @@
             </ListView>
         </RelativePanel>
 
-        <ScrollViewer Grid.Row="1" Grid.Column="1">
+        <ScrollViewer x:Name="gegevensScrollViewer" Grid.Row="1">
             <RelativePanel x:Name="sessionInfoRelativePanel"  Padding="10" >
 
                 <TextBlock x:Name="averageTimeTextBlock" Text="Average time:" 

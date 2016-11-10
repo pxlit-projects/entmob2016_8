@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8685E568-9082-45B8-A390-D9AC12AECAFF}</ProjectGuid>
+    <ProjectGuid>{470E82BC-BB4F-4BF5-864A-B07BB6B21E0B}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HeadPhoneDataApp.Windows</RootNamespace>
-    <AssemblyName>HeadPhoneDataApp.Windows</AssemblyName>
+    <RootNamespace>HeadphoneDataApp.Windows</RootNamespace>
+    <AssemblyName>HeadphoneDataApp.Windows</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformVersion>8.1</TargetPlatformVersion>
     <MinimumVisualStudioVersion>12</MinimumVisualStudioVersion>
@@ -136,9 +136,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HeadPhoneDataApp\HeadPhoneDataApp.csproj">
-      <Project>{83ea11d3-774a-427f-be49-76dc10db5eea}</Project>
-      <Name>HeadPhoneDataApp</Name>
+    <ProjectReference Include="..\HeadphoneDataApp\HeadphoneDataApp.csproj">
+      <Project>{eb147dbe-80b6-4420-8bbf-9fc733e65a20}</Project>
+      <Name>HeadphoneDataApp</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
