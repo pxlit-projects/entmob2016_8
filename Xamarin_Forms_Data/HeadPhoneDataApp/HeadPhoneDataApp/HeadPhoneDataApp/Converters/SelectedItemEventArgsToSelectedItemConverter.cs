@@ -12,7 +12,7 @@ namespace HeadphoneDataApp.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var eventArgs = value as SelectedItemChangedEventArgs;
+            SelectedItemChangedEventArgs eventArgs = value as SelectedItemChangedEventArgs;
             return eventArgs.SelectedItem;
         }
 

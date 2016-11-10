@@ -68,6 +68,7 @@ namespace HeadphoneDataApp.ViewModel
             s.Actual_Time = (int)((endTime.Ticks - startTime.Ticks)/10000000);
             await repository.sendSession(s);
         }
+
         public static double ConvertToUnicTimestamp(DateTime date)
         {
             DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
