@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace HeadPhoneDataApp.WinPhone
+namespace HeadphoneDataApp.WinPhone
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
@@ -28,7 +28,7 @@ namespace HeadPhoneDataApp.WinPhone
 
             this.NavigationCacheMode = NavigationCacheMode.Required;
 
-            LoadApplication(new HeadPhoneDataApp.App());
+            LoadApplication(new HeadphoneDataApp.App());
         }
 
         /// <summary>

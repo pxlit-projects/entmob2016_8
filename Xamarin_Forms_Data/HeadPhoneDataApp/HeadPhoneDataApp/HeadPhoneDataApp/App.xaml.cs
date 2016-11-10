@@ -1,13 +1,14 @@
-﻿using HeadphoneDataApp;
+﻿using HeadphoneDataApp.ViewModel;
+using Microsoft.Practices.ServiceLocation;
 using Robotics.Mobile.Core.Bluetooth.LE;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using Xamarin.Forms;
+using HeadphoneDataApp.View;
 
-namespace HeadPhoneDataApp
+namespace HeadphoneDataApp
 {
     public partial class App : Application
     {
@@ -18,16 +19,14 @@ namespace HeadPhoneDataApp
             Adapter = adapter;
         }
 
+
         public App()
         {
-            
-
             InitializeComponent();
-            base.MainPage = ViewLocator.MainPage;
-            //MainPage = new HeadPhoneDataApp.MainPage();
+            //base.MainPage = ViewLocator.MainPage;
+            base.MainPage = ViewLocator.StartPage;
+            //MainPage = new HeadphoneDataApp.MainPage();
         }
-
-        
 
         protected override void OnStart()
         {
@@ -43,5 +42,6 @@ namespace HeadPhoneDataApp
         {
             // Handle when your app resumes
         }
+
     }
 }

@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:HeadphoneDataApp"
+             xmlns:Converters="clr-namespace:HeadphoneDataApp.Converters"
+             xmlns:Utility="clr-namespace:HeadphoneDataApp.Utility"
+             x:Class="HeadphoneDataApp.MainPage"
+             BindingContext="{Binding Source={StaticResource Locator}, Path=Main}">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <Converters:EmptyStringConverter x:Key="strConverter"/>
+      <Converters:SelectedItemEventArgsToSelectedItemConverter x:Key="localSelectedItemEventArgsToSelectedItemConverter"></Converters:SelectedItemEventArgsToSelectedItemConverter>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <StackLayout
+    VerticalOptions="Start"
+           HorizontalOptions="FillAndExpand">
+    <Image
+      Source="headphoneImage.jpg"/>
+    <Label Text="Scan for devices"
+           VerticalOptions="Start"
+           HorizontalTextAlignment="Center"
+           IsVisible="true"
+           FontSize="Large"
+           FontAttributes="Bold"
+           TextColor="Red" />
+    <Button x:Name="scan"
+            Text="SCAN!"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Command="{Binding ScanCommand}"/>
+    <ListView x:Name="devicesListView"
+              HorizontalOptions="Center"
+              VerticalOptions="Center"
+              BackgroundColor="#CCCCCC"
+              ItemsSource ="{Binding Devices}">
+      <ListView.Behaviors>
+        <Utility:EventToCommandBehavior EventName="ItemSelected" Command="{Binding DeviceSelectedCommand}" Converter="{StaticResource localSelectedItemEventArgsToSelectedItemConverter}" />
+      </ListView.Behaviors>
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <TextCell Text="{Binding Name, Converter={StaticResource strConverter}"/>
+          <!--<TextCell Text="{Binding NativeDevice.Address}"/>-->
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+
+  </StackLayout>
+</ContentPage>

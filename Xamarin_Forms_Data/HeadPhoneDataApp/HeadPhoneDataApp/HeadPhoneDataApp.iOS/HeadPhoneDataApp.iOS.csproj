@@ -5,12 +5,12 @@
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{296F327B-3718-49EE-9959-AABC29C844BC}</ProjectGuid>
+    <ProjectGuid>{0C2B36D6-8684-4637-86A4-F586F0CB7F6A}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
-    <RootNamespace>HeadPhoneDataApp.iOS</RootNamespace>
+    <RootNamespace>HeadphoneDataApp.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>HeadPhoneDataApp.iOS</AssemblyName>
+    <AssemblyName>HeadphoneDataApp.iOS</AssemblyName>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
@@ -90,6 +90,7 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <None Include="app.config" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -138,9 +139,9 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HeadPhoneDataApp\HeadPhoneDataApp.csproj">
-      <Project>{83ea11d3-774a-427f-be49-76dc10db5eea}</Project>
-      <Name>HeadPhoneDataApp</Name>
+    <ProjectReference Include="..\HeadphoneDataApp\HeadphoneDataApp.csproj">
+      <Project>{eb147dbe-80b6-4420-8bbf-9fc733e65a20}</Project>
+      <Name>HeadphoneDataApp</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

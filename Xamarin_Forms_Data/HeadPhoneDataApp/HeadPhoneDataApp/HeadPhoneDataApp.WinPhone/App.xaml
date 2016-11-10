@@ -1,7 +1,7 @@
 ﻿<Application
-    x:Class="HeadPhoneDataApp.WinPhone.App"
+    x:Class="HeadphoneDataApp.WinPhone.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:HeadPhoneDataApp.WinPhone">
+    xmlns:local="using:HeadphoneDataApp.WinPhone">
 
 </Application>
