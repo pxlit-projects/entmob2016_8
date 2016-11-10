@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using UWPMonitoring.App.Service;
 using UWPMonitoring.App.Utility;
 using UWPMonitoring.DAL;
 using UWPMonitoring.Domain;
@@ -14,8 +15,8 @@ namespace UWPMonitoring.App.ViewModels
     public class RegisterEmployeeViewModel : INotifyPropertyChanged
     {
         //Variabelen
-        private IRepository repository;
         private INavigationService navigationService;
+        private IDataService dataService;
 
         //Commands
         public CustomCommand RegisterCommand { get; set; }
@@ -25,9 +26,9 @@ namespace UWPMonitoring.App.ViewModels
         public User NewUser { get; set; }
 
         //Constructor
-        public RegisterEmployeeViewModel(IRepository repository, INavigationService navigationService)
+        public RegisterEmployeeViewModel(IDataService dataService, INavigationService navigationService)
         {
-            this.repository = repository;
+            this.dataService = dataService;
             this.navigationService = navigationService;
             NewUser = new User();
 
@@ -48,7 +49,7 @@ namespace UWPMonitoring.App.ViewModels
             string password = RandomPassword.Generate(12);
             NewUser.Salt = RandomPassword.Generate(30);
             NewUser.Password = Hasher.ConvertStringToHash(password, NewUser.Salt);
-            repository.RegisterEmployee(NewUser);
+            NewUser.UserId = dataService.RegisterEmployee(NewUser);
 
         }
 

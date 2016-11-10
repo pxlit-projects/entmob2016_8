@@ -24,8 +24,8 @@ namespace UWPMonitoring.Domain
         public Session ToNormalSession()
         {
             DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
-            DateTime startTime = dtDateTime.AddMilliseconds(this.Start_Time).ToLocalTime();
-            DateTime endTime = dtDateTime.AddMilliseconds(this.End_Time).ToLocalTime();
+            DateTime startTime = dtDateTime.AddSeconds(this.Start_Time).ToLocalTime();
+            DateTime endTime = dtDateTime.AddSeconds(this.End_Time).ToLocalTime();
 
             Session session = new Session();
             session.SessionId = this.SessionId;

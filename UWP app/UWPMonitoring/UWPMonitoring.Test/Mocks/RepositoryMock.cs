@@ -25,27 +25,6 @@ namespace UWPMonitoring.Test.Mocks
         //methode om de lijsten te vullen met mock data
         private void LoadData()
         {
-            sessionListKoen = new List<Session>
-            {
-                new Session
-                {
-                    SessionId = 1,
-                    UserId = 1309,
-                    Start_Time = new DateTime(2016,10,18,13,0,0),
-                    End_Time = new DateTime(2016,10,18,14,0,0),
-                    Actual_Time = new DateTime(),
-                },
-
-                 new Session
-                {
-                    SessionId = 2,
-                    UserId = 1309,
-                    Start_Time = new DateTime(2016,10,18,14,0,0),
-                    End_Time = new DateTime(2016,10,18,15,0,0),
-                    Actual_Time = new DateTime(),
-                },
-            };
-
             sessionListBrecht = new List<Session>
             {
                 new Session
@@ -54,7 +33,7 @@ namespace UWPMonitoring.Test.Mocks
                     UserId = 1234,
                     Start_Time = new DateTime(2016,10,18,13,0,0),
                     End_Time = new DateTime(2016,10,18,14,0,0),
-                    Actual_Time = new DateTime(),
+                    Actual_Time = 2,
                 },
 
                  new Session
@@ -63,7 +42,7 @@ namespace UWPMonitoring.Test.Mocks
                     UserId = 1234,
                     Start_Time = new DateTime(2016,10,18,14,0,0),
                     End_Time = new DateTime(2016,10,18,15,0,0),
-                    Actual_Time = new DateTime(),
+                    Actual_Time = 2,
                 },
             };
 
@@ -75,7 +54,7 @@ namespace UWPMonitoring.Test.Mocks
                     UserId = 4321,
                     Start_Time = new DateTime(2016,10,18,13,0,0),
                     End_Time = new DateTime(2016,10,18,14,0,0),
-                    Actual_Time = new DateTime(),
+                    Actual_Time = 2,
                 },
 
                  new Session
@@ -84,7 +63,7 @@ namespace UWPMonitoring.Test.Mocks
                     UserId = 4321,
                     Start_Time = new DateTime(2016,10,18,14,0,0),
                     End_Time = new DateTime(2016,10,18,15,0,0),
-                    Actual_Time = new DateTime(),
+                    Actual_Time = 2,
                 },
             };
 
@@ -96,7 +75,7 @@ namespace UWPMonitoring.Test.Mocks
                     UserId = 5678,
                     Start_Time = new DateTime(2016,10,18,13,0,0),
                     End_Time = new DateTime(2016,10,18,14,0,0),
-                    Actual_Time = new DateTime(),
+                    Actual_Time = 2,
                 },
 
                  new Session
@@ -105,7 +84,7 @@ namespace UWPMonitoring.Test.Mocks
                     UserId = 5678,
                     Start_Time = new DateTime(2016,10,18,14,0,0),
                     End_Time = new DateTime(2016,10,18,15,0,0),
-                    Actual_Time = new DateTime(),
+                    Actual_Time = 2,
                 },
             };
 
@@ -116,9 +95,11 @@ namespace UWPMonitoring.Test.Mocks
                     UserId = 1309,
                     FirstName = "Koen",
                     LastName = "Castermans",
-                    Password = "KoenPass",
+                    Password = "c1e33790556faca15631bfa546cbb7182dfb6032a076f47ed158e7b64ccaccfbfa58261b15bf4000f3fb1714357f6e955467233c0082af260a61e3858b9f0935", // koen
+                    Salt = "salt",
                     Department = "Verkoop",
-                    Sessions = sessionListKoen
+                    Role = "admin",
+                    Sessions = new List<Session>()
                 },
 
                 new User
@@ -126,8 +107,10 @@ namespace UWPMonitoring.Test.Mocks
                     UserId = 1234,
                     FirstName = "Brecht",
                     LastName = "Morrhey",
-                    Password = "BrechtPass",
+                    Password = "e1919879f2c972002c220a9ebf64c3f90b6eaec52a072bba7e7e1918ef5eafaf72097e86b19458af159417059f3f00ee6035366ec90cdad300d9ead6e4b632b9", //brecht
+                    Salt = "salt",
                     Department = "Verkoop",
+                    Role = "user",
                     Sessions = sessionListBrecht
                 },
 
@@ -136,8 +119,10 @@ namespace UWPMonitoring.Test.Mocks
                     UserId = 4321,
                     FirstName = "Jasper",
                     LastName = "Szkudlarski",
-                    Password = "JasperPass",
+                    Password = "12b1462ec31f8cd412f451ca7ad3a78b13e59973f52268b71ed29646405955444e81c7bef9e1d18c07d6b61a1fc3f87cd00dbc19c66e1c1c64697e863452871a", //jasper
+                    Salt = "salt",
                     Department = "Verkoop",
+                    Role = "user",
                     Sessions = sessionListJasper
                 },
 
@@ -146,68 +131,195 @@ namespace UWPMonitoring.Test.Mocks
                     UserId = 5678,
                     FirstName = "Stephane",
                     LastName = "Oris",
-                    Password = "StephanePass",
+                    Password = "50b3edb7ce73fb7a0a48ff74c69be838e67c5fb2d8bfa2084d457e6cc5213849205a1476fc4dbd7d73070377dad7b99b885b63219518a3f8792679b2a49cba61", //stephane
+                    Salt = "salt",
                     Department = "Verkoop",
+                    Role = "user",
                     Sessions = sessionListStephane
+                },
+
+                new User
+                {
+                    UserId = 1,
+                    FirstName = "Stephane",
+                    LastName = "Oris",
+                    Password = "50b3edb7ce73fb7a0a48ff74c69be838e67c5fb2d8bfa2084d457e6cc5213849205a1476fc4dbd7d73070377dad7b99b885b63219518a3f8792679b2a49cba61", //stephane
+                    Salt = "salt",
+                    Department = "Verkoop",
+                    Role = "user",
+                    Sessions = new List<Session>()
                 },
             };
 
             
         }
 
-        public bool CheckIfUserIsValid(int userId, string password)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Session> GetAllSessions()
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<User> GetAllUsers()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Session GetSession(int sessionId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Session GetSessionByUserId(int userId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public User GetUser(int userId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public User GetUserBySessionId(int sessionId)
-        {
-            throw new NotImplementedException();
-        }
-
         public User GetUserById(int userId)
         {
-            throw new NotImplementedException();
+            User user = userList.Where(u => u.UserId == userId).First();
+            return user;
         }
 
         public List<User> GetAllUsersByRole(string role)
         {
-            throw new NotImplementedException();
+            List<User> usersByRole = userList.Where(u => u.Role == role).ToList();
+            return usersByRole;
         }
 
         public bool CheckIfUserIsValid(int userId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                User user = userList.Where(u => u.UserId == userId).Single();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            
         }
 
-        public double GetAverageTimeForuserId(int id)
+        public int RegisterEmployee(User newUser)
         {
-            throw new NotImplementedException();
+            newUser.UserId = 1337;
+            userList.Add(newUser);
+            return newUser.UserId;
+        }
+
+        public int GetAverageTimeForUserId(int userId)
+        {
+            int sum = 0;
+            User user = userList.Where(u => u.UserId == userId).First();
+
+            if (user.Sessions.Count != 0)
+            {
+                foreach (Session s in user.Sessions)
+                {
+                    sum += (int)s.End_Time.Subtract(s.Start_Time).TotalSeconds;
+                }
+
+                return sum / user.Sessions.Count();
+            }
+            else
+            {
+                return 0;
+            }
+            
+        }
+
+        public int GetMinimalTimeForUserId(int userId)
+        {
+            int min = int.MaxValue;
+            int result;
+            User user = userList.Where(u => u.UserId == userId).First();
+
+            if (user.Sessions.Count != 0)
+            {
+                foreach (Session s in user.Sessions)
+                {
+                    result = (int)s.End_Time.Subtract(s.Start_Time).TotalSeconds;
+                    if (result < min)
+                    {
+                        min = result;
+                    }
+                }
+
+                return min;
+            }
+            else
+            {
+                return 0;
+            }
+               
+        }
+
+        public int GetMaximumTimeForUserId(int userId)
+        {
+            int max = int.MinValue;
+            int result;
+            User user = userList.Where(u => u.UserId == userId).First();
+
+            if (user.Sessions.Count != 0)
+            {
+                foreach (Session s in user.Sessions)
+                {
+                    result = (int)s.End_Time.Subtract(s.Start_Time).TotalSeconds;
+                    if (result > max)
+                    {
+                        max = result;
+                    }
+                }
+
+                return max;
+            }
+            else
+            {
+                return 0;
+            }
+            
+        }
+
+        public int GetTotalLengthForUserId(int userId)
+        {
+            int sum = 0;
+            User user = userList.Where(u => u.UserId == userId).First();
+
+            if (user.Sessions.Count != 0)
+            {
+                foreach (Session s in user.Sessions)
+                {
+                    sum += (int)s.End_Time.Subtract(s.Start_Time).TotalSeconds;
+                }
+
+                return sum;
+            }
+            else
+            {
+                return 0;
+            }
+            
+        }
+
+        public SessionWithLongs GetLastSession(int userId)
+        {
+            Session session = new Session();
+            DateTime date = new DateTime();
+            User user = userList.Where(u => u.UserId == userId).First();
+
+            if (user.Sessions.Count != 0)
+            {
+                foreach (Session s in user.Sessions)
+                {
+                    if (s.End_Time > date )
+                    {
+                        date = s.End_Time;
+                        session = s;
+                    }
+
+                   
+                }
+
+                return new SessionWithLongs
+                {
+                    SessionId = session.SessionId,
+                    UserId = session.UserId,
+                    Start_Time = ConvertToUnixTimestamp(session.Start_Time),
+                    End_Time = ConvertToUnixTimestamp(session.End_Time),
+                    Actual_Time = session.Actual_Time,
+                };
+            }
+            else
+            {
+                throw new Exception();
+            }
+        }
+
+        private static long ConvertToUnixTimestamp(DateTime date)
+        {
+            DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+            TimeSpan diff = date.ToUniversalTime() - origin;
+            return (long)Math.Floor(diff.TotalSeconds);
         }
     }
 }

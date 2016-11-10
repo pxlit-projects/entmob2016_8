@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using UWPMonitoring.App.Service;
 using UWPMonitoring.App.Utility;
 using UWPMonitoring.DAL;
 using UWPMonitoring.Domain;
@@ -19,7 +20,7 @@ namespace UWPMonitoring.App.ViewModels
     {
         //Variabelen
         private INavigationService navigationService;
-        private IRepository repository;
+        private IDataService dataService;
         private string message;
 
         //Properties
@@ -41,9 +42,9 @@ namespace UWPMonitoring.App.ViewModels
         public ICommand LoginCommand { get; set; }
 
         //Constructor
-        public MainViewViewModel(IRepository repository, INavigationService navigationService)
+        public MainViewViewModel(INavigationService navigationService, IDataService dataService)
         {
-            this.repository = repository;
+            this.dataService = dataService;
             this.navigationService = navigationService;
 
             LoadCommands();
@@ -60,48 +61,19 @@ namespace UWPMonitoring.App.ViewModels
         //Methodes voor implementatie van LoginCommand
         private void Login(object obj) 
         {
-            bool userExists =  repository.CheckIfUserIsValid(User.UserId);
-
-            if (userExists)
+            if (dataService.Login(User))
             {
-                User retrievedUser = repository.GetUserById(User.UserId);
-                bool passwordCorrect = this.CheckUserPassword(retrievedUser);
-
-                if (retrievedUser.Role == "admin")
-                {
-                    if (passwordCorrect)
-                    {
-                        Messenger.Default.Send<User>(retrievedUser); //Object van de ingelogde gebruiker doorsturen naar het volgende scherm
-                        navigationService.NavigateTo("Overview"); //Naar het overzicht scherm gaan
-                        User = new User();//Toegevoegd zodat het User object ook effectief leeg is als er word uitgelogd. Anders was deze niet leeg
-                        Message = ""; //Bericht ook terug leegmaken zodat bij het uitloggen deze ook leeg is
-                    }
-                    else
-                    {
-                        this.Message = "Dit is geen geldig wachtwoord.";
-                    }
-                }
-                else
-                {
-                    this.Message = "Deze gebruiker heeft geen admin rechten.";
-                }
-                
+                Messenger.Default.Send<User>(dataService.RetrievedUser); //Object van de ingelogde gebruiker doorsturen naar het volgende scherm
+                navigationService.NavigateTo("Overview"); //Naar het overzicht scherm gaan
+                User = new User();//Toegevoegd zodat het User object ook effectief leeg is als er word uitgelogd. Anders was deze niet leeg
+                Message = ""; //Bericht ook terug leegmaken zodat bij het uitloggen deze ook leeg is
             }
             else
             {
-                this.Message = "Het ingevulde id bestaat niet.";
+                Message = dataService.Message;
             }
 
            
-        }
-
-        private bool CheckUserPassword(User retrievedUser)
-        {
-            string password = User.Password; //Wachtwoord die de gebruiker heeft ingegeven
-            string salt = retrievedUser.Salt; //Salt van het opgehaalde user object
-            string hashedPasswordWithSalt = Hasher.ConvertStringToHash(password, salt);
-            bool passwordCorrect = hashedPasswordWithSalt.Equals(retrievedUser.Password);
-            return passwordCorrect;
 
         }
 

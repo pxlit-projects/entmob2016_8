@@ -9,9 +9,11 @@ namespace UWPMonitoring.Test.Mocks
 {
     public class NavigationServiceMock : INavigationService
     {
+        public string Key { get; set; }
+
         public void NavigateTo(string key)
         {
-            
+            Key = key;
         }
     }
 }

@@ -16,7 +16,6 @@ namespace UWPMonitoring.App.ViewModels
     {
         //Variabbelen
         private INavigationService navigationService;
-        private IRepository repository;
         private IDataService dataService;
         private List<User> employees;
         private User selectedEmployee;
@@ -144,10 +143,9 @@ namespace UWPMonitoring.App.ViewModels
 
 
         //Constructor
-        public EmployeeOverviewViewModel(INavigationService navigationService, IRepository repository, IDataService dataService)
+        public EmployeeOverviewViewModel(INavigationService navigationService, IDataService dataService)
         {
             this.navigationService = navigationService;
-            this.repository = repository;
             this.dataService = dataService;
 
             LoadCommands();
@@ -231,7 +229,7 @@ namespace UWPMonitoring.App.ViewModels
         //Implentatie voor het load command dat uitgevoerd moet worden bij het laden van het scherm
         private void Load(object obj)
         {
-            Employees = repository.GetAllUsersByRole("user");
+            Employees = dataService.GetAllUsersByRole("user");
         }
 
         private bool CanLoad(object obj)
@@ -242,10 +240,10 @@ namespace UWPMonitoring.App.ViewModels
         //Implementatie van het selection changed command dat uitgevoerd word als er een user geselecteerd word
         private void SelectionChanged(object obj)
         {
-            AverageTime = repository.GetAverageTimeForUserId(SelectedEmployee.UserId);
-            MinimumTime = repository.GetMinimalTimeForUserId(SelectedEmployee.UserId);
-            MaximumTime = repository.GetMaximumTimeForUserId(SelectedEmployee.UserId);
-            TotalLength = repository.GetTotalLengthForUserId(SelectedEmployee.UserId);
+            AverageTime = dataService.GetAverageTimeForUserId(SelectedEmployee.UserId);
+            MinimumTime = dataService.GetMinimalTimeForUserId(SelectedEmployee.UserId);
+            MaximumTime = dataService.GetMaximumTimeForUserId(SelectedEmployee.UserId);
+            TotalLength = dataService.GetTotalLengthForUserId(SelectedEmployee.UserId);
 
             //Als een user geen sessies heeft dan vervangen we de datum met een nieuwe datetime die door de converter in een boodschap word omgezet
             try
