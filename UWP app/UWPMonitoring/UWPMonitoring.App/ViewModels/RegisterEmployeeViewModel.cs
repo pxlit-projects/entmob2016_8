@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -9,6 +10,7 @@ using UWPMonitoring.App.Service;
 using UWPMonitoring.App.Utility;
 using UWPMonitoring.DAL;
 using UWPMonitoring.Domain;
+using Windows.UI.Popups;
 
 namespace UWPMonitoring.App.ViewModels
 {
@@ -43,13 +45,17 @@ namespace UWPMonitoring.App.ViewModels
         }
 
         //Implementatie van het register command
-        private void Register(object obj)
+        private async void Register(object obj)
         {
             NewUser.Role = "user";
             string password = RandomPassword.Generate(12);
             NewUser.Salt = RandomPassword.Generate(30);
             NewUser.Password = Hasher.ConvertStringToHash(password, NewUser.Salt);
             NewUser.UserId = dataService.RegisterEmployee(NewUser);
+            
+            var dialog = new MessageDialog("Id: "+ NewUser.UserId + "\nPassword: " +password);
+            dialog.Title = ("Created new employee: " + NewUser.FirstName + " " + NewUser.LastName);
+            await dialog.ShowAsync();
 
         }
 
