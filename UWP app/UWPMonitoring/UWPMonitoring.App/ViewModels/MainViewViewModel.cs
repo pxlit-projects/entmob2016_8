@@ -1,18 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using UWPMonitoring.App.Service;
 using UWPMonitoring.App.Utility;
-using UWPMonitoring.DAL;
 using UWPMonitoring.Domain;
-using Windows.Security.Cryptography;
-using Windows.Security.Cryptography.Core;
-using Windows.Storage.Streams;
 
 namespace UWPMonitoring.App.ViewModels
 {
@@ -61,19 +53,24 @@ namespace UWPMonitoring.App.ViewModels
         //Methodes voor implementatie van LoginCommand
         private void Login(object obj) 
         {
-            if (dataService.Login(User))
+            try
             {
-                Messenger.Default.Send<User>(dataService.RetrievedUser); //Object van de ingelogde gebruiker doorsturen naar het volgende scherm
-                navigationService.NavigateTo("Overview"); //Naar het overzicht scherm gaan
-                User = new User();//Toegevoegd zodat het User object ook effectief leeg is als er word uitgelogd. Anders was deze niet leeg
-                Message = ""; //Bericht ook terug leegmaken zodat bij het uitloggen deze ook leeg is
+                if (dataService.Login(User))
+                {
+                    Messenger.Default.Send<User>(dataService.RetrievedUser); //Object van de ingelogde gebruiker doorsturen naar het volgende scherm
+                    navigationService.NavigateTo("Overview"); //Naar het overzicht scherm gaan
+                    User = new User();//Toegevoegd zodat het User object ook effectief leeg is als er word uitgelogd. Anders was deze niet leeg
+                    Message = ""; //Bericht ook terug leegmaken zodat bij het uitloggen deze ook leeg is
+                }
+                else
+                {
+                    Message = dataService.Message;
+                }
             }
-            else
+            catch (Exception)
             {
-                Message = dataService.Message;
+                Message = "Er is een probleem met de connectie naar de server.";
             }
-
-           
 
         }
 

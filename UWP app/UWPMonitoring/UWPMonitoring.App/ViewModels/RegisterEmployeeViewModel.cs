@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using UWPMonitoring.App.Service;
 using UWPMonitoring.App.Utility;
-using UWPMonitoring.DAL;
 using UWPMonitoring.Domain;
 using Windows.UI.Popups;
 
@@ -26,6 +20,7 @@ namespace UWPMonitoring.App.ViewModels
 
         //Properties
         public User NewUser { get; set; }
+        public bool IsTesting { get; set; }
 
         //Constructor
         public RegisterEmployeeViewModel(IDataService dataService, INavigationService navigationService)
@@ -52,11 +47,14 @@ namespace UWPMonitoring.App.ViewModels
             NewUser.Salt = RandomPassword.Generate(30);
             NewUser.Password = Hasher.ConvertStringToHash(password, NewUser.Salt);
             NewUser.UserId = dataService.RegisterEmployee(NewUser);
-            
-            var dialog = new MessageDialog("Id: "+ NewUser.UserId + "\nPassword: " +password);
-            dialog.Title = ("Created new employee: " + NewUser.FirstName + " " + NewUser.LastName);
-            await dialog.ShowAsync();
 
+            //Toegevoegd zodat bij het testen er geen dialog word weergegeven, dit gaf een exception
+            if (!IsTesting)
+            {
+                var dialog = new MessageDialog("Id: " + NewUser.UserId + "\nPassword: " + password);
+                dialog.Title = ("Created new employee: " + NewUser.FirstName + " " + NewUser.LastName);
+                await dialog.ShowAsync();
+            }
         }
 
         private bool CanRegister(object obj)
