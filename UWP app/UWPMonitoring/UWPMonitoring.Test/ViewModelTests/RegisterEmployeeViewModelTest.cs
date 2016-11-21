@@ -46,6 +46,7 @@ namespace UWPMonitoring.Test.ViewModelTests
         {
             //Arrange
             init();
+            registerEmployeeViewModel.IsTesting = true; //Toegevoegd zodat bij het testen er geen dialog word weergegeven, dit gaf een exception
             registerEmployeeViewModel.NewUser.FirstName = "test";
             registerEmployeeViewModel.NewUser.LastName = "test";
             registerEmployeeViewModel.NewUser.Department = "test";
