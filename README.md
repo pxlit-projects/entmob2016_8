@@ -1,4 +1,14 @@
 # entmob2016_8
+## Installation
+1. Install and run a local SQL server (eg. XAMP)
+2. Create database entmob and database entmobtest using SQL/entmob.sql
+3. Install and run a local ActiveMQ server (http://activemq.apache.org/download.html)
+4. Add References to Xamarin app
+5. Create a wifi hotspot on PC to connect to with your mobile device running the Xamarin app
+
+Login Credentials admin: 
+userid: 7
+password: koen
 ## Groepsleden
 - Koen Castermans
 - Jasper Szkudlarski
