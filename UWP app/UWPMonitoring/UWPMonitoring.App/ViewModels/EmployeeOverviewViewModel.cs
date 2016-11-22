@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using UWPMonitoring.App.Service;
 using UWPMonitoring.App.Utility;
-using UWPMonitoring.DAL;
 using UWPMonitoring.Domain;
+using Windows.UI.Popups;
 
 namespace UWPMonitoring.App.ViewModels
 {
@@ -227,9 +225,18 @@ namespace UWPMonitoring.App.ViewModels
         }
 
         //Implentatie voor het load command dat uitgevoerd moet worden bij het laden van het scherm
-        private void Load(object obj)
+        private async void Load(object obj)
         {
-            Employees = dataService.GetAllUsersByRole("user");
+            try
+            {
+                Employees = dataService.GetAllUsersByRole("user");
+            }
+            catch (Exception)
+            {
+                var dialog = new MessageDialog("Error when trying to get the employees.");
+                dialog.Title = ("Error");
+                await dialog.ShowAsync();
+            }
         }
 
         private bool CanLoad(object obj)
@@ -238,12 +245,21 @@ namespace UWPMonitoring.App.ViewModels
         }
 
         //Implementatie van het selection changed command dat uitgevoerd word als er een user geselecteerd word
-        private void SelectionChanged(object obj)
+        private async void SelectionChanged(object obj)
         {
-            AverageTime = dataService.GetAverageTimeForUserId(SelectedEmployee.UserId);
-            MinimumTime = dataService.GetMinimalTimeForUserId(SelectedEmployee.UserId);
-            MaximumTime = dataService.GetMaximumTimeForUserId(SelectedEmployee.UserId);
-            TotalLength = dataService.GetTotalLengthForUserId(SelectedEmployee.UserId);
+            try
+            {
+                AverageTime = dataService.GetAverageTimeForUserId(SelectedEmployee.UserId);
+                MinimumTime = dataService.GetMinimalTimeForUserId(SelectedEmployee.UserId);
+                MaximumTime = dataService.GetMaximumTimeForUserId(SelectedEmployee.UserId);
+                TotalLength = dataService.GetTotalLengthForUserId(SelectedEmployee.UserId);
+            }
+            catch (Exception)
+            {
+                var dialog = new MessageDialog("Error when trying to get the user data.");
+                dialog.Title = ("Error");
+                await dialog.ShowAsync();
+            }
 
             //Als een user geen sessies heeft dan vervangen we de datum met een nieuwe datetime die door de converter in een boodschap word omgezet
             try
@@ -255,7 +271,7 @@ namespace UWPMonitoring.App.ViewModels
             {
                 LastSessionDate = new DateTime();
             }
-            
+
         }
 
         private bool CanSelectionChangedExecute(object obj)

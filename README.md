@@ -1,4 +1,31 @@
 # entmob2016_8
+## Installation
+1. Install and run a local SQL server (eg. XAMP)
+2. Create database entmob and database entmobtest using SQL/entmob.sql
+3. Install and run a local ActiveMQ server (http://activemq.apache.org/download.html)
+4. Add References to Xamarin app
+5. Create a wifi hotspot on PC to connect to with your mobile device running the Xamarin app
+
+Login Credentials admin: 
+userid: 7
+password: koen
+
+Login Credentials user:
+userid: 55
+password: Eq4!6L$ye9S_
+
+## manual
+### Xamarin
+1. start the app and login with provided user credentials.
+2. press the button to start scanning for active Bluetooth devices.
+3. when a "CC2650 SensorTag" device is found, tap it.
+4. wait until correct service has been discovered.
+5. when discovered, start monotiring by pressing the button.
+
+the sensor should start on a flat surface, with the start button on the left and the opening of the red housing away from you.
+pivoting the sensor so that the opening of the red housing faces the bottom will simulate the "headset" laying on the table and end a session.
+
+
 ## Groepsleden
 - Koen Castermans
 - Jasper Szkudlarski
