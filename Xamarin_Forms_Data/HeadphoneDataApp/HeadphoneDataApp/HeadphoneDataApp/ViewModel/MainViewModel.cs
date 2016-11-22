@@ -32,12 +32,12 @@ namespace HeadphoneDataApp.ViewModel
         private User user;
         private ObservableCollection<IDevice> devices;
 
+        //Properties
         public IAdapter Adapter
         {
             get { return adapter; }
             set { adapter = value; }
         }
-        
         public ObservableCollection<IDevice> Devices
         {
             get
@@ -58,8 +58,6 @@ namespace HeadphoneDataApp.ViewModel
         //Constructor
         public MainViewModel()
         {
-            
-
             //MESSENGER REGISTER
             //get the adapter via messenger
             Messenger.Default.Register<IAdapter>(this, AdapterMessage);

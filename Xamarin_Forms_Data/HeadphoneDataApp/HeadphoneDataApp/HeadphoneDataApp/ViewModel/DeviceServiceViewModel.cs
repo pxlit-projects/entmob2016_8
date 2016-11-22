@@ -17,66 +17,8 @@ using Xamarin.Forms;
 namespace HeadphoneDataApp.ViewModel
 {
     public class DeviceServiceViewModel: INotifyPropertyChanged
-    {
-
-        private IAdapter adapter;
-
-        public IAdapter Adapter
-        {
-            get { return adapter; }
-            set { adapter = value; }
-        }
-
-        private IDevice device;
-        public IDevice Device
-        {
-            get { return device; }
-            set { device = value; }
-        }
-        private ObservableCollection<IService> services;
-        private string deviceName;
-        private User user;
-
-        public User User
-        {
-            get { return user; }
-            set { user = value; }
-        }
-
-        private string ready;
-
-        public string Ready
-        {
-            get { return ready; }
-            set { 
-                    ready = value;
-                    OnPropertyChanged("Ready");
-                }
-        }
-
-
-        private ICharacteristic characteristicConfig;
-        private ICharacteristic characteristicPeriod;
-         private ICharacteristic characteristicData;
-
-
-        public ICharacteristic CharacteristicData
-        {
-            get { return characteristicData; }
-        }
-
-        public ICharacteristic CharacteristicConfig
-        {
-            get { return characteristicConfig; }
-        }
-
-        public ICharacteristic CharacteristicPeriod
-        {
-            get { return characteristicPeriod; }
-        }
-
-
-
+    { 
+        
         /** Service ID. */
         private static string ID_SERVICE = "f000aa80-0451-4000-b000-000000000000";
         /** Data UUID. */
@@ -85,45 +27,117 @@ namespace HeadphoneDataApp.ViewModel
         private static string UUID_CONFIG = "f000aa82-0451-4000-b000-000000000000";
         /** Period UUID. */
         private static string UUID_PERIOD = "f000aa83-0451-4000-b000-000000000000";
+
+        private IAdapter adapter;
+        private IDevice device;
+        private string deviceName;
+        private User user;
+        private ObservableCollection<IService> services;
+        private string ready;
+
+        private ICharacteristic characteristicConfig;
+        private ICharacteristic characteristicPeriod;
+        private ICharacteristic characteristicData;
+
         private IService _accelerometerService;
 
+        //Properties
+        public IDevice Device
+        {
+            get { return device; }
+            set { device = value; }
+        }
+        public IAdapter Adapter
+        {
+            get { return adapter; }
+            set { adapter = value; }
+        }
+        public User User
+        {
+            get { return user; }
+            set { user = value; }
+        }
+        public string Ready
+        {
+            get { return ready; }
+            set { 
+                    ready = value;
+                    OnPropertyChanged("Ready");
+                }
+        }
+        public string DeviceName
+        {
+            get
+            {
+                return deviceName;
+            }
+            set
+            {
+                if (deviceName != value)
+                {
+                    deviceName = value;
+                    OnPropertyChanged("DeviceName");
+                }
+            }
+        }
+        public ICharacteristic CharacteristicData
+        {
+            get { return characteristicData; }
+        }
+        public ICharacteristic CharacteristicConfig
+        {
+            get { return characteristicConfig; }
+        }
+        public ICharacteristic CharacteristicPeriod
+        {
+            get { return characteristicPeriod; }
+        }
         public IService AccelerometerService
         {
             get { return _accelerometerService; }
             set { _accelerometerService = value; }
         }
+       
+        //Command
+        public Command GetServicesCommand { get; set; }
 
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
+        //Constructor
         public DeviceServiceViewModel()
         {
 
             Ready = "please wait until the correct service has been found.";
-            //get the adapter via messenger
+            //MESSENGER REGISTER
+            //get the adapter, device en user via messenger
             Messenger.Default.Register<IAdapter>(this, AdapterMessage);
             Messenger.Default.Register<IDevice>(this, DeviceMessage);
             Messenger.Default.Register<User>(this, UserMessage);
             this.services = new ObservableCollection<IService>();
 
-
+            //COMMAND
             this.GetServicesCommand = new Command(() =>
             {
-                if (_accelerometerService !=null && _accelerometerService.ID.ToString() == ID_SERVICE)
+                //Controle als de gevonden service correct is
+                if (_accelerometerService != null && _accelerometerService.ID.ToString() == ID_SERVICE)
                 {
-                //controle op de characteristics
-                if (_accelerometerService.Characteristics.Count() >=3)
+                    //controle als de service ook characteristics heeft
+                    if (_accelerometerService.Characteristics.Count() >= 3)
                     {
 
                         characteristicData = _accelerometerService.Characteristics[0];
                         characteristicConfig = _accelerometerService.Characteristics[1];
                         characteristicPeriod = _accelerometerService.Characteristics[2];
 
+                        //controle als de service ook de juiste characteristics heeft
                         if (characteristicData.Uuid == UUID_DATA &&
                                             characteristicConfig.Uuid == UUID_CONFIG &&
                                            characteristicPeriod.Uuid == UUID_PERIOD)
                         {
+                            //startdatum zetten
                             DateTime now = DateTime.Now;
+                            //Hulp klasse 
+                            //voor data uit de sensor te halen
+                            //voor het locken en unlocken
+                            //voor de sessie door te sturen naar de server
                             AccelerometerData data = new AccelerometerData(characteristicData, characteristicConfig, characteristicPeriod, now, user.UserId);
                             data.Start();
                         }
@@ -134,44 +148,20 @@ namespace HeadphoneDataApp.ViewModel
                     }
                     else
                     {
-                            Debug.WriteLine("Geen chararcterisics gevonden");
-                    }
-                    
-
-
-                    if (characteristicConfig.Uuid == UUID_CONFIG)
-                    {
-                        //enable the Accelerometer features 
-                        //characteristicPeriod.Write(new byte[] { 0x64 });
-                        
-                    }
-                
-                    else
-                    {
-                        Debug.WriteLine("Geen service gevonden");
+                        Debug.WriteLine("Geen chararcterisics gevonden");
                     }
                 }
+                else
+                {
+                    Debug.WriteLine("Geen service gevonden");
+                }
+                
             });
 
         }
 
-        private void AdapterMessage(IAdapter obj)
-        {
-            this.adapter = obj;
-        }
-
-        private void DeviceMessage(IDevice obj)
-        {
-            this.device = obj;
-            ScanForServices();
-            DeviceName = device.Name;
-        }
-
-        private void UserMessage(User obj)
-        {
-            this.user = obj;
-        }
-
+       
+        //Code voor het scannen van naar services van de censortag
         public void ScanForServices()
         {
             Debug.WriteLine("***Scan for Services***");
@@ -184,8 +174,7 @@ namespace HeadphoneDataApp.ViewModel
                 adapter.ConnectToDevice(device);
             }
 
-            //device.DiscoverServices();
-            //var test = device.State;
+            
             adapter.DeviceConnected += (s, e) =>
             {
                 device = e.Device; // do we need to overwrite this?
@@ -205,18 +194,6 @@ namespace HeadphoneDataApp.ViewModel
                 Xamarin.Forms.Device.BeginInvokeOnMainThread(() =>
                 {
                     findService();
-                    //foreach (var service in device.Services)
-                    //{
-                    //    //services.Add(service);
-                    //    if (service.ID.ToString() == ID_SERVICE)
-                    //    {
-                    //        Debug.WriteLine("Found Accelerometer Service");
-                    //        Ready = "Found Accelerometer Service, feel free to press the button";
-                    //        _accelerometerService = service;
-                    //        device.ServicesDiscovered -= Device_ServicesDiscovered;
-
-                    //    }
-                    //}
                 });
         }
 
@@ -236,26 +213,29 @@ namespace HeadphoneDataApp.ViewModel
             }
         }
 
-        public string DeviceName
+        //Actions
+        //Action wat wordt opgeroepen bij het registreren van de adapter 
+        private void AdapterMessage(IAdapter obj)
         {
-            get
-            {
-                return deviceName;
-            }
-            set
-            {
-                if (deviceName != value)
-                {
-                    deviceName = value;
-                    OnPropertyChanged("DeviceName");
-                }
-            }
+            this.adapter = obj;
+        }
+        //Action wat wordt opgeroepen bij het registreren van het device
+        //Hier starten we ook het zoeken naar services van de sensortag
+        private void DeviceMessage(IDevice obj)
+        {
+            this.device = obj;
+            ScanForServices();
+            DeviceName = device.Name;
+        }
+        //Action wat wordt opgeroepen bij het registreren van de user
+        private void UserMessage(User obj)
+        {
+            this.user = obj;
         }
 
-        public Command GetServicesCommand { get; private set; }
-        public object WorkThreadFunction { get; private set; }
-
-        protected virtual void OnPropertyChanged(string propertyName)
+        //Implementatie van de interface INotifyPropertyChanged
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)
             {
