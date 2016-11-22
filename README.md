@@ -7,7 +7,9 @@
 5. Create a wifi hotspot on PC to connect to with your mobile device running the Xamarin app
 
 Login Credentials admin: 
+
 userid: 7
+
 password: koen
 ## Groepsleden
 - Koen Castermans
