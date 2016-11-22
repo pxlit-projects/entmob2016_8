@@ -3,7 +3,9 @@
 1. Install and run a local SQL server (eg. XAMP)
 2. Create database entmob and database entmobtest using SQL/entmob.sql
 3. Install and run a local ActiveMQ server (http://activemq.apache.org/download.html)
-4. Add References to Xamarin app
+4. Add References to Xamarin app  
+4.1. Add the references Robotics.Mobile.Core.dll and Newtonsoft.Json.dll to the Portableproject
+4.2. Add the references Robotics.Mobile.Core.Droid.dll and Newtonsoft.Json.dll to the Droidproject
 5. Create a wifi hotspot on PC to connect to with your mobile device running the Xamarin app
 
 Login Credentials admin: 
