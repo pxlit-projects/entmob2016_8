@@ -36,7 +36,7 @@ namespace HeadphoneDataApp.ViewModel
             repository = new Repository.Repository();
             isLocked = false;
         }
-
+        //De sensor aanzetten en zorgen dat we updates krijgen
         public void Start()
         {
             characteristicConfig.Write(new byte[] { 0xF7, 0x00 });
@@ -59,17 +59,7 @@ namespace HeadphoneDataApp.ViewModel
             
         }
 
-        private async void SessionEnd()
-        {
-            Session s = new Session();
-            DateTime endTime = DateTime.Now;
-            s.Start_Time = (long) ConvertToUnixTimestamp(startTime);
-            s.End_Time = (long) ConvertToUnixTimestamp(endTime);
-            s.UserId = userId;
-            s.Actual_Time = (int)((endTime.Ticks - startTime.Ticks)/10000000);
-            await repository.sendSession(s);
-        }
-
+        //Converter voor datetime naar double
         public static double ConvertToUnixTimestamp(DateTime date)
         {
             DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
@@ -77,6 +67,8 @@ namespace HeadphoneDataApp.ViewModel
             return Math.Floor(diff.TotalSeconds);
         }
 
+        //Decoderen van de data
+        //En ook het locken en unlocken
         private void Decode(byte[] value)
         {
             var sensorData = value;
@@ -127,6 +119,17 @@ namespace HeadphoneDataApp.ViewModel
                 }
             }
 
+        }
+        // sessie naar de server sturen
+        private async void SessionEnd()
+        {
+            Session s = new Session();
+            DateTime endTime = DateTime.Now;
+            s.Start_Time = (long)ConvertToUnixTimestamp(startTime);
+            s.End_Time = (long)ConvertToUnixTimestamp(endTime);
+            s.UserId = userId;
+            s.Actual_Time = (int)((endTime.Ticks - startTime.Ticks) / 10000000);
+            await repository.sendSession(s);
         }
     }
 }
