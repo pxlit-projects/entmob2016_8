@@ -119,7 +119,6 @@ namespace HeadphoneDataApp.ViewModel
             }).Start();
         }
 
-
         //Actions
         //Action wat wordt opgeroepen bij het registreren van de adapter 
         private void AdapterMessage(IAdapter obj)

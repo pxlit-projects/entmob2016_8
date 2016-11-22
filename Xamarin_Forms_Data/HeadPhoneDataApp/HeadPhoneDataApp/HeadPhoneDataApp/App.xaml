@@ -11,11 +11,5 @@
       <vm:ViewModelLocator xmlns:vm="clr-namespace:HeadphoneDataApp.ViewModel"
                            x:Key="Locator"/>
    </ResourceDictionary>
-    <!--<ResourceDictionary>
-      <local:ViewModelLocator x:Key="localViewModelLocator"></local:ViewModelLocator>
-    </ResourceDictionary>-->
-    <!--<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-      <vm:ViewModelLocator d4p1:Key="Locator" d:IsDataSource="True" xmlns:d4p1="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:vm="clr-namespace:HeadphoneDataApp.ViewModel" />
-    </ResourceDictionary>-->
   </Application.Resources>
 </Application>

@@ -23,8 +23,9 @@ namespace HeadphoneDataApp.ViewModel
         private DateTime startTime;
         private int userId;
         private IRepository repository;
-        public object WorkThreadFunction { get; private set; }
+        
 
+        //Constructor
         public AccelerometerData(ICharacteristic characteristicData, ICharacteristic characteristicConfig, ICharacteristic characteristicPeriod, DateTime startTime, int userId)
         {
             this.characteristicData = characteristicData;
