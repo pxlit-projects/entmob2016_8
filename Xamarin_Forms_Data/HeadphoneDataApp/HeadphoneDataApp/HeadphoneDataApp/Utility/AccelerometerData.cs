@@ -62,14 +62,14 @@ namespace HeadphoneDataApp.ViewModel
         {
             Session s = new Session();
             DateTime endTime = DateTime.Now;
-            s.Start_Time = (long) ConvertToUnicTimestamp(startTime);
-            s.End_Time = (long) ConvertToUnicTimestamp(endTime);
+            s.Start_Time = (long) ConvertToUnixTimestamp(startTime);
+            s.End_Time = (long) ConvertToUnixTimestamp(endTime);
             s.UserId = userId;
             s.Actual_Time = (int)((endTime.Ticks - startTime.Ticks)/10000000);
             await repository.sendSession(s);
         }
 
-        public static double ConvertToUnicTimestamp(DateTime date)
+        public static double ConvertToUnixTimestamp(DateTime date)
         {
             DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
             TimeSpan diff = date.ToUniversalTime() - origin;

@@ -17,36 +17,45 @@ namespace HeadphoneDataApp.ViewModel
 {
     public class LoginViewModel: INotifyPropertyChanged
     {
+        
         private IAdapter adapter;
         private IRepository repository;
-
+        //Properties
+       
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public string ValidationErrors { get; set; }
         public IRepository Repository
         {
             get { return repository; }
             set { repository = value; }
         }
 
-
-
+        //Commands
+        public Command LoginCommand { get; set; }
 
         //Constructor
         public LoginViewModel()
         {
             //get the adapter via messenger
             Messenger.Default.Register<IAdapter>(this, AdapterMessage);
-            this.repository = new HeadphoneDataApp.Repository.Repository();
-            this.LoginCommand = new Command(async () =>
+            repository = new HeadphoneDataApp.Repository.Repository();
+
+            //Login
+            LoginCommand = new Command(async () =>
             {
                 //login controle
                 if (CanLogin(this.Username, this.Password))
                 {
                     try
                     {
+                        //Controle als de user bestaat
                         int id = Convert.ToInt32(Username.Trim());
                         bool userExists = repository.CheckIfUserIsValid(id);
-
+                       
                         if (userExists)
                         {
+                            //Controle als het password juist is
                             User retrievedUser = repository.GetUserById(id);
                             bool passwordCorrect = this.CheckUserPassword(retrievedUser);
                             if (passwordCorrect)
@@ -78,6 +87,8 @@ namespace HeadphoneDataApp.ViewModel
             });
         }
 
+        //Methode voor het password te controleren 
+        //  -> wordt opgeroepen bij de login command 
         private bool CheckUserPassword(User retrievedUser)
         {
             string password = Password.Trim(); //Wachtwoord die de gebruiker heeft ingegeven
@@ -87,6 +98,8 @@ namespace HeadphoneDataApp.ViewModel
             return passwordCorrect;
         }
 
+        //Methode voor het checken als de inputvelden niet leeg zijn
+        //  -> wordt opgeroepen bij de login command 
         public bool CanLogin(string Id, string Password)
         {
             //get
@@ -107,6 +120,12 @@ namespace HeadphoneDataApp.ViewModel
             }
         }
 
+        private void AdapterMessage(IAdapter obj)
+        {
+            this.adapter = obj;
+        }
+
+
         protected virtual void OnPropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)
@@ -116,15 +135,8 @@ namespace HeadphoneDataApp.ViewModel
             }
         }
 
-        private void AdapterMessage(IAdapter obj)
-        {
-            this.adapter = obj;
-        }
-
         public event PropertyChangedEventHandler PropertyChanged;
-        public Command LoginCommand { get; private set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public string ValidationErrors { get; private set; }
+ 
+       
     }
 }
