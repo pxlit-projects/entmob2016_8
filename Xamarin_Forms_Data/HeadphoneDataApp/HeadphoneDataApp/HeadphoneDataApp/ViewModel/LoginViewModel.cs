@@ -20,8 +20,8 @@ namespace HeadphoneDataApp.ViewModel
         
         private IAdapter adapter;
         private IRepository repository;
+
         //Properties
-       
         public string Username { get; set; }
         public string Password { get; set; }
         public string ValidationErrors { get; set; }
@@ -120,13 +120,15 @@ namespace HeadphoneDataApp.ViewModel
             }
         }
 
+        //Action wat wordt opgeroepen bij het registreren van de adapter 
         private void AdapterMessage(IAdapter obj)
         {
             this.adapter = obj;
         }
 
-
-        protected virtual void OnPropertyChanged(string propertyName)
+        //Implementatie van de interface INotifyPropertyChanged
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)
             {
@@ -135,7 +137,7 @@ namespace HeadphoneDataApp.ViewModel
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        
  
        
     }

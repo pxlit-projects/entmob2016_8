@@ -29,37 +29,56 @@ namespace HeadphoneDataApp.ViewModel
     public class MainViewModel : ViewModelBase, INotifyPropertyChanged
     {
         private IAdapter adapter;
+        private User user;
+        private ObservableCollection<IDevice> devices;
+
         public IAdapter Adapter
         {
             get { return adapter; }
             set { adapter = value; }
         }
         
+        public ObservableCollection<IDevice> Devices
+        {
+            get
+            {
+                return devices;
+            }
+            set
+            {
+                devices = value;
+                OnPropertyChanged("Devices");
+            }
+        }
 
-        private User user;
+        //Commands
+        public Command ScanCommand { set; get; }
+        public ICommand DeviceSelectedCommand { get; set; }
 
-        private ObservableCollection<IDevice> devices;
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        //constructor
+        //Constructor
         public MainViewModel()
         {
-            DeviceSelectedCommand = new Command(async (device) =>
-            {
-                await App.Current.MainPage.Navigation.PushModalAsync(ViewLocator.DeviceServicePage);
-                //stuur de geselecteerde device en de bluetoothadapter door 
-                Messenger.Default.Send<IAdapter>(adapter);
-                Messenger.Default.Send<IDevice>((IDevice)device);
-                Messenger.Default.Send<User>(user);
-            });
+            
+
+            //MESSENGER REGISTER
             //get the adapter via messenger
             Messenger.Default.Register<IAdapter>(this, AdapterMessage);
             //get the user via messenger
             Messenger.Default.Register<User>(this, User);
-            devices = new ObservableCollection<IDevice>();
-            
 
-            this.ScanCommand = new Command(() =>
+            devices = new ObservableCollection<IDevice>();
+
+            //COMMANDS
+            DeviceSelectedCommand = new Command(async (device) =>
+            {
+                await App.Current.MainPage.Navigation.PushModalAsync(ViewLocator.DeviceServicePage);
+                //stuur de geselecteerde device en de bluetoothadapter en user door 
+                Messenger.Default.Send<IAdapter>(adapter);
+                Messenger.Default.Send<IDevice>((IDevice)device);
+                Messenger.Default.Send<User>(user);
+            });
+        
+            ScanCommand = new Command(() =>
             {
                 StartScanning(0x180D.UuidFromPartial());
             });
@@ -67,6 +86,7 @@ namespace HeadphoneDataApp.ViewModel
            
         }
 
+        //Code voor het starten van het zoeken naar devices
         public void StartScanning()
         {
             StartScanning(Guid.Empty);
@@ -87,6 +107,7 @@ namespace HeadphoneDataApp.ViewModel
             }
         }
 
+        //Code voor het stoppen van het zoeken naar device
         public void StopScanning()
         {
             // stop scanning
@@ -99,7 +120,10 @@ namespace HeadphoneDataApp.ViewModel
                 }
             }).Start();
         }
-        
+
+
+        //Actions
+        //Action wat wordt opgeroepen bij het registreren van de adapter 
         private void AdapterMessage(IAdapter obj)
         {
             this.adapter = obj;
@@ -121,30 +145,15 @@ namespace HeadphoneDataApp.ViewModel
                 });
             };
         }
-
+        //Action wat wordt opgeroepen bij het registreren van de userr 
         private void User(User obj)
         {
             this.user = obj;
         }
 
-        public ICommand DeviceSelectedCommand { get; set; }
-
-        public ICommand ScanCommand { protected set; get; }
-
-        public ObservableCollection<IDevice> Devices
-        {
-            get
-            {
-                return devices;
-            }
-            set
-            {
-                devices = value;
-                OnPropertyChanged("Devices");
-            }
-        }
-
-        protected virtual void OnPropertyChanged(string propertyName)
+        //Implementatie van de interface INotifyPropertyChanged
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)
             {
