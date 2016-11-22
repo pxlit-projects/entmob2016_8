@@ -24,6 +24,7 @@ namespace HeadphoneDataApp.Repository
             Uri uri = new Uri(url);
             HttpClient client = new HttpClient();
             
+            //password en user in de header meegeven vaoor authentiction
             string encoded = Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes(username + ":" + password));
             client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", encoded);
   
@@ -40,6 +41,7 @@ namespace HeadphoneDataApp.Repository
             Uri uri = new Uri(url);
             HttpClient client = new HttpClient();
 
+            //password en user in de header meegeven vaoor authentiction
             string encoded = Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes(username + ":" + password));
             client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", encoded);
 
@@ -53,6 +55,7 @@ namespace HeadphoneDataApp.Repository
             Uri uri = new Uri(url);
             HttpClient client = new HttpClient();
 
+            //password en user in de header meegeven vaoor authentiction
             string encoded = Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes(username + ":" + password));
             client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", encoded);
 
